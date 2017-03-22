@@ -60,9 +60,11 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 选择碎片选项卡页面
+     * 选择碎片选项卡页面  hahahahahahahhaha
      */
     private void SwitchFragmentTab(int page) {
+
+
 
         switch (page) {
             case R.id.rb_home:
@@ -78,6 +80,8 @@ public class MainActivity extends BaseActivity {
                 mRbMe.setChecked(false);
                 changeFragment(fragmentShop);
                 break;
+
+
             case R.id.rb_me:
                 mRbHome.setChecked(false);
                 mRbShop.setChecked(false);

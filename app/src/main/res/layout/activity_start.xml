@@ -1,14 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nxedu.haircutreserve.activity.StartActivity">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/title_i"
+        layout="@layout/include_title" />
+
+    <!--头部-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@mipmap/login_bg">
+<!--android:background="@mipmap/login_rl_logo"-->
+        <ImageView
+            android:id="@+id/iv_login_activity_logo"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/logo"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_login_activity_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="理发店管理系统"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+    <!--手机号登陆-->
+    <LinearLayout
+        android:id="@+id/lin_loginforphone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="点击进入" />
-</RelativeLayout>
+        android:layout_marginTop="45dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/edt_login_activity_user_phone"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="0.5dp"
+                android:background="@drawable/edit_text_shape"
+                android:inputType="number"
+                android:hint="输入手机号"
+                android:paddingLeft="44dp"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:background="@mipmap/login_phone" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/edt_login_activity_user_verification_code"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="0.5dp"
+                android:background="@drawable/edit_text_shape"
+                android:inputType="number"
+                android:hint="输入验证码"
+                android:paddingLeft="44dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:background="@mipmap/login_pas" />
+
+            <Button
+                android:id="@+id/btn_login_activity_user_verification_code"
+                android:layout_width="94dp"
+                android:layout_height="34dp"
+                android:layout_alignRight="@+id/edt_login_activity_user_verification_code"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2dp"
+                android:text="获取验证码"
+                android:textSize="10sp"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:background="@drawable/button_style_shape"/>
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btn_login_activity_login"
+            android:layout_height="43.5dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16.5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="登录"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_login_bg_shape"/>
+
+    </LinearLayout>
+
+</LinearLayout>

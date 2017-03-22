@@ -14,6 +14,8 @@ import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
 
 /**
+ * 这个是开始页面  哈哈
+ *
  * @author dupeng
  * @version 1.0.0
  * @since 2017/3/23 10:23

@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 选择碎片选项卡页面  hahahahahahahhaha
+     * 选择碎片选项卡页面
      */
     private void SwitchFragmentTab(int page) {
 

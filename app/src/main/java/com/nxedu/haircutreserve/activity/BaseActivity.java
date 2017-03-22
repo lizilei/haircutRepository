@@ -18,6 +18,8 @@ import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.KJDB;
 import org.kymjs.kjframe.ui.ViewInject;
 /**
+ * 这个是基类Activity
+ *
  * @author dupeng
  * @version 1.0.0
  * @since 2017/3/23 10:23

@@ -1,4 +1,4 @@
-package com.nxedu.haircutreserve;
+package com.nxedu.haircutreserve.activity;
 
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;

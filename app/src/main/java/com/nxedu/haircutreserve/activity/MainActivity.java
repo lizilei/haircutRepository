@@ -1,9 +1,10 @@
-package com.nxedu.haircutreserve;
+package com.nxedu.haircutreserve.activity;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.fragment.FragmentHome;
 import com.nxedu.haircutreserve.fragment.FragmentMe;
 import com.nxedu.haircutreserve.fragment.FragmentShop;

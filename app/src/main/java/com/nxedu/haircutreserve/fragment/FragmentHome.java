@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nxedu.haircutreserve.MainActivity;
+import com.nxedu.haircutreserve.activity.MainActivity;
 import com.nxedu.haircutreserve.R;
 
 import org.kymjs.kjframe.ui.SupportFragment;

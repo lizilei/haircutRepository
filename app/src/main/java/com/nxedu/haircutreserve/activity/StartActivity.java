@@ -1,8 +1,10 @@
-package com.nxedu.haircutreserve;
+package com.nxedu.haircutreserve.activity;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+
+import com.nxedu.haircutreserve.R;
 
 import org.kymjs.kjframe.ui.BindView;
 

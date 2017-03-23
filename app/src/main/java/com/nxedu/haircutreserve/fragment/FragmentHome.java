@@ -45,6 +45,7 @@ public class FragmentHome extends SupportFragment implements SwipeRefreshLayout.
         lay_fresh.setOnRefreshListener(this);
         recyclerView.setLayoutManager(new GridLayoutManager(aty, 2, GridLayoutManager.VERTICAL, false));
         adapter = new HairCutHomeMultipleItemAdapter(aty);
+        
         recyclerView.setAdapter(adapter);
     }
 

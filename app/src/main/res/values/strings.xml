@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">美艺</string>
 
+    <string name="homepagetypecut">洗剪吹</string>
+    <string name="homepagetypehaircare">护发</string>
+    <string name="homepagetypehaircolor">染发</string>
+    <string name="homepagetypeperm">烫发</string>
+    <string name="arrangstylist">约发型师</string>
+    <string name="near_good_shop">身边好店</string>
+
     <!--普通用户个人中心-->
     <string-array name="general_text">
         <item>我的收藏</item>

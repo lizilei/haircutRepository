@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="line_vertical">
+        <item name="android:background">@color/grayblack</item>
+        <item name="android:layout_width">@dimen/height_0.5</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
 </resources>

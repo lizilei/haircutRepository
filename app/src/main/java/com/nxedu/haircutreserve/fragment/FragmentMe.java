@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.activity.MainActivity;
@@ -55,6 +56,8 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     private DrawableTextView meSetting;
     @BindView(id = R.id.fragment_me_msg, click = true)
     private DrawableTextView meMsg;
+    @BindView(id = R.id.app_back_im)
+    private ImageView iv_back;
 
     private String userType = "1";
 
@@ -73,6 +76,7 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     @Override
     protected void initData() {
         super.initData();
+        iv_back.setVisibility(View.GONE);
         switch (userType) {
             case "1"://普通用户
                 textData = getResources().getStringArray(R.array.general_text);
@@ -117,16 +121,16 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
                 startActivity(intent);
                 break;
             case R.id.fragment_me_avatar://头像点击事件
-                ToastUtils.showToast(aty,"头像");
+                ToastUtils.showToast(aty, "头像");
                 break;
             case R.id.fragment_me_contact://联系我们
                 AppUtils.toTel(aty, "17301207022");
                 return;
             case R.id.fragment_me_setting://系统设置
-                ToastUtils.showToast(aty,"系统设置");
+                ToastUtils.showToast(aty, "系统设置");
                 break;
             case R.id.fragment_me_msg://系统消息
-                ToastUtils.showToast(aty,"系统消息");
+                ToastUtils.showToast(aty, "系统消息");
                 break;
         }
     }

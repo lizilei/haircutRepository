@@ -20,4 +20,9 @@
 
     <!--常用的分割线的颜色-->
     <color name="divider_color">#C8C8C8</color>
+
+    <color name="cc_dot_orage">#fff08519</color>
+    <color name="cc_dot_dark">#ffdcd3cb</color>
+    <color name="grayblack">#ffdddddd</color>
+    <color name="black_51">#ff333333</color>
 </resources>

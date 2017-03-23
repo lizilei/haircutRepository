@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:layout_marginLeft="7.5dip"
+        android:layout_marginRight="7.5dip"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/lauout_good_shop"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_click_choumeimeifa_item"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_good_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/shouye_icon_shenbianhaodian" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14.0dip"
+                android:layout_toRightOf="@id/iv_good_shop"
+                android:text="@string/near_good_shop"
+                android:textColor="@color/black_51"
+                android:textSize="13.0sp" />
+        </RelativeLayout>
+
+        <View style="@style/line_vertical" />
+
+        <RelativeLayout
+            android:id="@+id/layout_booking_hairstylist"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_click_choumeimeifa_item"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_arrangstylist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/shouye_icon_yuefaxingshi" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14.0dip"
+                android:layout_toRightOf="@id/iv_arrangstylist"
+                android:text="@string/arrangstylist"
+                android:textColor="@color/black_51"
+                android:textSize="13.0sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.haiwaiso.android.view.carouselview;
+package com.nxedu.haircutreserve.view.carouselview;
 
 import android.content.Context;
 import android.os.Handler;
@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.haiwaiso.android.R;
-import com.haiwaiso.android.utils.ConversionUtil;
+import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.utils.ConversionUtil;
 
 import java.util.Timer;
 import java.util.TimerTask;

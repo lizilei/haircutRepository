@@ -7,7 +7,6 @@
 
     <color name="bottom_selected">#93c524</color>
     <color name="color_text_normal">#999999</color>
-<<<<<<< HEAD
 
     <color name="commonly_text_color3">#333333</color>
     <color name="commonly_text_color6">#666666</color>
@@ -15,6 +14,6 @@
 
     <!--常用的背景颜色-->
     <color name="commonly_bg_color">#EAE9E9</color>
-=======
->>>>>>> a5c7c39f589a7dc6374851191eaaf632c179550e
+
+    <color name="white">#FFFFFF</color>
 </resources>

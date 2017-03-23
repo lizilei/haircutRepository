@@ -7,4 +7,11 @@
 
     <color name="bottom_selected">#93c524</color>
     <color name="color_text_normal">#999999</color>
+
+    <color name="commonly_text_color3">#333333</color>
+    <color name="commonly_text_color6">#666666</color>
+    <color name="commonly_text_color9">#999999</color>
+
+    <!--常用的背景颜色-->
+    <color name="commonly_bg_color">#EAE9E9</color>
 </resources>

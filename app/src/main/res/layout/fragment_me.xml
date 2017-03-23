@@ -1,13 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/commonly_bg_color"
+    android:orientation="vertical">
 
-    <TextView
+    <include layout="@layout/include_title" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="我的Fragment"/>
+        android:layout_height="match_parent"
+        android:background="@color/commonly_bg_color"
+        android:scrollbars="none">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="146.5dp"
+                android:layout_marginBottom="8.5dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/default_10" />
+
+                <com.nxedu.haircutreserve.view.CircleImageView
+                    android:id="@+id/fragment_me_avatar"
+                    android:layout_width="58.5dp"
+                    android:layout_height="58.5dp"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="43.5dp"
+                    android:src="@mipmap/icon_default" />
+
+                <TextView
+                    android:id="@+id/fragment_me_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="58dp"
+                    android:layout_toRightOf="@+id/fragment_me_avatar"
+                    android:text="未登录"
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/fragment_me_commpany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/frgment_me_username"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_toRightOf="@+id/fragment_me_avatar"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#33000000"
+                    android:orientation="horizontal">
+
+                    <com.nxedu.haircutreserve.view.DrawableTextView
+                        android:id="@+id/fragment_me_contact"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableLeft="@mipmap/fragment_me_contact"
+                        android:drawablePadding="9dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="30dp"
+                        android:text="联系客服"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        app:drawable_height="19dp"
+                        app:drawable_width="10dp" />
+
+                    <View
+                        android:layout_width="@dimen/size_divider"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/white" />
+
+                    <com.nxedu.haircutreserve.view.DrawableTextView
+                        android:id="@+id/fragment_me_setting"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableLeft="@mipmap/fragment_me_setting"
+                        android:drawablePadding="9dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="24dp"
+                        android:text="系统设置"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        app:drawable_height="18dp"
+                        app:drawable_width="18dp" />
+
+                    <View
+                        android:layout_width="@dimen/size_divider"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/white" />
+
+                    <com.nxedu.haircutreserve.view.DrawableTextView
+                        android:id="@+id/fragment_me_msg"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableLeft="@mipmap/fragment_me_msg"
+                        android:drawablePadding="9dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="29dp"
+                        android:text="系统消息"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        app:drawable_height="16dp"
+                        app:drawable_width="15dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <com.nxedu.haircutreserve.view.ListViewNoScroll
+                android:id="@+id/lv_me"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:scrollbars="none" />
+
+            <Button
+                android:id="@+id/fragment_me_exit"
+                android:layout_width="225dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/main_color"
+                android:text="退出登录"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -403,7 +403,7 @@ public class AppUtils {
      *
      * @return 拨打电话
      */
-    public static void toTel(final Context context, final String tel, String label) {
+    public static void toTel(final Context context, final String tel) {
         if (tel == null || tel.isEmpty()) {
             ToastUtils.showToast((Activity) context, "暂无电话号码");
             return;

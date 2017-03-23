@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
@@ -23,16 +24,18 @@ import org.kymjs.kjframe.ui.ViewInject;
 public class StartActivity extends BaseActivity {
 
     private TimeCount time;
-    @BindView(id = R.id.title_middle_tv)
-    private TextView mTvTitle;
+    //    @BindView(id = R.id.title_middle_tv)
+//    private TextView mTvTitle;
     @BindView(id = R.id.edt_login_activity_user_phone)
     private EditText mEdtUserPhone;
     @BindView(id = R.id.edt_login_activity_user_verification_code)
     private EditText mEdtUserVerificationCode;
-    @BindView(id = R.id.btn_login_activity_user_verification_code ,click = true)
+    @BindView(id = R.id.btn_login_activity_user_verification_code, click = true)
     private Button mBtnVerificationCode;
-    @BindView(id = R.id.btn_login_activity_login ,click = true)
+    @BindView(id = R.id.btn_login_activity_login, click = true)
     private Button mBtnUserLogin;
+    @BindView(id = R.id.app_back_im)
+    private ImageView iv_back;
 
     @Override
     public void setRootView() {
@@ -44,13 +47,14 @@ public class StartActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-        mTvTitle.setText("理发店管理系统");
+//        mTvTitle.setText("理发店管理系统");
+        iv_back.setVisibility(View.GONE);
+
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-
     }
 
     @Override

@@ -1,26 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_top_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/main_color"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#0abffa">
+        android:layout_height="50dp">
 
-        <TextView
-            android:id="@+id/title_middle_tv"
+        <!--返回按钮-->
+        <RelativeLayout
+            android:id="@+id/app_back_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:textSize="17sp"
-            android:maxEms="10"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="#ffffff"/>
+            android:layout_height="match_parent"
+            android:minWidth="50dp">
 
+            <ImageView
+                android:id="@+id/app_back_im"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/app_back_im_selector" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/app_right_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="right|center_vertical"
+            android:minWidth="70dp"
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
+            <!--收藏按钮-->
+            <ImageView
+                android:id="@+id/app_menu_collection"
+                android:layout_width="39dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@mipmap/collection_no"
+                android:visibility="gone"/>
+            <!--菜单按钮-->
+            <ImageView
+                android:id="@+id/app_menu_im"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/app_menu_im_selector"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/app_right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+        <!--头部中间的文字显示-->
+        <RelativeLayout
+            android:id="@+id/app_conter_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/app_right_layout"
+            android:layout_toRightOf="@+id/app_back_layout">
+
+            <TextView
+                android:id="@+id/app_top_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone" />
+            <!--中间搜索条的布局-->
+            <LinearLayout
+                android:id="@+id/app_search_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="26dp"
+                    android:background="@drawable/search_bg"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="12.5dp"
+                        android:layout_height="13dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="12dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:src="@drawable/icon_search" />
+
+                    <EditText
+                        android:id="@+id/app_search_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="搜你想搜的..."
+                        android:textColorHint="@color/commonly_text_color9"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/app_search_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="取消"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!--中间布局》》》》》用于个人中心的活动详情的头部-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/app_switch_layout"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:gravity="center"-->
+                <!--android:visibility="gone">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/app_switch_left"-->
+                    <!--android:layout_width="90dp"-->
+                    <!--android:layout_height="27dp"-->
+                    <!--android:background="@drawable/active_detail_top_l_bg_selector"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="说明会详情"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="15sp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/app_switch_right"-->
+                    <!--android:layout_width="90dp"-->
+                    <!--android:layout_height="27dp"-->
+                    <!--android:background="@drawable/active_detail_top_r_bg_selector"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="报名客户"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="15sp" />-->
+            <!--</LinearLayout>-->
+
+            <!--<com.haiwaiso.android.view.HorizontalListView-->
+                <!--android:id="@+id/app_top_hlv"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:background="@color/transparency"-->
+                <!--android:scrollbars="none"-->
+                <!--android:visibility="gone" />-->
+        </RelativeLayout>
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -16,7 +16,6 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
  */
 
 public class app extends Application {
-
     @Override
     public void onCreate() {
         super.onCreate();

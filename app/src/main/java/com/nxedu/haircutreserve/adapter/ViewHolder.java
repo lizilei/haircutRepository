@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nxedu.haircutreserve.utils.MyImageLoaderUtils;
+
 /**
  * <p>@description:Holder</p>
  *
@@ -94,6 +97,7 @@ public class ViewHolder {
     // 为ImageView设置图片
     public ViewHolder setImageByUrl(int viewId, String url) {
 //        Picasso.with(context).load(url).error(R.drawable.default_pic).into((ImageView) getView(viewId));
+        MyImageLoaderUtils.displayHeadIcon(url,(ImageView) getView(viewId));
         return this;
     }
 

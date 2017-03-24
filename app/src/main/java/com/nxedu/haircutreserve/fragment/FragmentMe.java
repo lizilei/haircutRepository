@@ -137,6 +137,6 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        ToastUtils.showToast(aty, "您点击了" + textData[position]);
     }
 }

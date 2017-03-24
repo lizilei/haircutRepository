@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.utils.ToastUtils;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
@@ -32,10 +33,10 @@ public class StartActivity extends BaseActivity {
     private EditText mEdtUserVerificationCode;
     @BindView(id = R.id.btn_login_activity_user_verification_code, click = true)
     private Button mBtnVerificationCode;
-    @BindView(id = R.id.btn_login_activity_login, click = true)
-    private Button mBtnUserLogin;
     @BindView(id = R.id.app_back_im)
     private ImageView iv_back;
+    @BindView(id = R.id.btn_user_login, click = true)
+    private Button btn_user_login;
 
     @Override
     public void setRootView() {
@@ -50,6 +51,14 @@ public class StartActivity extends BaseActivity {
 //        mTvTitle.setText("理发店管理系统");
         iv_back.setVisibility(View.GONE);
 
+        btn_user_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this, MainActivity.class));
+                ToastUtils.showToast(StartActivity.this, "登陆成功！");
+                finish();
+            }
+        });
     }
 
     @Override
@@ -61,15 +70,15 @@ public class StartActivity extends BaseActivity {
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.btn_login_activity_login:
+            case R.id.btn_user_login:
                 startActivity(new Intent(StartActivity.this, MainActivity.class));
+                ToastUtils.showToast(this, "登陆成功！");
                 finish();
                 break;
-
             case R.id.btn_login_activity_user_verification_code:
+                ToastUtils.showToast(this, "发短信了");
                 time.start();
                 break;
-
             default:
                 break;
         }
@@ -111,6 +120,4 @@ public class StartActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
 
     }
-
 }
-

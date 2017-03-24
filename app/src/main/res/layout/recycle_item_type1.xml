@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
     android:orientation="vertical">
 
     <com.nxedu.haircutreserve.view.SlideShowView
@@ -10,5 +11,7 @@
         android:layout_height="150dp"
         android:fitsSystemWindows="true"
         android:scaleType="centerCrop"
+        android:clipToPadding="true"
+        android:duplicateParentState="true"
         android:src="@drawable/cheese_1" />
 </LinearLayout>

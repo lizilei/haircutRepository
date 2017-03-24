@@ -13,5 +13,12 @@
         <item name="android:layout_width">@dimen/height_0.5</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
-
+    <!-- Loding_dialog样式Start -->
+    <style name="Dialog_bocop">
+        <item name="android:windowBackground">@color/black_511</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+    <!-- Loding_dialog样式End -->
 </resources>

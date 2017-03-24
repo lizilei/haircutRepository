@@ -50,19 +50,21 @@ public class StartActivity extends BaseActivity {
 //        mTvTitle.setText("理发店管理系统");
         iv_back.setVisibility(View.GONE);
 
-        btn_user_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this, MainActivity.class));
-                ToastUtils.showToast(StartActivity.this, "登陆成功！");
-                finish();
-            }
-        });
+//        btn_user_login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(StartActivity.this, MainActivity.class));
+//                ToastUtils.showToast(StartActivity.this, "登陆成功！");
+//                finish();
+//            }
+//        });
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
+        btn_user_login.setOnClickListener(StartActivity.this);
+        mBtnVerificationCode.setOnClickListener(StartActivity.this);
     }
 
     @Override

@@ -41,6 +41,10 @@
 
     <uses-feature android:name="android.hardware.camera.autofocus"/>
 
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+
     <application
         android:name=".application.app"
         android:allowBackup="true"
@@ -61,6 +65,11 @@
         <activity android:name=".activity.GeneralUserCenterSettingActivity"/>
         <!--个人中心用户信息设置-->
         <activity android:name=".activity.PersonalDetailsActivity"/>
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
     </application>
 
 </manifest>

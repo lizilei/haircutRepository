@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.activity.GeneralUserCenterSettingActivity;
 import com.nxedu.haircutreserve.activity.MainActivity;
+import com.nxedu.haircutreserve.activity.PersonalDetailsActivity;
 import com.nxedu.haircutreserve.activity.StartActivity;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
@@ -122,7 +123,7 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
                 startActivity(new Intent(aty, StartActivity.class));
                 break;
             case R.id.fragment_me_avatar://头像点击事件
-                ToastUtils.showToast(aty, "头像");
+                startActivity(new Intent(aty, PersonalDetailsActivity.class));
                 break;
             case R.id.fragment_me_contact://联系我们
                 AppUtils.toTel(aty, "17301207022");

@@ -19,7 +19,7 @@ public class ToastUtils {
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (isFastClick()) {
+                if (!isFastClick()) {
                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
                 }
             }

@@ -56,6 +56,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity"></activity>
+
+        <!--个人中心系统设置-->
+        <activity android:name=".activity.GeneralUserCenterSettingActivity"/>
+        <!--个人中心用户信息设置-->
+        <activity android:name=".activity.PersonalDetailsActivity"/>
     </application>
 
 </manifest>

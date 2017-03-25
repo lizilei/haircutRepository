@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/layout_hair_item"
         android:layout_width="fill_parent"
         android:layout_height="90.0dip"
         android:layout_marginLeft="7.5dip"
         android:layout_marginRight="7.5dip"
+        android:duplicateParentState="true"
         android:layout_marginTop="7.5dip"
         android:orientation="horizontal">
 
@@ -16,6 +19,7 @@
             android:id="@+id/layout_wash_cut_blow"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
+            android:duplicateParentState="true"
             android:layout_weight="1.0"
             android:background="@drawable/bg_click_choumeimeifa_item">
 
@@ -23,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:duplicateParentState="true"
                 android:layout_marginTop="15.0dip"
                 android:background="@mipmap/shouye_icon_xijianchui" />
 
@@ -31,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:duplicateParentState="true"
                 android:layout_marginBottom="18.0dip"
                 android:text="@string/homepagetypecut"
                 android:textColor="@color/black_51"
@@ -41,6 +47,7 @@
             android:id="@+id/layout_hair_perm"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
+            android:duplicateParentState="true"
             android:layout_weight="1.0"
             android:background="@drawable/bg_click_choumeimeifa_item">
 
@@ -49,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15.0dip"
+                android:duplicateParentState="true"
                 android:background="@mipmap/shouye_icon_tangfa" />
 
             <TextView
@@ -58,6 +66,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="18.0dip"
                 android:text="@string/homepagetypeperm"
+                android:duplicateParentState="true"
                 android:textColor="@color/black_51"
                 android:textSize="12.0sp" />
         </RelativeLayout>
@@ -66,6 +75,7 @@
             android:id="@+id/layout_hair_dye"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
+            android:duplicateParentState="true"
             android:layout_weight="1.0"
             android:background="@drawable/bg_click_choumeimeifa_item">
 
@@ -74,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15.0dip"
+                android:duplicateParentState="true"
                 android:background="@mipmap/shouye_icon_ranfa" />
 
             <TextView
@@ -82,6 +93,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="18.0dip"
+                android:duplicateParentState="true"
                 android:text="@string/homepagetypehaircolor"
                 android:textColor="@color/black_51"
                 android:textSize="12.0sp" />
@@ -91,12 +103,14 @@
             android:id="@+id/layout_hu_fa"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
+            android:duplicateParentState="true"
             android:layout_weight="1.0"
             android:background="@drawable/bg_click_choumeimeifa_item">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:duplicateParentState="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15.0dip"
                 android:background="@mipmap/shouye_icon_hufa" />
@@ -107,6 +121,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="18.0dip"
+                android:duplicateParentState="true"
                 android:text="@string/homepagetypehaircare"
                 android:textColor="@color/black_51"
                 android:textSize="12.0sp" />

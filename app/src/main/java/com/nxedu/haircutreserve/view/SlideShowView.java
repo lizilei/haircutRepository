@@ -368,20 +368,6 @@ public class SlideShowView extends FrameLayout {
         @Override
         protected Boolean doInBackground(String... params) {
             try {
-                // 这里一般调用服务端接口获取一组轮播图片，下面是从百度找的几个图片
-
-//				imageUrls = new String[]{
-//						"http://image.zcool.com.cn/59/54/m_1303967870670.jpg",
-//						"http://image.zcool.com.cn/47/19/1280115949992.jpg",
-//						"http://image.zcool.com.cn/59/11/m_1303967844788.jpg"
-//				};
-
-//				imageSrcs = new int[]{
-//					R.drawable.startup1,
-//					R.drawable.startup2,
-//					R.drawable.startup3
-//				};
-
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();

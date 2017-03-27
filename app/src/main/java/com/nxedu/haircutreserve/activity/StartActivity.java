@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.utils.ToastUtils;
@@ -50,15 +49,6 @@ public class StartActivity extends BaseActivity {
         super.initData();
 //        mTvTitle.setText("理发店管理系统");
         iv_back.setVisibility(View.GONE);
-
-        btn_user_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this, MainActivity.class));
-                ToastUtils.showToast(StartActivity.this, "登陆成功！");
-                finish();
-            }
-        });
     }
 
     @Override

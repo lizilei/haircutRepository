@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.activity.GeneralUserCenterSettingActivity;
 import com.nxedu.haircutreserve.activity.MainActivity;
+import com.nxedu.haircutreserve.activity.PersonalDetailsActivity;
 import com.nxedu.haircutreserve.activity.StartActivity;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
@@ -24,6 +26,7 @@ import com.nxedu.haircutreserve.view.ListViewNoScroll;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.SupportFragment;
+import org.kymjs.kjframe.ui.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +69,7 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
         aty = (MainActivity) getActivity();
         view = View.inflate(aty, R.layout.fragment_me, null);
         return view;
+
     }
 
     @Override
@@ -113,21 +117,19 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     @Override
     protected void widgetClick(View v) {
         super.widgetClick(v);
-        Intent intent = null;
         switch (v.getId()) {
             case R.id.fragment_me_exit://退出登录
                 aty.finish();
-                intent = new Intent(aty, StartActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(aty, StartActivity.class));
                 break;
             case R.id.fragment_me_avatar://头像点击事件
-                ToastUtils.showToast(aty, "头像");
+                startActivity(new Intent(aty, PersonalDetailsActivity.class));
                 break;
             case R.id.fragment_me_contact://联系我们
                 AppUtils.toTel(aty, "17301207022");
                 return;
             case R.id.fragment_me_setting://系统设置
-                ToastUtils.showToast(aty, "系统设置");
+                startActivity(new Intent(aty, GeneralUserCenterSettingActivity.class));
                 break;
             case R.id.fragment_me_msg://系统消息
                 ToastUtils.showToast(aty, "系统消息");

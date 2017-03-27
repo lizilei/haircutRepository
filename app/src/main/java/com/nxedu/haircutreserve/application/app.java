@@ -9,6 +9,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
+import cn.smssdk.SMSSDK;
+
 /**
  * @author dupeng
  * @version 1.0.0
@@ -19,6 +21,7 @@ public class app extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        SMSSDK.initSDK(this, "bae29276412c", "6bc50a59c023df9c014c96dfe814accc");
         ImageLoaderConfiguration config = new ImageLoaderConfiguration
                 .Builder(this)
                 .memoryCacheExtraOptions(480, 800) // max width, max height，即保存的每个缓存文件的最大长宽

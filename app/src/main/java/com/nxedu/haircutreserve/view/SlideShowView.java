@@ -40,9 +40,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SlideShowView extends FrameLayout {
 
-    // 使用universal-image-loader插件读取网络图片，需要工程导入universal-image-loader-1.8.6-with-sources.jar
-//	private ImageLoader imageLoader = ImageLoader.getInstance();
-//	private BitmapUtils bitmapUtils;
+    //	private ImageLoader imageLoader = ImageLoader.getInstance();
     //轮播图图片数量
     private final static int IMAGE_COUNT = 4;
     //自动轮播的时间间隔
@@ -92,10 +90,6 @@ public class SlideShowView extends FrameLayout {
         super(context, attrs, defStyle);
         if (!isInEditMode()) {
             this.context = context;
-//	        this.bitmapUtils = BitmapHelp.getBitmapUtils();
-//	        this.bitmapUtils.configDefaultLoadingImage(R.drawable.none);
-//	    	this.bitmapUtils.configDefaultLoadFailedImage(R.drawable.none);
-
             initData();
             // 一步任务获取图片
             new GetListTask().execute("");
@@ -171,7 +165,7 @@ public class SlideShowView extends FrameLayout {
         //////////////////////////
 
         if (imageViewsList.size() > 0 && goListener != null) {
-            imageViewsList.get(imageViewsList.size() - 1).setOnClickListener(goListener);
+//            imageViewsList.get(imageViewsList.size() - 1).setOnClickListener(goListener);
         }
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPager.setFocusable(true);
@@ -202,9 +196,9 @@ public class SlideShowView extends FrameLayout {
             if (!MyStrUtil.isEmpty(imageUrls)) {
                 DisplayImageOptions options;
                 options = new DisplayImageOptions.Builder()
-                        .showImageOnLoading(R.mipmap.ic_launcher) //设置图片在下载期间显示的图片
-                        .showImageForEmptyUri(R.mipmap.ic_launcher)//设置图片Uri为空或是错误的时候显示的图片
-                        .showImageOnFail(R.mipmap.ic_launcher)  //设置图片加载/解码过程中错误时候显示的图片
+                        .showImageOnLoading(R.drawable.cheese_1) //设置图片在下载期间显示的图片
+                        .showImageForEmptyUri(R.drawable.cheese_1)//设置图片Uri为空或是错误的时候显示的图片
+                        .showImageOnFail(R.drawable.cheese_1)  //设置图片加载/解码过程中错误时候显示的图片
                         .cacheInMemory(true)//设置下载的图片是否缓存在内存中
                         .considerExifParams(true)  //是否考虑JPEG图像EXIF参数（旋转，翻转）
                         .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)//设置图片以如何的编码方式显示
@@ -295,7 +289,7 @@ public class SlideShowView extends FrameLayout {
 
         @Override
         public void onPageSelected(int pos) {
-
+            imageViewsList.get(pos).setOnClickListener(goListener);
             currentItem = pos;
             for (int i = 0; i < dotViewsList.size(); i++) {
                 if (i == pos) {

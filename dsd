@@ -1,0 +1,187 @@
+[33mcommit 85cfaf099948c439580e99337edad191dd2d6bd2[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Wed Mar 29 11:47:42 2017 +0800
+
+    增加了两个页面
+
+[33mcommit abe36786ee41dbb4fbfa367a65de0e230d84320c[m
+Merge: f7b4427 9daa061
+Author: lzl <lizilei_warms@163.com>
+Date:   Sat Mar 25 15:20:48 2017 +0800
+
+    提交代码
+
+[33mcommit f7b44274710a1007ba9afa5b523dc33763255c8a[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Sat Mar 25 15:10:01 2017 +0800
+
+    提交
+
+[33mcommit 9daa061028337459a3e6914dbe2f66a645b70d3d[m
+Author: guojunhua <2532758812@qq.com>
+Date:   Sat Mar 25 15:07:09 2017 +0800
+
+    yy11
+
+[33mcommit e435f632d6165a5e32309a840089f3d358b63ad6[m
+Merge: 99e254a 76e3144
+Author: guojunhua <2532758812@qq.com>
+Date:   Sat Mar 25 12:17:44 2017 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 99e254a517f87a57b95345e52b0d5f1f679fa098[m
+Author: guojunhua <2532758812@qq.com>
+Date:   Sat Mar 25 12:17:22 2017 +0800
+
+    yy
+
+[33mcommit 76e31448cfc581037a24999083d37e4496818521[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Fri Mar 24 21:40:09 2017 +0800
+
+    力量来看看看见看见就看
+
+[33mcommit f878c7b2a1468b96bd8273e0b797d280fdc21879[m
+Merge: 22c1377 57628e6
+Author: lzl <lizilei_warms@163.com>
+Date:   Fri Mar 24 17:05:54 2017 +0800
+
+    Merge branch 'master' of https://github.com/lizilei/haircutRepository
+
+[33mcommit 22c137778cc36dc91a8898eefffb3cfc5ace4771[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Fri Mar 24 17:04:54 2017 +0800
+
+    增加个人中心用户信息设置和系统设置
+
+[33mcommit 57628e6aee8bad85537892aa56447c7de27f8d07[m
+Author: guojunhua <2532758812@qq.com>
+Date:   Fri Mar 24 16:18:03 2017 +0800
+
+    新增加载对话框LoadingDialog
+
+[33mcommit 312a585b9f71310e11b29391d5e996a601511c40[m
+Merge: db2b5ac 33f0fa7
+Author: guojunhua <2532758812@qq.com>
+Date:   Fri Mar 24 15:01:33 2017 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #	app/src/main/java/com/nxedu/haircutreserve/adapter/HairCutHomeMultipleItemAdapter.java
+
+[33mcommit db2b5ac4541107ea7331711eda8f08ad11f522dc[m
+Author: guojunhua <2532758812@qq.com>
+Date:   Fri Mar 24 15:00:47 2017 +0800
+
+    添加监听事件
+
+[33mcommit 33f0fa79f9d858d702c52af3537be41a6fe09760[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Fri Mar 24 14:50:05 2017 +0800
+
+    解决不能登陆问题
+
+[33mcommit 72881740369e6e07cbe6c617a1823d973cefdfe4[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Fri Mar 24 11:25:39 2017 +0800
+
+    解决首页不能登陆问题
+
+[33mcommit 8e8d10c8d7ac20e54adb5c5b79513cdb6b83cf3e[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 22:41:07 2017 +0800
+
+    修改了部分代码
+
+[33mcommit da079380283615ae96174833ae9c58f6b8c61261[m
+Author: guojunhua <2532758812@qq.com>
+Date:   Thu Mar 23 16:59:15 2017 +0800
+
+    修改首页
+
+[33mcommit 19c3fe87fa53d9b409771e9034a601022e99cfc4[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 16:48:45 2017 +0800
+
+    修改了忽略文件
+
+[33mcommit 68a2152acdc46072dafe89ee9c061fcf6622a6d7[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 16:02:50 2017 +0800
+
+    增加 首页
+
+[33mcommit ec897b0b9ca793e1ffd00e10af86291cc8fe127d[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 14:37:40 2017 +0800
+
+    修改了忽略文件
+
+[33mcommit a3f09bc50519137afe011f91ceb0ae8d11c1c226[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 14:17:24 2017 +0800
+
+    增加了工具类，top—Bar,个人中心页面
+
+[33mcommit 683fde88d1f24709a5b279fe26766a64f09a36fd[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 10:46:00 2017 +0800
+
+    解决了一些错误
+
+[33mcommit 7286da9e971dbaea955b33d6b003ee3968d0a442[m
+Merge: 97b82bf a5c7c39
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 10:21:31 2017 +0800
+
+    这是信息
+
+[33mcommit 97b82bf5b987c51df20dd8f4f576045eaf2c62b8[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 10:17:06 2017 +0800
+
+    增加了一些工具类
+
+[33mcommit 794688188c6de596c7671b57cf67a143ea5aae1c[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Thu Mar 23 09:40:15 2017 +0800
+
+    first  commit
+
+[33mcommit a5c7c39f589a7dc6374851191eaaf632c179550e[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Wed Mar 22 23:27:43 2017 +0800
+
+    Message
+
+[33mcommit f2b6165734f879ba5cd07b23a058b8486b2698b2[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Wed Mar 22 23:18:46 2017 +0800
+
+    提交代码了
+
+[33mcommit 2de03578511444909f0f1f43aa83de49ce9ee1dc[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Wed Mar 22 23:07:29 2017 +0800
+
+    这个是测试
+
+[33mcommit d0dfb7548c1eabdae558d7f7179cda2c57bc3cb7[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Wed Mar 22 22:12:11 2017 +0800
+
+    第三次提交
+
+[33mcommit e0836394a3c8d1d5c71220535b6fec18b5f47b70[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Wed Mar 22 21:58:42 2017 +0800
+
+    修改了一些东西
+
+[33mcommit b5d66b9fed42a3b621a4460555a2be5942e542ea[m
+Author: lzl <lizilei_warms@163.com>
+Date:   Wed Mar 22 21:31:18 2017 +0800
+
+    This is first commit

@@ -21,6 +21,9 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.activity.GoodShopActivity;
+import com.nxedu.haircutreserve.activity.HaircutActivity;
+import com.nxedu.haircutreserve.activity.HomeInfoActivity;
 import com.nxedu.haircutreserve.activity.StartActivity;
 import com.nxedu.haircutreserve.view.SlideShowView;
 
@@ -37,6 +40,7 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     private Context context;
     private DisplayImageOptions options;
     private MyItemClickListener mItemClickListener;
+    private List<String> imgList;
     //type
     public static final int TYPE_1 = 0xff01;
     public static final int TYPE_2 = 0xff02;
@@ -44,9 +48,10 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     public static final int TYPE_4 = 0xff04;
     public static final int TYPE_MAIN = 0xffff;
 
-    public HairCutHomeMultipleItemAdapter(Context context) {
+    public HairCutHomeMultipleItemAdapter(Context context, List<String> imgList) {
         this.context = context;
 //        this.results = results;
+        this.imgList = imgList;
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.cheese_1) //设置图片在下载期间显示的图片
                 .showImageForEmptyUri(R.drawable.cheese_1)//设置图片Uri为空或是错误的时候显示的图片
@@ -76,7 +81,7 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
             case TYPE_4:
                 return new MyViewHolder4(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_type4, parent, false));
             case TYPE_MAIN:
-                return new MyViewHolderMain(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_typemain, parent, false),mItemClickListener);
+                return new MyViewHolderMain(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_typemain, parent, false), mItemClickListener);
             default:
                 Log.d("error", "viewholder is null");
                 return null;
@@ -100,7 +105,7 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
 
     @Override
     public int getItemCount() {
-        return 40;
+        return imgList.size();
     }
 
     @Override
@@ -121,7 +126,6 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-
         RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
         if (manager instanceof GridLayoutManager) {
             final GridLayoutManager gridManager = ((GridLayoutManager) manager);
@@ -144,10 +148,20 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     }
 
     private void bindType1(MyViewHolder1 holder, int position) {
-        String img = "http://h.hiphotos.baidu.com/zhidao/pic/item/0eb30f2442a7d9334f268ca9a84bd11372f00159.jpg";
-        String[] imgs = new String[]{img, img, img, img, img, img, img};
+        String img1 = "http://img.faxingzhan.com/170327/12-1F32F94301144_728_330.jpg";
+        String img2 = "http://img.faxingzhan.com/170327/12-1F32F9460O43_728_330.jpg";
+        String img3 = "http://img.faxingzhan.com/170327/12-1F32G0012BS_728_330.jpg";
+        String img4 = "http://img.faxingzhan.com/170327/12-1F32G0161J59_728_330.jpg";
+        String img5 = "http://img.faxingzhan.com/170327/12-1F32G02245193_728_330.png";
+        String[] imgs = new String[]{img1, img2, img3, img4, img5};
         holder.slideShowView.setImageUrls(imgs);
         holder.slideShowView.startPlay();
+        holder.slideShowView.setOnGolistener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, HomeInfoActivity.class));
+            }
+        });
     }
 
     private void bindType2(MyViewHolder2 holder, int position) {
@@ -159,30 +173,34 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     }
 
     private void bindType4(MyViewHolder4 holder, int position) {
-        String img = "http://pica.nipic.com/2007-10-09/200710994020530_2.jpg";
         holder.item_recyc_type4.setLayoutManager(new GridLayoutManager(holder.item_recyc_type4.getContext(), 3, GridLayoutManager.VERTICAL, false));
         List<String> results = new ArrayList<String>();
-        String img1 = "http://pica.nipic.com/2007-10-09/200710994020530_2.jpg";
+        String img1 = "http://img.hairbobo.com/uploadimg/16/04/25/160425084827227.jpg";
+        String img2 = "http://img.hairbobo.com/uploadimg/16/06/07/160607110246063.jpg";
+        String img3 = "http://img.hairbobo.com/uploadimg/14/09/23/140923220731510.jpg";
+        String img4 = "http://img.hairbobo.com/uploadimg/16/10/09/161009014529117.jpg";
+        String img5 = "http://img.hairbobo.com/uploadimg/16/11/21/161121225710153.jpg";
+        String img6 = "http://img.hairbobo.com/uploadimg/16/09/14/160914065028908.jpg";
         results.add(img1);
-        results.add(img1);
-        results.add(img1);
-        results.add(img1);
-        results.add(img1);
-        results.add(img1);
+        results.add(img2);
+        results.add(img3);
+        results.add(img4);
+        results.add(img5);
+        results.add(img6);
         RecycleItemAdapterType4 adapter = new RecycleItemAdapterType4(context, results);
         holder.item_recyc_type4.setAdapter(adapter);
         adapter.setItemClickListener(new RecycleItemAdapterType4.MyItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context,HomeInfoActivity.class));
             }
         });
         holder.item_recyc_type4.setNestedScrollingEnabled(false);
     }
 
     private void bindTypeMain(MyViewHolderMain holder, int position) {
-        String img = "http://pica.nipic.com/2007-10-09/200710994020530_2.jpg";
-        ImageLoader.getInstance().displayImage(img, holder.item_imgmain, options);
+        ImageLoader.getInstance().displayImage(imgList.get(position), holder.item_imgmain, options);
     }
 
     public class MyViewHolder1 extends RecyclerView.ViewHolder {
@@ -208,17 +226,20 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.layout_wash_cut_blow:
-//                    context.startActivity(new Intent(context,StartActivity.class));
                     Toast.makeText(context, "洗剪吹", Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, HaircutActivity.class));
                     break;
                 case R.id.layout_hair_dye:
                     Toast.makeText(context, "染发", Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, HaircutActivity.class));
                     break;
                 case R.id.layout_hu_fa:
                     Toast.makeText(context, "护发", Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, HaircutActivity.class));
                     break;
                 case R.id.layout_hair_perm:
                     Toast.makeText(context, "烫发", Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, HaircutActivity.class));
                     break;
             }
         }
@@ -237,9 +258,11 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
             switch (v.getId()) {
                 case R.id.layout_good_shop:
                     Toast.makeText(context, "身边好店", Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, GoodShopActivity.class));
                     break;
                 case R.id.layout_booking_hairstylist:
                     Toast.makeText(context, "预约发型", Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, GoodShopActivity.class));
                     break;
             }
         }

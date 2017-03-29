@@ -1,6 +1,7 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.view.View;
+import android.widget.ImageView;
 
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.utils.ToastUtils;
@@ -25,6 +26,8 @@ public class GeneralUserCenterSettingActivity extends BaseActivity {
     private DrawableTextView general_user_center_setting_dataclean;
     @BindView(id = R.id.general_user_center_setting_fankui, click = true)
     private DrawableTextView general_user_center_setting_fankui;
+    @BindView(id = R.id.app_back_im, click = true)
+    private ImageView iv_back;
 
     @Override
     public void setRootView() {
@@ -56,7 +59,10 @@ public class GeneralUserCenterSettingActivity extends BaseActivity {
             case R.id.general_user_center_setting_fankui:
                 msg = "意见反馈";
                 break;
+            case R.id.app_back_im:
+                finish();
+                return;
         }
-        ToastUtils.showToast(this,msg);
+        ToastUtils.showToast(this, msg);
     }
 }

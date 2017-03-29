@@ -1,6 +1,7 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -32,6 +33,8 @@ public class PersonalDetailsActivity extends BaseActivity {
     private LinearLayout person_detail_diff;
     @BindView(id = R.id.person_detail_signature, click = true)
     private LinearLayout person_detail_signature;
+    @BindView(id = R.id.app_back_im, click = true)
+    private ImageView iv_back;
 
     @Override
     public void setRootView() {
@@ -54,6 +57,9 @@ public class PersonalDetailsActivity extends BaseActivity {
         super.widgetClick(v);
         String msg = null;
         switch (v.getId()) {
+            case R.id.app_back_im:
+                finish();
+                return;
             case R.id.person_detail_avatar:
                 msg = "换头像啦";
                 break;
@@ -64,7 +70,7 @@ public class PersonalDetailsActivity extends BaseActivity {
                 msg = "换性别啦";
                 break;
             case R.id.person_detail_phone:
-                msg = "换电话好啦";
+                msg = "换电话号啦";
                 break;
             case R.id.person_detail_diff:
                 msg = "换个人信息啦";

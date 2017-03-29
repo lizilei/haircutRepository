@@ -52,23 +52,26 @@ public class StartActivity extends BaseActivity {
         time = new TimeCount(60000, 1000);
 
         eh = new EventHandler() {
-
             @Override
             public void afterEvent(int event, int result, Object data) {
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     //回调完成
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                         //提交验证码成功
-
+                        ToastUtils.showToast(StartActivity.this, "登陆成功");
+                        startActivity(new Intent(StartActivity.this, MainActivity.class));
                     } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         //获取验证码成功
                         ver_code = result + "";
+                        Log.i("---result", result + "");
+                        Log.i("---result", data.toString());
                     } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
                         //返回支持发送验证码的国家列表
                     }
                 } else {
                     ((Throwable) data).printStackTrace();
                     ToastUtils.showToast(StartActivity.this, ((Throwable) data).getMessage());
+                    Log.i("---log", ((Throwable) data).getMessage());
                 }
             }
         };
@@ -89,22 +92,23 @@ public class StartActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View v) {
+        String phone = mEdtUserPhone.getText().toString().trim();
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.btn_user_login:
                 String verCode = mEdtUserVerificationCode.getText().toString().trim();
-                if (verCode.equals(ver_code)) {
-                    startActivity(new Intent(StartActivity.this, MainActivity.class));
-                    ToastUtils.showToast(this, "登陆成功！");
-                    finish();
-                } else {
-                    ToastUtils.showToast(this, "登陆失败，请输入正确的验证码...");
+                if (phone.equals("") || phone == null) {
+                    ToastUtils.showToast(this, "请先输入手机号");
+                    return;
                 }
-
+                if (verCode.equals("") || verCode == null) {
+                    ToastUtils.showToast(this, "请先输入验证码");
+                    return;
+                }
+                SMSSDK.submitVerificationCode("86", phone, verCode);
                 break;
             case R.id.btn_login_activity_user_verification_code:
-                String phone = mEdtUserPhone.getText().toString().trim();
-                if (phone.equals("") && phone == null) {
+                if (phone.equals("") || phone == null) {
                     ToastUtils.showToast(this, "请先输入手机号");
                     return;
                 }
@@ -117,14 +121,14 @@ public class StartActivity extends BaseActivity {
                 SMSSDK.getVerificationCode("+86", phone, new OnSendMessageHandler() {
                     @Override
                     public boolean onSendMessage(String country, String phone) {
-                        Log.e("---log", country + "---" + phone);
+                        Log.i("---log", country + "---" + phone);
 
-                        if (country == "cn") {//此号码无须实际接收短信
-                            return false;
-                        } else if (country == "en") {
-                            return false;
-                        }
-                        return true;
+//                        if (country == "cn") {//此号码无须实际接收短信
+//                            return false;
+//                        } else if (country == "en") {
+//                            return false;
+//                        }
+                        return false;
                     }
                 });
                 time.start();

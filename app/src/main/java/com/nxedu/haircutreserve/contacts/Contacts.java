@@ -14,6 +14,6 @@ public class Contacts {
     /**
      * 登录页短信验证
      */
-    public static final String sms_app_key = "bae29276412c";
-    public static final String sms_app_secret = "6bc50a59c023df9c014c96dfe814accc";
+    public static final String sms_app_key = "1c8ef502dfe08";
+    public static final String sms_app_secret = "c61f4fa1bb029a75f6cff94166a33ebc";
 }

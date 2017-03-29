@@ -22,7 +22,7 @@ public class app extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SMSSDK.initSDK(this, Contacts.sms_app_key, Contacts.sms_app_secret);
+        SMSSDK.initSDK(this, Contacts.sms_app_key, Contacts.sms_app_secret,true);
         ImageLoaderConfiguration config = new ImageLoaderConfiguration
                 .Builder(this)
                 .memoryCacheExtraOptions(480, 800) // max width, max height，即保存的每个缓存文件的最大长宽

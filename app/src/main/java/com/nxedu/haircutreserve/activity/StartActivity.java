@@ -68,6 +68,7 @@ public class StartActivity extends BaseActivity {
                     }
                 } else {
                     ((Throwable) data).printStackTrace();
+                    ToastUtils.showToast(StartActivity.this, ((Throwable) data).getMessage());
                 }
             }
         };
@@ -113,7 +114,7 @@ public class StartActivity extends BaseActivity {
                     return;
                 }
 
-                SMSSDK.getVerificationCode("cn", phone, new OnSendMessageHandler() {
+                SMSSDK.getVerificationCode("+86", phone, new OnSendMessageHandler() {
                     @Override
                     public boolean onSendMessage(String country, String phone) {
                         Log.e("---log", country + "---" + phone);

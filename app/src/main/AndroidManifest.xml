@@ -49,16 +49,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.StartActivity">
+
+        </activity>
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.HaircutActivity" />
+        <activity android:name=".activity.GoodShopActivity" />
+        <activity android:name=".activity.HomeInfoActivity" />
+        <activity android:name=".activity.SplashActivity" />
+        <activity android:name=".activity.GuideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.HaircutActivity" />
-        <activity android:name=".activity.GoodShopActivity" />
-        <activity android:name=".activity.HomeInfoActivity"></activity>
     </application>
 
 </manifest>

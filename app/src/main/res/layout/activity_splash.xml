@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_choumei"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:id="@+id/layout_splash_in"
+        android:layout_width="fill_parent"
+        android:layout_height="77.0dip"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/login"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/btn_splash_to_home"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@color/transparent"
+            android:text="@string/shopcart_watch"
+            android:textColor="@color/sale_time_black"
+            android:textSize="12.0sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="21.0dip"
+            android:layout_gravity="center"
+            android:background="@mipmap/login_1" />
+
+        <Button
+            android:id="@+id/btn_splash_to_login"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@color/transparent"
+            android:text="@string/login"
+            android:textColor="@color/sale_time_black"
+            android:textSize="12.0sp" />
+    </LinearLayout>
+</RelativeLayout>

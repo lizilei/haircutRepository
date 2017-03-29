@@ -26,4 +26,7 @@
     <color name="grayblack">#ffdddddd</color>
     <color name="black_51">#ff333333</color>
     <color name="black_511">#0000</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="sale_time_black">#ff545454</color>
 </resources>

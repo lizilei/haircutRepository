@@ -1,6 +1,7 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.content.Context;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
 
@@ -11,6 +12,7 @@ import com.nxedu.haircutreserve.fragment.FragmentShop;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.SupportFragment;
+import org.kymjs.kjframe.ui.ViewInject;
 
 public class MainActivity extends BaseActivity {
 
@@ -91,5 +93,23 @@ public class MainActivity extends BaseActivity {
 
     public void changeFragment(SupportFragment targetFragment) {
         super.changeFragment(R.id.fl_content, targetFragment);
+    }
+
+    private long mExitTime;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //=====双键退出==
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                Object mHelperUtils;
+                ViewInject.toast("再按一次退出程序");
+                mExitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

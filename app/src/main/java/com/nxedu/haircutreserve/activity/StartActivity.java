@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.mob.commons.SMSSDK;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 
@@ -64,6 +65,7 @@ public class StartActivity extends BaseActivity {
                 startActivity(new Intent(StartActivity.this, MainActivity.class));
                 ToastUtils.showToast(this, "登陆成功！");
                 finish();
+
                 break;
             case R.id.btn_login_activity_user_verification_code:
                 ToastUtils.showToast(this, "发短信了");
@@ -90,24 +92,5 @@ public class StartActivity extends BaseActivity {
             mBtnVerificationCode.setClickable(false);//防止重复点击
             mBtnVerificationCode.setText(millisUntilFinished / 1000 + "秒");
         }
-    }
-
-    private long mExitTime;
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            //=====双键退出==
-            if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                Object mHelperUtils;
-                ViewInject.toast("再按一次退出程序");
-                mExitTime = System.currentTimeMillis();
-            } else {
-                finish();
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-
     }
 }

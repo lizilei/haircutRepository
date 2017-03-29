@@ -8,6 +8,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.nxedu.haircutreserve.contacts.Contacts;
 
 import cn.smssdk.SMSSDK;
 
@@ -21,7 +22,7 @@ public class app extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SMSSDK.initSDK(this, "bae29276412c", "6bc50a59c023df9c014c96dfe814accc");
+        SMSSDK.initSDK(this, Contacts.sms_app_key, Contacts.sms_app_secret);
         ImageLoaderConfiguration config = new ImageLoaderConfiguration
                 .Builder(this)
                 .memoryCacheExtraOptions(480, 800) // max width, max height，即保存的每个缓存文件的最大长宽

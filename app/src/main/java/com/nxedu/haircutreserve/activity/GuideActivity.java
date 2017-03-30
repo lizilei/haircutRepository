@@ -51,6 +51,11 @@ public class GuideActivity extends BaseActivity {
     public void initWidget() {
         super.initWidget();
         viewPager.setAdapter(adapter);
+        images.get(0).setBackgroundResource(R.mipmap.guide_bg_1);
+        images.get(0).setImageResource(R.mipmap.guide_1);
+        iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
+        iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
+        iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -59,35 +64,35 @@ public class GuideActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                    if (0 == position) {
-                        images.get(position).setBackgroundResource(R.mipmap.guide_bg_1);
-                        images.get(position).setImageResource(R.mipmap.guide_1);
-                        iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
-                        iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
-                        iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
-                        btn_Experience.setVisibility(View.GONE);
-                    } else if (1 == position){
-                        images.get(position).setBackgroundResource(R.mipmap.guide_bg_2);
-                        images.get(position).setImageResource(R.mipmap.guide_2);
-                        iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
-                        iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
-                        iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
-                        btn_Experience.setVisibility(View.GONE);
-                    }else if (2 == position){
-                        images.get(position).setBackgroundResource(R.mipmap.guide_bg_3);
-                        images.get(position).setImageResource(R.mipmap.guide_3);
-                        iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
-                        iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
-                        iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
-                        btn_Experience.setVisibility(View.VISIBLE);
-                        btn_Experience.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(GuideActivity.this,StartActivity.class));
-                                finish();
-                            }
-                        });
-                    }
+                if (0 == position) {
+                    images.get(position).setBackgroundResource(R.mipmap.guide_bg_1);
+                    images.get(position).setImageResource(R.mipmap.guide_1);
+                    iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
+                    iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
+                    iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
+                    btn_Experience.setVisibility(View.GONE);
+                } else if (1 == position) {
+                    images.get(position).setBackgroundResource(R.mipmap.guide_bg_2);
+                    images.get(position).setImageResource(R.mipmap.guide_2);
+                    iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
+                    iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
+                    iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
+                    btn_Experience.setVisibility(View.GONE);
+                } else if (2 == position) {
+                    images.get(position).setBackgroundResource(R.mipmap.guide_bg_3);
+                    images.get(position).setImageResource(R.mipmap.guide_3);
+                    iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
+                    iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
+                    iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
+                    btn_Experience.setVisibility(View.VISIBLE);
+                    btn_Experience.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(GuideActivity.this, StartActivity.class));
+                            finish();
+                        }
+                    });
+                }
             }
 
             @Override

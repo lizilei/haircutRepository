@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.activity.GeneralUserCenterSettingActivity;
@@ -19,6 +20,7 @@ import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
 import com.nxedu.haircutreserve.bean.MeData;
 import com.nxedu.haircutreserve.utils.AppUtils;
+import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 import com.nxedu.haircutreserve.view.CircleImageView;
 import com.nxedu.haircutreserve.view.DrawableTextView;
@@ -61,6 +63,8 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     private DrawableTextView meMsg;
     @BindView(id = R.id.app_back_im)
     private ImageView iv_back;
+    @BindView(id = R.id.fragment_me_username)
+    private TextView fragment_me_username;
 
     private String userType = "1";
 
@@ -81,6 +85,9 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     protected void initData() {
         super.initData();
         iv_back.setVisibility(View.GONE);
+        String phone = PreferenceUtils.getPrefString(aty, "phone", null);
+        if (phone != null)
+            fragment_me_username.setText(phone);
         switch (userType) {
             case "1"://普通用户
                 textData = getResources().getStringArray(R.array.general_text);
@@ -119,6 +126,7 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.fragment_me_exit://退出登录
+                PreferenceUtils.setPrefString(aty, "phone", null);
                 aty.finish();
                 startActivity(new Intent(aty, StartActivity.class));
                 break;

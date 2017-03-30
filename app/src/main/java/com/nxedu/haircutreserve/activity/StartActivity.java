@@ -1,7 +1,11 @@
 package com.nxedu.haircutreserve.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +14,7 @@ import android.widget.ImageView;
 
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.utils.AppUtils;
+import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 
 import org.kymjs.kjframe.ui.BindView;
@@ -42,8 +47,43 @@ public class StartActivity extends BaseActivity {
     private Button btn_user_login;
     private EventHandler eh;
 
-    //验证码
-    private String ver_code;
+    private String phone;
+    private Context context = this;
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            int event = msg.arg1;
+            int result = msg.arg2;
+            Object data = msg.obj;
+
+            if (result == SMSSDK.RESULT_COMPLETE) {
+                //回调完成
+                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                    //提交验证码成功
+                    ToastUtils.showToast((Activity) context, "登陆成功");
+                    PreferenceUtils.setPrefString(context, "phone", phone);
+                    startActivity(new Intent(context, MainActivity.class));
+                    finish();
+                } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+                    //获取验证码成功
+                    mEdtUserPhone.setFocusable(false);
+                    mEdtUserPhone.setFocusableInTouchMode(false);
+                } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
+                    //返回支持发送验证码的国家列表
+                }
+            } else {
+                mEdtUserPhone.setFocusableInTouchMode(true);
+                mEdtUserPhone.setFocusable(true);
+                mEdtUserPhone.requestFocus();
+                ((Throwable) data).printStackTrace();
+                ToastUtils.showToast((Activity) context, ((Throwable) data).getMessage());
+                Log.i("---log", ((Throwable) data).getMessage());
+            }
+        }
+    };
+
 
     @Override
     public void setRootView() {
@@ -52,24 +92,13 @@ public class StartActivity extends BaseActivity {
         time = new TimeCount(60000, 1000);
 
         eh = new EventHandler() {
-
             @Override
             public void afterEvent(int event, int result, Object data) {
-                if (result == SMSSDK.RESULT_COMPLETE) {
-                    //回调完成
-                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-                        //提交验证码成功
-
-                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
-                        //获取验证码成功
-                        ver_code = result + "";
-                    } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
-                        //返回支持发送验证码的国家列表
-                    }
-                } else {
-                    ((Throwable) data).printStackTrace();
-                    ToastUtils.showToast(StartActivity.this, ((Throwable) data).getMessage());
-                }
+                Message msg = Message.obtain();
+                msg.arg1 = event;
+                msg.arg2 = result;
+                msg.obj = data;
+                mHandler.sendMessage(msg);
             }
         };
         SMSSDK.registerEventHandler(eh); //注册短信回调
@@ -89,22 +118,23 @@ public class StartActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View v) {
+        phone = mEdtUserPhone.getText().toString().trim();
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.btn_user_login:
                 String verCode = mEdtUserVerificationCode.getText().toString().trim();
-                if (verCode.equals(ver_code)) {
-                    startActivity(new Intent(StartActivity.this, MainActivity.class));
-                    ToastUtils.showToast(this, "登陆成功！");
-                    finish();
-                } else {
-                    ToastUtils.showToast(this, "登陆失败，请输入正确的验证码...");
+                if (phone.equals("") || phone == null) {
+                    ToastUtils.showToast(this, "请先输入手机号");
+                    return;
                 }
-
+                if (verCode.equals("") || verCode == null) {
+                    ToastUtils.showToast(this, "请先输入验证码");
+                    return;
+                }
+                SMSSDK.submitVerificationCode("86", phone, verCode);
                 break;
             case R.id.btn_login_activity_user_verification_code:
-                String phone = mEdtUserPhone.getText().toString().trim();
-                if (phone.equals("") && phone == null) {
+                if (phone.equals("") || phone == null) {
                     ToastUtils.showToast(this, "请先输入手机号");
                     return;
                 }
@@ -117,14 +147,14 @@ public class StartActivity extends BaseActivity {
                 SMSSDK.getVerificationCode("+86", phone, new OnSendMessageHandler() {
                     @Override
                     public boolean onSendMessage(String country, String phone) {
-                        Log.e("---log", country + "---" + phone);
+                        Log.i("---log", country + "---" + phone);
 
-                        if (country == "cn") {//此号码无须实际接收短信
-                            return false;
-                        } else if (country == "en") {
-                            return false;
-                        }
-                        return true;
+//                        if (country == "cn") {//此号码无须实际接收短信
+//                            return false;
+//                        } else if (country == "en") {
+//                            return false;
+//                        }
+                        return false;
                     }
                 });
                 time.start();

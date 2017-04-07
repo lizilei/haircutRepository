@@ -14,7 +14,6 @@ import org.kymjs.kjframe.ui.BindView;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GuideActivity extends BaseActivity {
     @BindView(id = R.id.viewpager_guid)
     private ViewPager viewPager;

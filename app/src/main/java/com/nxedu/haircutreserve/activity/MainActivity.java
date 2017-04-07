@@ -85,7 +85,6 @@ public class MainActivity extends BaseActivity {
                 mRbMe.setChecked(true);
                 changeFragment(fragmentMe);
                 break;
-
             default:
                 break;
         }

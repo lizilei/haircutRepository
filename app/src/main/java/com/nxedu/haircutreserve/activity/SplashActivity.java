@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,8 +14,6 @@ import com.nxedu.haircutreserve.utils.PreferenceUtils;
 
 import org.kymjs.kjframe.ui.BindView;
 
-import static android.R.attr.id;
-import static android.R.attr.switchMinWidth;
 import static com.nxedu.haircutreserve.R.id.btn_splash_to_home;
 import static com.nxedu.haircutreserve.R.id.iv_choumei;
 
@@ -33,7 +29,7 @@ public class SplashActivity extends BaseActivity {
 
     private Boolean isFirst;
     private final Context context = this;
-    Handler handler = new Handler() {
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -41,16 +37,15 @@ public class SplashActivity extends BaseActivity {
             switch (msg.what) {
                 case 1:
                     Log.v("------isFirst", isFirst + "");
-//                    if (isFirst) {
-//                        intent = new Intent(context, GuideActivity.class);
-//                        PreferenceUtils.setPrefBoolean(context, "isFirst", false);
-//                    } else {
-//                        if (PreferenceUtils.getPrefString(context, "phone", null) == null)
-//                            intent = new Intent(context, StartActivity.class);
-//                        else
-//                            intent = new Intent(context, MainActivity.class);
-//                    }
-                    intent = new Intent(context, StartActivity.class);
+                    if (isFirst) {
+                        intent = new Intent(context, GuideActivity.class);
+                        PreferenceUtils.setPrefBoolean(context, "isFirst", false);
+                    } else {
+                        if (PreferenceUtils.getPrefString(context, "phone", null) == null)
+                            intent = new Intent(context, StartActivity.class);
+                        else
+                            intent = new Intent(context, MainActivity.class);
+                    }
                     break;
             }
             startActivity(intent);

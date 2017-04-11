@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.utils.ToastUtils;
@@ -35,6 +36,8 @@ public class PersonalDetailsActivity extends BaseActivity {
     private LinearLayout person_detail_signature;
     @BindView(id = R.id.app_back_im, click = true)
     private ImageView iv_back;
+    @BindView(id=R.id.app_top_text)
+    private TextView tv_center;
 
     @Override
     public void setRootView() {
@@ -50,6 +53,9 @@ public class PersonalDetailsActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
+
+        tv_center.setText("个人中心");
+        tv_center.setVisibility(View.VISIBLE);
     }
 
     @Override

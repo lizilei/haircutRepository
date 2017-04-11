@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nxedu.haircutreserve.activity.GeneralCouponActivity;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.activity.GeneralCollectionActivity;
+import com.nxedu.haircutreserve.activity.GeneralOrderActivity;
 import com.nxedu.haircutreserve.activity.GeneralUserCenterSettingActivity;
 import com.nxedu.haircutreserve.activity.MainActivity;
 import com.nxedu.haircutreserve.activity.PersonalDetailsActivity;
@@ -28,7 +31,6 @@ import com.nxedu.haircutreserve.view.ListViewNoScroll;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.SupportFragment;
-import org.kymjs.kjframe.ui.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -147,6 +149,24 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ToastUtils.showToast(aty, "您点击了" + textData[position]);
+        Intent intent = null;
+        switch (position) {
+            case 0: //我的收藏
+                intent = new Intent(aty, GeneralCollectionActivity.class);
+                break;
+            case 1: //我的订单
+                intent = new Intent(aty, GeneralOrderActivity.class);
+                break;
+            case 2: //优惠券
+                intent = new Intent(aty, GeneralCouponActivity.class);
+                break;
+            case 3: //去评分
+                ToastUtils.showToast(aty, "该功能暂未开放");
+                return;
+            case 4: //版本号
+                ToastUtils.showToast(aty, "当前版本：" + AppUtils.getVersion(aty));
+                return;
+        }
+        startActivity(intent);
     }
 }

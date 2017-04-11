@@ -51,8 +51,8 @@
 
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -67,6 +67,13 @@
         <activity android:name=".activity.GeneralUserCenterSettingActivity" />
         <!--个人中心用户信息设置-->
         <activity android:name=".activity.PersonalDetailsActivity" />
+
+        <!--我的收藏-->
+        <activity android:name=".activity.GeneralCollectionActivity" />
+        <!--我的订单-->
+        <activity android:name=".activity.GeneralOrderActivity" />
+        <!--优惠券-->
+        <activity android:name=".activity.GeneralCouponActivity" />
 
         <!--短信验证码集成时使用-->
         <!--App Key:bae29276412c-->

@@ -45,6 +45,8 @@ public class StartActivity extends BaseActivity {
     private ImageView iv_back;
     @BindView(id = R.id.btn_user_login, click = true)
     private Button btn_user_login;
+    @BindView(id = R.id.btn_user_login1, click = true)
+    private Button btn_user_login1;
     private EventHandler eh;
 
     private String phone;
@@ -121,6 +123,10 @@ public class StartActivity extends BaseActivity {
         phone = mEdtUserPhone.getText().toString().trim();
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.btn_user_login1:
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+                break;
             case R.id.btn_user_login:
                 String verCode = mEdtUserVerificationCode.getText().toString().trim();
                 if (phone.equals("") || phone == null) {

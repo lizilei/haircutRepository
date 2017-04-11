@@ -29,4 +29,8 @@
 
     <color name="transparent">#00000000</color>
     <color name="sale_time_black">#ff545454</color>
+
+    <!--橘黄色-->
+    <color name="orange">#F04918</color>
+    <color name="commonly_text_color93">#939393</color>
 </resources>

@@ -2,6 +2,7 @@ package com.nxedu.haircutreserve.activity;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.utils.ToastUtils;
@@ -28,7 +29,8 @@ public class GeneralUserCenterSettingActivity extends BaseActivity {
     private DrawableTextView general_user_center_setting_fankui;
     @BindView(id = R.id.app_back_im, click = true)
     private ImageView iv_back;
-
+    @BindView(id=R.id.app_top_text)
+    private TextView tv_center;
     @Override
     public void setRootView() {
         super.setRootView();
@@ -43,6 +45,9 @@ public class GeneralUserCenterSettingActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
+
+        tv_center.setText("系统设置");
+        tv_center.setVisibility(View.VISIBLE);
     }
 
     @Override

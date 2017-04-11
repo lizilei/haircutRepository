@@ -41,4 +41,6 @@
     <color name="gray_border_color">#ffdadada</color>
     <color name="login_input_hint">#ffaaaaaa</color>
     <color name="yellow">#fffff329</color>
+    <color name="orange">#F04918</color>
+    <color name="commonly_text_color93">#939393</color>
 </resources>

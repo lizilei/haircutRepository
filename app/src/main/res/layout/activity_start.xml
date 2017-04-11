@@ -108,6 +108,15 @@
             android:text="登陆"
             android:textColor="@color/white" />
 
+        <Button
+            android:id="@+id/btn_user_login1"
+            android:layout_width="match_parent"
+            android:layout_height="43.5dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_login_bg_shape"
+            android:text="游客登录"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
 </LinearLayout>

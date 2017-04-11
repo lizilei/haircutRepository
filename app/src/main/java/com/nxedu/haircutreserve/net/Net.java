@@ -10,4 +10,5 @@ package com.nxedu.haircutreserve.net;
  */
 
 public class Net {
+
 }

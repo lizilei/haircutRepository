@@ -9,8 +9,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.nxedu.haircutreserve.activity.GeneralCouponActivity;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.activity.GeneralCollectionActivity;
+import com.nxedu.haircutreserve.activity.GeneralOrderActivity;
 import com.nxedu.haircutreserve.activity.GeneralUserCenterSettingActivity;
 import com.nxedu.haircutreserve.activity.MainActivity;
 import com.nxedu.haircutreserve.activity.PersonalDetailsActivity;
@@ -19,6 +23,7 @@ import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
 import com.nxedu.haircutreserve.bean.MeData;
 import com.nxedu.haircutreserve.utils.AppUtils;
+import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 import com.nxedu.haircutreserve.view.CircleImageView;
 import com.nxedu.haircutreserve.view.DrawableTextView;
@@ -26,7 +31,6 @@ import com.nxedu.haircutreserve.view.ListViewNoScroll;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.SupportFragment;
-import org.kymjs.kjframe.ui.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +65,8 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     private DrawableTextView meMsg;
     @BindView(id = R.id.app_back_im)
     private ImageView iv_back;
+    @BindView(id = R.id.fragment_me_username)
+    private TextView fragment_me_username;
 
     private String userType = "1";
 
@@ -81,6 +87,9 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     protected void initData() {
         super.initData();
         iv_back.setVisibility(View.GONE);
+        String phone = PreferenceUtils.getPrefString(aty, "phone", null);
+        if (phone != null)
+            fragment_me_username.setText(phone);
         switch (userType) {
             case "1"://普通用户
                 textData = getResources().getStringArray(R.array.general_text);
@@ -119,6 +128,7 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.fragment_me_exit://退出登录
+                PreferenceUtils.setPrefString(aty, "phone", null);
                 aty.finish();
                 startActivity(new Intent(aty, StartActivity.class));
                 break;
@@ -139,6 +149,24 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ToastUtils.showToast(aty, "您点击了" + textData[position]);
+        Intent intent = null;
+        switch (position) {
+            case 0: //我的收藏
+                intent = new Intent(aty, GeneralCollectionActivity.class);
+                break;
+            case 1: //我的订单
+                intent = new Intent(aty, GeneralOrderActivity.class);
+                break;
+            case 2: //优惠券
+                intent = new Intent(aty, GeneralCouponActivity.class);
+                break;
+            case 3: //去评分
+                ToastUtils.showToast(aty, "该功能暂未开放");
+                return;
+            case 4: //版本号
+                ToastUtils.showToast(aty, "当前版本：" + AppUtils.getVersion(aty));
+                return;
+        }
+        startActivity(intent);
     }
 }

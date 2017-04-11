@@ -1,6 +1,5 @@
 package com.nxedu.haircutreserve.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,9 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -24,7 +21,6 @@ import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.activity.GoodShopActivity;
 import com.nxedu.haircutreserve.activity.HaircutActivity;
 import com.nxedu.haircutreserve.activity.HomeInfoActivity;
-import com.nxedu.haircutreserve.activity.StartActivity;
 import com.nxedu.haircutreserve.view.SlideShowView;
 
 import java.util.ArrayList;
@@ -193,7 +189,7 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
-                context.startActivity(new Intent(context,HomeInfoActivity.class));
+                context.startActivity(new Intent(context, HomeInfoActivity.class));
             }
         });
         holder.item_recyc_type4.setNestedScrollingEnabled(false);

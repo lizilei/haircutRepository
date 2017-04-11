@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#A7A8AB"
+    android:orientation="vertical"
+    android:paddingBottom="3dp"
+    android:paddingLeft="9dp"
+    android:paddingRight="9dp"
+    android:paddingTop="3dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popup_bg"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商品名称"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/commonly_text_color6"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_home_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:text="商品类型"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/commonly_text_color6"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_divider"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系人"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_contact_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/commonly_text_color6"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="联系电话"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_contact_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/commonly_text_color6"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_divider"
+                android:layout_marginTop="23dp"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单状态"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="待付款"
+                    android:textColor="@color/commonly_text_color6"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单总价"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_deposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/red"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单编号"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_order_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/commonly_text_color6"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="下单时间"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/popup_payment_detail_create_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/commonly_text_color6"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="35dp"
+                android:layout_marginTop="45dp">
+
+                <com.nxedu.haircutreserve.view.DrawableTextView
+                    android:id="@+id/popup_payment_detail_up_dtv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/pop_payment_detail_up"
+                    android:text="点击收起"
+                    android:textColor="#2259D6"
+                    android:textSize="15sp"
+                    app:drawable_height="9dp"
+                    app:drawable_width="15dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

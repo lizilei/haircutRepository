@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?><!--正常是橘黄色，选中或按下是白色-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/white_bg" android:state_selected="true" />
+    <item android:drawable="@drawable/white_bg" android:state_pressed="true" />
+    <item android:drawable="@drawable/orange_bg" />
+</selector>

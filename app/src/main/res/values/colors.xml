@@ -18,6 +18,8 @@
 
     <color name="white">#FFFFFF</color>
 
+    <color name="red">#FF0000</color>
+
     <!--常用的分割线的颜色-->
     <color name="divider_color">#C8C8C8</color>
 

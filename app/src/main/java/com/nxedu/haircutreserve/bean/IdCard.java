@@ -22,6 +22,15 @@ public class IdCard implements Serializable {
     private String order_idcard_id;
     private String idcard_no;
 
+    public IdCard(String idcard_name, String order_idcard_id, String idcard_no) {
+        this.idcard_name = idcard_name;
+        this.order_idcard_id = order_idcard_id;
+        this.idcard_no = idcard_no;
+    }
+
+    public IdCard() {
+    }
+
     public String getIdcard_name() {
         return idcard_name;
     }

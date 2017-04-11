@@ -1,6 +1,8 @@
 package com.nxedu.haircutreserve.activity;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
+import com.nxedu.haircutreserve.bean.IdCard;
 import com.nxedu.haircutreserve.bean.OrderList;
 
 import org.kymjs.kjframe.ui.BindView;
@@ -74,6 +77,11 @@ public class GeneralOrderActivity extends BaseActivity {
 
             ol.setOrder_price((int) (50 * Math.random() + 50) + "");
             ol.setBusiness_id("发型设计");
+            List<IdCard> iList = new ArrayList<>();
+            iList.add(new IdCard("王小二", "201456199206141592", "17301207022"));
+
+            ol.setIdcard(iList);
+
             list.add(ol);
         }
 
@@ -91,12 +99,23 @@ public class GeneralOrderActivity extends BaseActivity {
                 helper.setText(R.id.order_time, item.getCreated());
                 helper.setText(R.id.order_num, item.getOrder_id());
                 helper.setText(R.id.order_title, item.getProject_title());
-                helper.setText(R.id.order_price, item.getOrder_price() + "元");
+                helper.setText(R.id.order_price, "￥" + item.getOrder_price());
             }
         };
         lv_order_mine.setAdapter(adapter);
         lv_order_mine.setEmptyView(tv_empty);
         adapter.getDatas(list);
+
+        lv_order_mine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(GeneralOrderActivity.this, GeneralOrderDetailActivity.class);
+//                intent.putExtra("order_id", list.get(position).getOrder_id());
+//                intent.putExtra("order_status", list.get(position).getOrder_status());
+                intent.putExtra("order", list.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -10,6 +10,11 @@
     <string name="loading">加载中</string>
     <string name="login">去登录</string>
     <string name="shopcart_watch">去逛逛</string>
+    <string name="no_resarch_hint">搜索无结果</string>
+    <string name="edit_hint">输入店铺名称</string>
+    <string name="saynum">评价数</string>
+    <string name="manyishu">满意数</string>
+    <string name="manyidu">满意度</string>
 
     <!--普通用户个人中心-->
     <string-array name="general_text">

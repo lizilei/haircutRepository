@@ -29,7 +29,7 @@ public class GuideActivity extends BaseActivity {
     @BindView(id = R.id.iv_anchor3)
     private ImageView iv_Anchor3;
     private GuidViewPagerAdapter adapter;
-    private List<ImageView> images = new ArrayList<>();
+    private List<View> images = new ArrayList<>();
 
     @Override
     public void setRootView() {
@@ -40,10 +40,12 @@ public class GuideActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-        for (int i = 0; i < 3; i++) {
-            ImageView iv = new ImageView(this);
-            images.add(iv);
-        }
+        View view_1 = getLayoutInflater().inflate(R.layout.view_guide_second,null);
+        View view_2 = getLayoutInflater().inflate(R.layout.view_guide_third,null);
+        View view_3 = getLayoutInflater().inflate(R.layout.view_guide_four,null);
+        images.add(view_1);
+        images.add(view_2);
+        images.add(view_3);
         adapter = new GuidViewPagerAdapter(images);
     }
 
@@ -61,21 +63,18 @@ public class GuideActivity extends BaseActivity {
             public void onPageSelected(int position) {
                     if (0 == position) {
                         images.get(position).setBackgroundResource(R.mipmap.guide_bg_1);
-                        images.get(position).setImageResource(R.mipmap.guide_1);
                         iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
                         iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
                         iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
                         btn_Experience.setVisibility(View.GONE);
                     } else if (1 == position){
                         images.get(position).setBackgroundResource(R.mipmap.guide_bg_2);
-                        images.get(position).setImageResource(R.mipmap.guide_2);
                         iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
                         iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
                         iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
                         btn_Experience.setVisibility(View.GONE);
                     }else if (2 == position){
                         images.get(position).setBackgroundResource(R.mipmap.guide_bg_3);
-                        images.get(position).setImageResource(R.mipmap.guide_3);
                         iv_Anchor3.setImageResource(R.mipmap.bg_shape_guide_solid_circle);
                         iv_Anchor2.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);
                         iv_Anchor1.setImageResource(R.mipmap.bg_shape_guide_hollow_circle);

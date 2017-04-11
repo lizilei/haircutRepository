@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="200.0dip">
+
+    <TextView
+        android:id="@+id/tv_salon_item"
+        android:layout_width="fill_parent"
+        android:layout_height="15.0dip" />
+
+    <RelativeLayout
+        android:id="@+id/rl_all"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/tv_salon_item"
+        android:layout_marginLeft="15.0dip"
+        android:layout_marginRight="15.0dip"
+        android:background="@drawable/quanchenghaodian_bg">
+
+        <ImageView
+            android:id="@+id/iv_list_bigimage"
+            android:layout_width="fill_parent"
+            android:layout_height="141.0dip"
+            android:background="@drawable/quanchenghaodian_morentu"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="141.0dip"
+            android:background="@mipmap/dianpuxiangqing"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="7.0dip"
+            android:layout_below="@id/iv_list_bigimage"
+            android:layout_marginTop="-6.0dip"
+            android:background="@drawable/quanchenghaodian_bg_duan" />
+
+        <TextView
+            android:id="@+id/tv_list_leave_lately"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/iv_list_bigimage"
+            android:layout_marginRight="15.0dip"
+            android:text="1.5km"
+            android:textColor="@color/light_gray" />
+
+        <ImageView
+            android:id="@+id/iv_list_leave_loacal"
+            android:layout_width="wrap_content"
+            android:layout_height="12.0dip"
+            android:layout_below="@id/iv_list_bigimage"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="6.0dip"
+            android:layout_toLeftOf="@id/tv_list_leave_lately"
+            android:background="@mipmap/dianpuxiangqing_shugang_37" />
+
+        <TextView
+            android:id="@+id/tv_list_localname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_list_bigimage"
+            android:layout_marginRight="7.0dip"
+            android:layout_toLeftOf="@id/iv_list_leave_loacal"
+            android:text="南头"
+            android:textColor="@color/light_gray"
+            android:textSize="12.0sp" />
+
+        <ImageView
+            android:id="@+id/iv_locationmap"
+            android:layout_width="12.0dip"
+            android:layout_height="12.0dip"
+            android:layout_below="@id/iv_list_bigimage"
+            android:layout_marginRight="3.0dip"
+            android:layout_toLeftOf="@id/tv_list_localname"
+            android:background="@drawable/dizhi_icon_selector" />
+
+        <RelativeLayout
+            android:id="@+id/layout_list_salonname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_list_bigimage"
+            android:layout_marginLeft="9.0dip"
+            android:layout_toLeftOf="@id/iv_locationmap">
+
+            <TextView
+                android:id="@+id/tv_list_salonname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:paddingRight="27.0dip"
+                android:singleLine="true"
+                android:textSize="15.0sp" />
+
+            <LinearLayout
+                android:id="@+id/layout_list_salon_star"
+                android:layout_width="25.0dip"
+                android:layout_height="14.0dip"
+                android:layout_alignRight="@id/tv_list_salonname"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_recommedn_stylist_title"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="10.0dip"
+                    android:layout_height="10.0dip"
+                    android:layout_marginRight="2.0dip"
+                    android:background="@mipmap/shop_star_icon" />
+
+                <TextView
+                    android:id="@+id/tv_list_salon_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/yellow"
+                    android:textSize="10.0sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/layout_list_salonname"
+            android:layout_marginLeft="9.0dip"
+            android:layout_marginTop="4.0dip">
+
+            <TextView
+                android:id="@+id/tv_list_saynum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/saynum"
+                android:textColor="@color/light_gray"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/tv_list_saynum_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3.0dip"
+                android:layout_toRightOf="@id/tv_list_saynum"
+                android:text="18008"
+                android:textColor="@color/pink"
+                android:textSize="12.0sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/manyishu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/manyishu"
+                    android:textColor="@color/light_gray"
+                    android:textSize="12.0sp" />
+
+                <TextView
+                    android:id="@+id/tv_manyishu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.0dip"
+                    android:text="88.58%"
+                    android:textColor="@color/pink"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_manyidu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15.0dip"
+                android:text="88.58%"
+                android:textColor="@color/pink"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/manyidu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5.0dip"
+                android:layout_toLeftOf="@id/tv_manyidu"
+                android:text="@string/manyidu"
+                android:textColor="@color/light_gray"
+                android:textSize="12.0sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="15.0dip"
+            android:layout_below="@id/rl_2" />
+    </RelativeLayout>
+</RelativeLayout>

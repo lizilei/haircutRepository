@@ -13,9 +13,9 @@ import java.util.List;
  */
 
 public class GuidViewPagerAdapter extends PagerAdapter {
-    private List<ImageView> data;
+    private List<View> data;
 
-    public GuidViewPagerAdapter(List<ImageView> data) {
+    public GuidViewPagerAdapter(List<View> data) {
         this.data = data;
     }
 

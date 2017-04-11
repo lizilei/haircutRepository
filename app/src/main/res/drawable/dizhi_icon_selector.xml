@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@mipmap/xianmuliebiao_diqu_xuanzhediliweizhi_icon" />
+    <item android:state_pressed="false" android:drawable="@mipmap/xiangmuxiangqing_dizhi_icon" />
+    <item android:drawable="@mipmap/xiangmuxiangqing_dizhi_icon" />
+</selector>

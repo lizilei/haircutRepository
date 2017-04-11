@@ -72,8 +72,12 @@
         <activity android:name=".activity.GeneralCollectionActivity" />
         <!--我的订单-->
         <activity android:name=".activity.GeneralOrderActivity" />
+        <!--订单详情页-->
+        <activity android:name=".activity.GeneralOrderDetailActivity" />
         <!--优惠券-->
         <activity android:name=".activity.GeneralCouponActivity" />
+        <!--订单支付页-->
+        <activity android:name=".activity.PayNowActivity" />
 
         <!--短信验证码集成时使用-->
         <!--App Key:bae29276412c-->

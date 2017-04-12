@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="fill_parent"
+        android:layout_height="85.0dip"
+        android:layout_marginLeft="15.0dip">
+
+        <com.nxedu.haircutreserve.view.CircleImageView
+            android:id="@+id/fast_stylist_head"
+            android:layout_width="62.0dip"
+            android:layout_height="62.0dip"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/gerenziliao_touxiang" />
+
+        <TextView
+            android:id="@+id/fast_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12.0dip"
+            android:layout_marginTop="12.0dip"
+            android:layout_toRightOf="@id/fast_stylist_head"
+            android:ellipsize="end"
+            android:maxEms="15"
+            android:singleLine="true"
+            android:text="总监快剪"
+            android:textColor="@color/pink"
+            android:textSize="15.0sp" />
+
+        <TextView
+            android:id="@+id/fast_salon_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fast_item_name"
+            android:layout_marginLeft="12.0dip"
+            android:layout_marginTop="5.0dip"
+            android:layout_toRightOf="@id/fast_stylist_head"
+            android:text="卡顿（西夏店）"
+            android:textColor="@color/login_input_hint"
+            android:textSize="12.0sp" />
+
+        <TextView
+            android:id="@+id/fast_salon_zone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fast_salon_name"
+            android:layout_marginLeft="12.0dip"
+            android:layout_marginTop="5.0dip"
+            android:layout_toRightOf="@id/fast_stylist_head"
+            android:text="南山区"
+            android:textColor="@color/login_input_hint"
+            android:textSize="12.0sp" />
+
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="wrap_content"
+            android:layout_height="12.0dip"
+            android:layout_below="@id/fast_salon_name"
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginTop="5.0dip"
+            android:layout_toRightOf="@id/fast_salon_zone"
+            android:background="@mipmap/dianpuxiangqing_shugang_37" />
+
+        <TextView
+            android:id="@+id/fast_far_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fast_salon_name"
+            android:layout_marginLeft="7.0dip"
+            android:layout_marginTop="5.0dip"
+            android:layout_toRightOf="@id/iv1"
+            android:text="3.6km"
+            android:textColor="@color/login_input_hint"
+            android:textSize="12.0sp" />
+
+        <TextView
+            android:id="@+id/fast_Ori_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/fast_salon_name"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="5.0dip"
+            android:text="800"
+            android:textColor="@color/login_input_hint"
+            android:textSize="12.0sp" />
+
+        <TextView
+            android:id="@+id/fast_Ori_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fast_salon_name"
+            android:layout_marginRight="5.0dip"
+            android:layout_marginTop="5.0dip"
+            android:layout_toLeftOf="@id/fast_Ori_price"
+            android:text="@string/mycollect_item_name_orig"
+            android:textColor="@color/login_input_hint"
+            android:textSize="12.0sp" />
+
+        <TextView
+            android:id="@+id/fast_choumei_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/fast_Ori_price"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15.0dip"
+            android:text="1666"
+            android:textColor="@color/pink"
+            android:textSize="16.0sp" />
+
+        <TextView
+            android:id="@+id/fast_choumei_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/fast_Ori_price"
+            android:layout_marginRight="4.0dip"
+            android:layout_marginTop="7.0dip"
+            android:layout_toLeftOf="@id/fast_choumei_price"
+            android:text="@string/choumei_price_msg"
+            android:textColor="@color/pink"
+            android:textSize="12.0sp" />
+
+        <ImageView
+            android:id="@+id/fast_company"
+            android:layout_width="32.0dip"
+            android:layout_height="32.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="-2.0dip" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl"
+        android:layout_marginLeft="15.0dip"
+        android:background="@mipmap/tongyong_xian_heng" />
+</RelativeLayout>

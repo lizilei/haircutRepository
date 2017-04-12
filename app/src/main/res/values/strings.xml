@@ -15,6 +15,12 @@
     <string name="saynum">评价数</string>
     <string name="manyishu">满意数</string>
     <string name="manyidu">满意度</string>
+    <string name="no_stylist">暂无对应等级发型师</string>
+    <string name="phone_msg">电话咨询</string>
+    <string name="booking_money">预约金</string>
+    <string name="booking">立即预约</string>
+    <string name="choumei_price_msg">优惠价 ¥</string>
+    <string name="mycollect_item_name_orig">原价</string>
 
     <!--普通用户个人中心-->
     <string-array name="general_text">

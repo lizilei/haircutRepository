@@ -43,4 +43,9 @@
     <color name="yellow">#fffff329</color>
     <color name="orange">#F04918</color>
     <color name="commonly_text_color93">#939393</color>
+    <color name="gray2">#ff666666</color>
+    <color name="booking_calender_red">#fff83b5f</color>
+    <color name="gray">#ff999999</color>
+    <color name="booking_nomal">#fff83b5f</color>
+    <color name="booking_press">#ffec2f53</color>
 </resources>

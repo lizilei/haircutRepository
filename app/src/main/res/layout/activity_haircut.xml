@@ -33,21 +33,244 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/title_bg"
-        android:orientation="vertical">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_below="@id/title_bg"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_screen_top_button"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_nearby"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_nearby_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="附近"
+                    android:textSize="12.0sp" />
+
+                <ImageView
+                    android:id="@+id/iv_nearby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.0dip"
+                    android:layout_marginTop="5.0dip"
+                    android:layout_toRightOf="@id/tv_nearby_title"
+                    android:background="@mipmap/tongyong_sanjiao_seleted" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="16.0dip"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/dianpuxiangqing_shugang_37" />
+
+            <RelativeLayout
+                android:id="@+id/rl_sort"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_sort_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="智能排序"
+                    android:textSize="12.0sp" />
+
+                <ImageView
+                    android:id="@+id/iv_sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.0dip"
+                    android:layout_marginTop="5.0dip"
+                    android:layout_toRightOf="@id/tv_sort_title"
+                    android:background="@mipmap/tongyong_sanjiao_normal" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="16.0dip"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/dianpuxiangqing_shugang_37" />
+
+            <RelativeLayout
+                android:id="@+id/rl_grade"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_grade_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部等级"
+                    android:textSize="12.0sp" />
+
+                <ImageView
+                    android:id="@+id/iv_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.0dip"
+                    android:layout_marginTop="5.0dip"
+                    android:layout_toRightOf="@id/tv_grade_title"
+                    android:background="@mipmap/tongyong_sanjiao_normal" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_xia_heng_xian"
+            android:layout_width="fill_parent"
+            android:layout_height="3.0dip"
+            android:layout_below="@id/ll_screen_top_button"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_nearby_xian"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@color/pink"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_smartsort_xian"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@color/pink"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_gradesort_xian"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@color/pink"
+                android:visibility="gone" />
+        </LinearLayout>
 
         <ListView
-            android:id="@+id/lv_xijianchui_list"
+            android:id="@+id/lv_arrangstylist"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="@color/list_bg"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/ll_xia_heng_xian"
             android:cacheColorHint="@color/transparent"
             android:divider="@color/transparent"
-            android:dividerHeight="0.0dip"
             android:fadingEdge="none"
             android:listSelector="@color/transparent" />
-    </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_arrangstylist_no_anything_show"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/ll_xia_heng_xian"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_stylist_nothing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="120.0dip"
+                android:background="@mipmap/faxingdangan_tishi2" />
+
+            <TextView
+                android:id="@+id/tv_no_search_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_stylist_nothing"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12.0dip"
+                android:text="@string/no_stylist"
+                android:textColor="@color/gray2"
+                android:textSize="15.0sp" />
+
+            <TextView
+                android:id="@+id/tv_no_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_no_search_hint"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8.0dip"
+                android:textColor="@color/light_gray"
+                android:textSize="12.0sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_screen_title"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/ll_xia_heng_xian"
+            android:background="@color/translucent_bg"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/ll_show_zone"
+                android:layout_width="fill_parent"
+                android:layout_height="400.0dip"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ListView
+                    android:id="@+id/lv_show_quyu"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:divider="@null"
+                    android:listSelector="@color/red" />
+
+                <ListView
+                    android:id="@+id/lv_show_shangquan"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:divider="@null"
+                    android:listSelector="@color/red" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_show_sort"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ListView
+                    android:id="@+id/lv_show_sort"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_show_grade"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ListView
+                    android:id="@+id/lv_show_grade"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
+</LinearLayout>
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.nxedu.haircutreserve.activity;
 
 
+import android.view.View;
 import android.widget.ListView;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
@@ -15,6 +16,7 @@ import java.util.List;
 public class GoodShopActivity extends BaseActivity {
     @BindView(id = R.id.lv_shoppush_list)
     private ListView goodShopListView;
+    @BindView(id = R.id.layout_title_back,click = true)
     private CommonAdapter adapter;
     private List<String> data = new ArrayList<>();
     @Override
@@ -41,5 +43,11 @@ public class GoodShopActivity extends BaseActivity {
             }
         };
         goodShopListView.setAdapter(adapter);
+    }
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        finish();
     }
 }

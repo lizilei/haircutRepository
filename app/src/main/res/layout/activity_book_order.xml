@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/layout_phone"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/height_0.5"
+                android:background="@color/grayblack" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15.0dip"
+                android:background="@mipmap/dingzhuang_phone_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20.0dip"
+                android:text="@string/phone_msg"
+                android:textColor="@color/booking_calender_red"
+                android:textSize="16.0sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="@dimen/height_0.5"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10.0dip"
+            android:layout_marginTop="10.0dip"
+            android:background="@color/grayblack" />
+
+        <RelativeLayout
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/height_0.5"
+                android:background="@color/grayblack" />
+
+            <TextView
+                android:id="@+id/tv_booking_money_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="17.0dip"
+                android:text="@string/booking_money"
+                android:textColor="@color/gray"
+                android:textSize="15.0sp" />
+
+            <TextView
+                android:id="@+id/tv_booking_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_booking_money_msg"
+                android:textColor="@color/booking_calender_red"
+                android:textSize="16.0sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_booking"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_click_selector_booking"
+            android:gravity="center"
+            android:text="@string/booking"
+            android:textColor="@color/white"
+            android:textSize="16.0sp" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/layout_page"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/layout_bottom" />
+</RelativeLayout>

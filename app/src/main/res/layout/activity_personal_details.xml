@@ -42,7 +42,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <com.nxedu.haircutreserve.view.CircleImageView
                         android:id="@+id/person_detail_avatar_img"
                         android:layout_width="41.5dp"
                         android:layout_height="41.5dp"

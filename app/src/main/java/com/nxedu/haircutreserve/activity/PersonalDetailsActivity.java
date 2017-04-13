@@ -1,13 +1,20 @@
 package com.nxedu.haircutreserve.activity;
 
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.provider.MediaStore;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.utils.ToastUtils;
+import com.nxedu.haircutreserve.view.CircleImageView;
 
 import org.kymjs.kjframe.ui.BindView;
 
@@ -36,8 +43,14 @@ public class PersonalDetailsActivity extends BaseActivity {
     private LinearLayout person_detail_signature;
     @BindView(id = R.id.app_back_im, click = true)
     private ImageView iv_back;
-    @BindView(id=R.id.app_top_text)
+    @BindView(id = R.id.app_top_text)
     private TextView tv_center;
+    @BindView(id = R.id.person_detail_avatar_img)
+    private CircleImageView iv_avatar;
+
+    private RelativeLayout rl_popup;
+    private static final int TAKE_PICTURE = 0x000001;
+    private static final int Choose_PICTURE = 0x000002;
 
     @Override
     public void setRootView() {
@@ -67,7 +80,8 @@ public class PersonalDetailsActivity extends BaseActivity {
                 finish();
                 return;
             case R.id.person_detail_avatar:
-                msg = "换头像啦";
+                rl_popup.startAnimation(AnimationUtils.loadAnimation(this, R.anim.activity_translate_in));
+                showPopupWindows();
                 break;
             case R.id.person_detail_nickname:
                 msg = "换昵称啦";
@@ -86,5 +100,65 @@ public class PersonalDetailsActivity extends BaseActivity {
                 break;
         }
         ToastUtils.showToast(this, msg);
+    }
+
+    /**
+     * 选择更换方式
+     */
+    private void showPopupWindows() {
+        final PopupWindow pop = new PopupWindow(this);
+        View view = getLayoutInflater().inflate(R.layout.item_popupwindows, null);
+
+        rl_popup = (RelativeLayout) view.findViewById(R.id.rl_popup);
+
+        pop.setWidth(LayoutParams.MATCH_PARENT);
+        pop.setHeight(LayoutParams.WRAP_CONTENT);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setFocusable(true);
+        pop.setOutsideTouchable(true);
+        pop.setContentView(view);
+
+        RelativeLayout parent = (RelativeLayout) view.findViewById(R.id.parent);
+        TextView tv_photo = (TextView) view
+                .findViewById(R.id.tv_photo);
+        TextView tv_phone = (TextView) view
+                .findViewById(R.id.tv_phone);
+        TextView tv_cancel = (TextView) view
+                .findViewById(R.id.tv_cancel);
+
+        parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop.dismiss();
+                rl_popup.clearAnimation();
+            }
+        });
+        tv_photo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(openCameraIntent, TAKE_PICTURE);
+                pop.dismiss();
+                rl_popup.clearAnimation();
+            }
+        });
+
+        tv_phone.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/*");
+
+
+                startActivityForResult(intent, Choose_PICTURE);
+                overridePendingTransition(R.anim.activity_translate_in, R.anim.activity_translate_out);
+                pop.dismiss();
+                rl_popup.clearAnimation();
+            }
+        });
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pop.dismiss();
+                rl_popup.clearAnimation();
+            }
+        });
     }
 }

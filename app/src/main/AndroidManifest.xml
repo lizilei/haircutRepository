@@ -86,7 +86,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".activity.BookOrderActivity"></activity>
+        <activity android:name=".activity.BookOrderActivity" />
+        <activity android:name=".activity.ShopActivity"></activity>
     </application>
 
 </manifest>

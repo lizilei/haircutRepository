@@ -21,6 +21,13 @@
     <string name="booking">立即预约</string>
     <string name="choumei_price_msg">优惠价 ¥</string>
     <string name="mycollect_item_name_orig">原价</string>
+    <string name="select_all">全选</string>
+    <string name="settlement_count">结算</string>
+    <string name="in_total">合计:</string>
+    <string name="shopping_cart_empty">您的购物车很空虚哦~</string>
+    <string name="shopcart_login">去登录</string>
+    <string name="shop_comment_num">"评价数:  "</string>
+    <string name="shop_satisfaction">"满意度:  "</string>
 
     <!--普通用户个人中心-->
     <string-array name="general_text">

@@ -46,6 +46,14 @@
     <color name="gray2">#ff666666</color>
     <color name="booking_calender_red">#fff83b5f</color>
     <color name="gray">#ff999999</color>
+    <color name="view_bg">#fff3eeec</color>
+    <color name="deep_color">#ff2c2c2c</color>
     <color name="booking_nomal">#fff83b5f</color>
     <color name="booking_press">#ffec2f53</color>
+    <color name="presspink">#ffdc2f5b</color>
+    <color name="disable">#ffc8c8c8</color>
+    <color name="presswhite">#fff2f2f2</color>
+    <color name="myhair_text_bg">#fff0f0f0</color>
+    <color name="cancle_line_color">#ff666666</color>
+    <color name="press_bg_gray">#ffebebeb</color>
 </resources>

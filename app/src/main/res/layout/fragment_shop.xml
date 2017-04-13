@@ -1,13 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/view_bg">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="订单Fragment"/>
+    <LinearLayout
+        android:id="@+id/layout_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <ListView
+            android:id="@+id/lv_shopping_cart"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:background="@color/view_bg"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@color/transparent"
+            android:fadingEdge="none"
+            android:listSelector="@color/transparent" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/tongyong_xian_heng" />
+
+            <RelativeLayout
+                android:id="@+id/layout_select_all"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5.0dip">
+
+                <ImageView
+                    android:id="@+id/iv_select_all"
+                    android:layout_width="40.0dip"
+                    android:layout_height="45.0dip"
+                    android:layout_centerVertical="true"
+                    android:paddingBottom="15.0dip"
+                    android:paddingRight="5.0dip"
+                    android:paddingTop="15.0dip"
+                    android:src="@mipmap/gouwuche_xuankuang_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_select_all"
+                    android:text="@string/select_all"
+                    android:textColor="@color/deep_color"
+                    android:textSize="15.0sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_settlement"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15.0dip"
+                android:layout_toRightOf="@id/layout_select_all">
+
+                <TextView
+                    android:id="@+id/tv_settlement"
+                    style="@style/NormalBtnType4"
+                    android:layout_width="60.0dip"
+                    android:layout_height="30.0dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:paddingLeft="8.0dip"
+                    android:paddingRight="8.0dip"
+                    android:text="@string/settlement_count"
+                    android:textSize="12.0sp" />
+
+                <TextView
+                    android:id="@+id/tv_total_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15.0dip"
+                    android:layout_toLeftOf="@id/tv_settlement"
+                    android:text="￥0"
+                    android:textColor="@color/pink"
+                    android:textSize="15.0sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_total_money"
+                    android:layout_toLeftOf="@id/tv_total_money"
+                    android:text="@string/in_total"
+                    android:textColor="@color/light_gray"
+                    android:textSize="12.0sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_empty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/view_bg"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_empty"
+            android:layout_width="109.0dip"
+            android:layout_height="109.0dip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150.0dip"
+            android:background="@mipmap/gouwuche_illustration" />
+
+        <TextView
+            android:id="@+id/tv_mes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_empty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20.0dip"
+            android:text="@string/shopping_cart_empty"
+            android:textColor="@color/light_gray"
+            android:textSize="15.0sp" />
+
+        <TextView
+            android:id="@+id/tv_shopcart_empter_login"
+            style="@style/NormalBtnType1"
+            android:layout_width="125.0dip"
+            android:layout_height="40.0dip"
+            android:layout_below="@id/tv_mes"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24.0dip"
+            android:gravity="center"
+            android:text="@string/shopcart_login"
+            android:textSize="15.0sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_shopcart_empter_watch"
+            style="@style/NormalBtnType1"
+            android:layout_width="125.0dip"
+            android:layout_height="40.0dip"
+            android:layout_below="@id/tv_mes"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24.0dip"
+            android:gravity="center"
+            android:text="@string/shopcart_watch"
+            android:textSize="15.0sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

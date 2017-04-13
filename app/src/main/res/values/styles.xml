@@ -21,4 +21,14 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
     <!-- Loding_dialog样式End -->
+    <style name="NormalBtnType4">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/btn_normal_color_selector4</item>
+        <item name="android:background">@drawable/btn_normal_bg_selector4</item>
+    </style>
+    <style name="NormalBtnType1">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/btn_normal_color_selector1</item>
+        <item name="android:background">@drawable/btn_normal_bg_selector1</item>
+    </style>
 </resources>

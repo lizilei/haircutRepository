@@ -1,6 +1,8 @@
 package com.nxedu.haircutreserve.activity;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -45,6 +47,12 @@ public class HaircutActivity extends BaseActivity {
             }
         };
         arrangstylist.setAdapter(adapter);
+        arrangstylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(HaircutActivity.this,ShopActivity.class));
+            }
+        });
     }
 
     @Override

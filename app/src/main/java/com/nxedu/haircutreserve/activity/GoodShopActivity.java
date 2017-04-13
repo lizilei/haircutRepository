@@ -1,7 +1,9 @@
 package com.nxedu.haircutreserve.activity;
 
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
@@ -43,6 +45,12 @@ public class GoodShopActivity extends BaseActivity {
             }
         };
         goodShopListView.setAdapter(adapter);
+        goodShopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(GoodShopActivity.this,ShopActivity.class));
+            }
+        });
     }
 
     @Override

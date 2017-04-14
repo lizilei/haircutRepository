@@ -139,12 +139,11 @@ public class PayNowActivity extends BaseActivity {
         TextView order_num = (TextView) view.findViewById(R.id.popup_payment_detail_order_id);
         TextView order_create = (TextView) view.findViewById(R.id.popup_payment_detail_create_time);
 
-        IdCard id = ol.getIdcard().get(0);
-        user_name.setText(id.getIdcard_name());
-        user_phone.setText(id.getIdcard_no());
+        user_name.setText(ol.getUser_name());
+        user_phone.setText(ol.getPhone());
 
         order_name.setText(ol.getProject_title());
-        order_type.setText(ol.getBusiness_id());
+        order_type.setText(ol.getBusiness_name());
         order_total.setText("￥"+ol.getOrder_price());
         order_num.setText(ol.getOrder_id());
         order_create.setText(ol.getCreated());

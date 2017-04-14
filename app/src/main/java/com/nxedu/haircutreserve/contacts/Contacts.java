@@ -1,5 +1,9 @@
 package com.nxedu.haircutreserve.contacts;
 
+import android.os.Environment;
+
+import java.io.File;
+
 /**
  * <p>@description: 常量</p>
  *
@@ -16,6 +20,10 @@ public class Contacts {
      */
     public static final String sms_app_key = "1c8ef502dfe08";
     public static final String sms_app_secret = "c61f4fa1bb029a75f6cff94166a33ebc";
+
+    public static final String ROOT_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
+
+    public static String PictureDir = ROOT_PATH + "Haircut/image/";
 
     public static final String[] imgs = new String[]{
             "http://www.faxingzhan.com/uploads/170320/65_100823_1.jpg",
@@ -54,4 +62,19 @@ public class Contacts {
             "http://img.faxingzhan.com/allimg/170306/65-1F3061522280-L_260_336.jpg",
             "http://img.faxingzhan.com/allimg/170314/65-1F3141055230-L_260_336.jpg",
             "http://img.faxingzhan.com/allimg/170314/65-1F3141055230-L_260_336.jpg"};
+
+
+    //http://localhost:8080/haircutht/OrderListInfos?phone=17301207022
+
+    /**
+     * 内网地址
+     */
+    public static final String ROOT_URL = "http://10.0.2.2:8080/haircutht/";
+    /**
+     * 获取订单列表
+     * GET 请求
+     * params phone  用户电话号码
+     *
+     */
+    public static final String GET_ORDER_LIST = ROOT_PATH + "OrderListInfos?phone=";
 }

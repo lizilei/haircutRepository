@@ -1,18 +1,24 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
 import com.nxedu.haircutreserve.bean.IdCard;
 import com.nxedu.haircutreserve.bean.OrderList;
+import com.nxedu.haircutreserve.contacts.Contacts;
+import com.nxedu.haircutreserve.net.KJHttpUtil;
 
+import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.http.HttpParams;
 import org.kymjs.kjframe.ui.BindView;
 
 import java.text.SimpleDateFormat;
@@ -21,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <p>@description:</p>
+ * <p>@description:订单列表</p>
  *
  * @author lizilei
  * @version 1.0.0
@@ -60,46 +66,24 @@ public class GeneralOrderActivity extends BaseActivity {
     public void initData() {
         super.initData();
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date now = new Date();
-
-        for (int i = 0; i < 10; i++) {
-            OrderList ol = new OrderList();
-            ol.setOrder_id(format.format(now) + i);
-            ol.setProject_id("1001" + i);
-            ol.setProject_title("皇家理发" + i);
-            ol.setCreated(format1.format(now));
-            if (i % 2 == 0)
-                ol.setOrder_status("未付款");
-            else
-                ol.setOrder_status("已付款");
-
-            ol.setOrder_price((int) (50 * Math.random() + 50) + "");
-            ol.setBusiness_id("发型设计");
-            List<IdCard> iList = new ArrayList<>();
-            iList.add(new IdCard("王小二", "201456199206141592", "17301207022"));
-
-            ol.setIdcard(iList);
-
-            list.add(ol);
-        }
+        getOrderList("17301207022");
 
         adapter = new CommonAdapter<OrderList>(this, R.layout.order_mine_item) {
             @Override
             public void convert(ViewHolder helper, OrderList item) {
-                helper.setText(R.id.order_type, item.getBusiness_id());
+                helper.setText(R.id.order_type, item.getBusiness_name());
 
                 TextView order_state = helper.getView(R.id.order_state);
                 order_state.setText(item.getOrder_status());
-                if (item.getOrder_status().equals("未付款"))
+                if (item.getOrder_status() == 1)
                     order_state.setSelected(true);
                 else
                     order_state.setSelected(false);
                 helper.setText(R.id.order_time, item.getCreated());
-                helper.setText(R.id.order_num, item.getOrder_id());
+                helper.setText(R.id.order_num, item.getOrder_id() + "");
                 helper.setText(R.id.order_title, item.getProject_title());
                 helper.setText(R.id.order_price, "￥" + item.getOrder_price());
+                helper.setImageByUrl(R.id.order_cover, item.getCover_pic());
             }
         };
         lv_order_mine.setAdapter(adapter);
@@ -114,6 +98,26 @@ public class GeneralOrderActivity extends BaseActivity {
 //                intent.putExtra("order_status", list.get(position).getOrder_status());
                 intent.putExtra("order", list.get(position));
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void getOrderList(String phone) {
+        KJHttpUtil.getHttp(Contacts.GET_ORDER_LIST + phone,new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+
+                Log.i("data", t);
+                list = JSON.parseArray(t, OrderList.class);
+                adapter.getDatas(list);
+            }
+
+            @Override
+            public void onFailure(int errorNo, String strMsg) {
+                super.onFailure(errorNo, strMsg);
+
+                Log.i("error", strMsg);
             }
         });
     }

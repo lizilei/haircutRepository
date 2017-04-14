@@ -1,8 +1,13 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AnimationUtils;
@@ -13,10 +18,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.contacts.Contacts;
+import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 import com.nxedu.haircutreserve.view.CircleImageView;
 
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.utils.FileUtils;
 
 /**
  * <p>@description:个人中心-用户信息设置</p>
@@ -61,6 +69,11 @@ public class PersonalDetailsActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
+
+        String ss = PreferenceUtils.getPrefString(this, "avatarPath", null);
+        if (ss != null) {
+            iv_avatar.setImageBitmap(BitmapFactory.decodeFile(ss));
+        }
     }
 
     @Override
@@ -80,8 +93,8 @@ public class PersonalDetailsActivity extends BaseActivity {
                 finish();
                 return;
             case R.id.person_detail_avatar:
-                rl_popup.startAnimation(AnimationUtils.loadAnimation(this, R.anim.activity_translate_in));
                 showPopupWindows();
+                msg = "换头像啦";
                 break;
             case R.id.person_detail_nickname:
                 msg = "换昵称啦";
@@ -110,6 +123,7 @@ public class PersonalDetailsActivity extends BaseActivity {
         View view = getLayoutInflater().inflate(R.layout.item_popupwindows, null);
 
         rl_popup = (RelativeLayout) view.findViewById(R.id.rl_popup);
+        rl_popup.startAnimation(AnimationUtils.loadAnimation(this, R.anim.activity_translate_in));
 
         pop.setWidth(LayoutParams.MATCH_PARENT);
         pop.setHeight(LayoutParams.WRAP_CONTENT);
@@ -144,9 +158,7 @@ public class PersonalDetailsActivity extends BaseActivity {
 
         tv_phone.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(intent, Choose_PICTURE);
                 overridePendingTransition(R.anim.activity_translate_in, R.anim.activity_translate_out);
@@ -160,5 +172,41 @@ public class PersonalDetailsActivity extends BaseActivity {
                 rl_popup.clearAnimation();
             }
         });
+
+        pop.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Intent intent = new Intent("com.change.avatar");
+            switch (requestCode) {
+                case TAKE_PICTURE:
+                    Bitmap bm = (Bitmap) data.getExtras().get("data");
+
+                    String path = Contacts.PictureDir + System.currentTimeMillis() + ".jpg";
+                    FileUtils.bitmapToFile(bm, path);
+                    iv_avatar.setImageBitmap(bm);
+                    PreferenceUtils.setPrefString(PersonalDetailsActivity.this, "avatarPath", path);
+                    intent.putExtra("path", path);
+                    sendBroadcast(intent);
+                    break;
+                case Choose_PICTURE:
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumns = {MediaStore.Images.Media.DATA};
+                    Cursor c = getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+                    c.moveToFirst();
+                    int columnIndex = c.getColumnIndex(filePathColumns[0]);
+                    String imagePath = c.getString(columnIndex);
+                    Bitmap bm1 = BitmapFactory.decodeFile(imagePath);
+                    iv_avatar.setImageBitmap(bm1);
+                    PreferenceUtils.setPrefString(PersonalDetailsActivity.this, "avatarPath", imagePath);
+                    intent.putExtra("path", imagePath);
+                    sendBroadcast(intent);
+                    c.close();
+                    break;
+            }
+        }
     }
 }

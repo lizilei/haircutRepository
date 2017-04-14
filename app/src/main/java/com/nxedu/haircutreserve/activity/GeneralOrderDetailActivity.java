@@ -66,9 +66,9 @@ public class GeneralOrderDetailActivity extends BaseActivity {
             tv_center.setText(ol.getProject_title());
             tv_center.setVisibility(View.VISIBLE);
 
-            tv_name.setText(ol.getIdcard().get(0).getIdcard_name());
-            tv_card.setText(ol.getIdcard().get(0).getOrder_idcard_id());
-            tv_phone.setText(ol.getIdcard().get(0).getIdcard_no());
+            tv_name.setText(ol.getUser_name());
+            tv_card.setText(ol.getPhone());
+            tv_phone.setText(ol.getPhone());
 
             tv_total.setText("￥" + ol.getOrder_price());
             tv_order_money.setText("￥0");
@@ -78,7 +78,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
             tv_time.setText(ol.getCreated());
 
 
-            if (ol.getOrder_status().equals("未付款")) {
+            if (ol.getOrder_status() == 1) {
                 tv_order.setVisibility(View.VISIBLE);
                 tv_call.setVisibility(View.GONE);
             } else {

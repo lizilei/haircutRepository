@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -17,14 +18,21 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.bean.ReturnMsg;
 import com.nxedu.haircutreserve.contacts.Contacts;
+import com.nxedu.haircutreserve.net.KJHttpUtil;
 import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 import com.nxedu.haircutreserve.view.CircleImageView;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.FileUtils;
+
+import cn.smssdk.OnSendMessageHandler;
+import cn.smssdk.SMSSDK;
 
 /**
  * <p>@description:个人中心-用户信息设置</p>
@@ -98,21 +106,49 @@ public class PersonalDetailsActivity extends BaseActivity {
                 break;
             case R.id.person_detail_nickname:
                 msg = "换昵称啦";
+//                updateUserInfo();
                 break;
             case R.id.person_detail_sex:
                 msg = "换性别啦";
+//                updateUserInfo();
                 break;
             case R.id.person_detail_phone:
                 msg = "换电话号啦";
+//                updateUserInfo();
                 break;
             case R.id.person_detail_diff:
                 msg = "换个人信息啦";
+//                updateUserInfo();
                 break;
             case R.id.person_detail_signature:
                 msg = "换个性签名啦";
+//                updateUserInfo();
                 break;
         }
         ToastUtils.showToast(this, msg);
+    }
+
+    public void updateUserInfo(String key, String value) {
+        String phone = PreferenceUtils.getPrefString(this, "phone", null);
+
+        KJHttpUtil.getHttp(Contacts.GET_UPDATE_USER + phone + "&" + key + "=" + value, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+
+                ReturnMsg msg = JSON.parseObject(t, ReturnMsg.class);
+                if (msg.getCode() == 0) {
+                    ToastUtils.showToast(aty, msg.getMsg());
+                } else if (msg.getCode() == 1) {
+                    ToastUtils.showToast(aty, msg.getMsg());
+                }
+            }
+
+            @Override
+            public void onFailure(int errorNo, String strMsg) {
+                super.onFailure(errorNo, strMsg);
+            }
+        });
     }
 
     /**

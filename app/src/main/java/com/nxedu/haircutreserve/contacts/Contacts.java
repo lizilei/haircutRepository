@@ -70,11 +70,28 @@ public class Contacts {
      * 内网地址
      */
     public static final String ROOT_URL = "http://10.0.2.2:8080/haircutht/";
+
+
+    /**
+     * 登录接口
+     */
+    public static final String GET_USER_LOGIN = ROOT_URL + "QUserinfos?phone=";
+
     /**
      * 获取订单列表
      * GET 请求
      * params phone  用户电话号码
-     *
      */
-    public static final String GET_ORDER_LIST = ROOT_PATH + "OrderListInfos?phone=";
+    public static final String GET_ORDER_LIST = ROOT_URL + "OrderListInfos?phone=";
+
+    /**
+     * 添加新用户  在发送验证码之前调用
+     */
+    public static final String GET_ADD_USER = ROOT_URL + "AddUserInfo?phone=";
+
+    /**
+     * 修改用户信息
+     * 需要参数：用户属性值
+     */
+    public static final String GET_UPDATE_USER = ROOT_URL + "AddUserInfo?phone=";
 }

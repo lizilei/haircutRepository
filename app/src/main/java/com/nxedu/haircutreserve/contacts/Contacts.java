@@ -75,23 +75,23 @@ public class Contacts {
     /**
      * 登录接口
      */
-    public static final String GET_USER_LOGIN = ROOT_URL + "QUserinfos?phone=";
+    public static final String GET_USER_LOGIN = ROOT_URL + "QUserinfos?tel=";
 
     /**
      * 获取订单列表
      * GET 请求
-     * params phone  用户电话号码
+     * params tel  用户电话号码
      */
-    public static final String GET_ORDER_LIST = ROOT_URL + "OrderListInfos?phone=";
+    public static final String GET_ORDER_LIST = ROOT_URL + "OrderListInfos?tel=";
 
     /**
      * 添加新用户  在发送验证码之前调用
      */
-    public static final String GET_ADD_USER = ROOT_URL + "AddUserInfo?phone=";
+    public static final String GET_ADD_USER = ROOT_URL + "AddUserInfo?tel=";
 
     /**
      * 修改用户信息
      * 需要参数：用户属性值
      */
-    public static final String GET_UPDATE_USER = ROOT_URL + "AddUserInfo?phone=";
+    public static final String GET_UPDATE_USER = ROOT_URL + "UpdateUserInfo?tel=";
 }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.bean.IdCard;
 import com.nxedu.haircutreserve.bean.OrderList;
+import com.nxedu.haircutreserve.bean.OrderList.BodyBean;
 import com.nxedu.haircutreserve.utils.ConversionUtil;
 import com.nxedu.haircutreserve.view.DrawableTextView;
 
@@ -53,7 +54,7 @@ public class PayNowActivity extends BaseActivity {
     @BindView(id = R.id.payment_detail_detail_tv, click = true)
     private TextView payment_detail_detail_tv;
 
-    private OrderList ol;
+    private BodyBean ol;
     private PopupWindow mPopupWindow;
 
     @Override
@@ -66,7 +67,7 @@ public class PayNowActivity extends BaseActivity {
     public void initData() {
         super.initData();
 
-        ol = (OrderList) getIntent().getSerializableExtra("order");
+        ol = (BodyBean) getIntent().getSerializableExtra("order");
     }
 
     @Override
@@ -140,7 +141,7 @@ public class PayNowActivity extends BaseActivity {
         TextView order_create = (TextView) view.findViewById(R.id.popup_payment_detail_create_time);
 
         user_name.setText(ol.getUser_name());
-        user_phone.setText(ol.getPhone());
+        user_phone.setText(ol.getTel());
 
         order_name.setText(ol.getProject_title());
         order_type.setText(ol.getBusiness_name());

@@ -21,6 +21,8 @@ import com.nxedu.haircutreserve.utils.AppUtils;
 import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 
@@ -67,17 +69,18 @@ public class StartActivity extends BaseActivity {
             int result = msg.arg2;
             Object data = msg.obj;
 
-            if (msg.what == 0) {//登录成功
+            if (msg.what == 100) {//登录成功
                 PreferenceUtils.setPrefString(context, "phone", phone);
                 startActivity(new Intent(context, MainActivity.class));
                 finish();
+                return;
             }
 
             if (result == SMSSDK.RESULT_COMPLETE) {
                 //回调完成
                 if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                     //提交验证码成功
-                   login(phone);
+                    login(phone);
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                     //获取验证码成功
                     mEdtUserPhone.setFocusable(false);
@@ -121,6 +124,7 @@ public class StartActivity extends BaseActivity {
         super.initData();
 //        mTvTitle.setText("理发店管理系统");
         iv_back.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -183,9 +187,16 @@ public class StartActivity extends BaseActivity {
             public void onSuccess(String t) {
                 super.onSuccess(t);
 
+                Log.i("--------date", t);
+
                 ReturnMsg msg = JSON.parseObject(t, ReturnMsg.class);
                 if (msg.getCode() == 0) {
-                    mHandler.sendEmptyMessage(0);
+                    mHandler.sendEmptyMessage(100);
+                    try {
+                        PreferenceUtils.setPrefString(aty, "userInfo", new JSONObject(t).getString("body"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 } else if (msg.getCode() == 1) {
                     ToastUtils.showToast(aty, msg.getMsg());
                 }
@@ -216,6 +227,7 @@ public class StartActivity extends BaseActivity {
                     ToastUtils.showToast(aty, msg.getMsg());
                     return;
                 } else if (msg.getCode() == 0) {
+                    isNewUser = true;
                     SMSSDK.getVerificationCode("+86", phone, new OnSendMessageHandler() {
                         @Override
                         public boolean onSendMessage(String country, String phone) {

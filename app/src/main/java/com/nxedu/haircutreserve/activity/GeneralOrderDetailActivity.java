@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nxedu.haircutreserve.R;
-import com.nxedu.haircutreserve.bean.OrderList;
+import com.nxedu.haircutreserve.bean.OrderList.BodyBean;
 import com.nxedu.haircutreserve.utils.AppUtils;
 
 import org.kymjs.kjframe.ui.BindView;
@@ -51,7 +51,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
     @BindView(id = R.id.app_back_im, click = true)
     private ImageView iv_back;
 
-    private OrderList ol;
+    private BodyBean ol;
 
     @Override
     public void setRootView() {
@@ -67,8 +67,8 @@ public class GeneralOrderDetailActivity extends BaseActivity {
             tv_center.setVisibility(View.VISIBLE);
 
             tv_name.setText(ol.getUser_name());
-            tv_card.setText(ol.getPhone());
-            tv_phone.setText(ol.getPhone());
+            tv_card.setText(ol.getTel());
+            tv_phone.setText(ol.getTel());
 
             tv_total.setText("￥" + ol.getOrder_price());
             tv_order_money.setText("￥0");
@@ -92,7 +92,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
     public void initData() {
         super.initData();
 
-        ol = (OrderList) getIntent().getSerializableExtra("order");
+        ol = (BodyBean) getIntent().getSerializableExtra("order");
     }
 
     @Override

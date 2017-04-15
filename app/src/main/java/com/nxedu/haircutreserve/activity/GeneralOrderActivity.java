@@ -12,18 +12,16 @@ import com.alibaba.fastjson.JSON;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
-import com.nxedu.haircutreserve.bean.IdCard;
 import com.nxedu.haircutreserve.bean.OrderList;
+import com.nxedu.haircutreserve.bean.OrderList.BodyBean;
 import com.nxedu.haircutreserve.contacts.Contacts;
 import com.nxedu.haircutreserve.net.KJHttpUtil;
+import com.nxedu.haircutreserve.utils.UserUtils;
 
 import org.kymjs.kjframe.http.HttpCallBack;
-import org.kymjs.kjframe.http.HttpParams;
 import org.kymjs.kjframe.ui.BindView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,8 +44,8 @@ public class GeneralOrderActivity extends BaseActivity {
     @BindView(id = R.id.lv_order_mine)
     private ListView lv_order_mine;
 
-    private CommonAdapter<OrderList> adapter;
-    private List<OrderList> list = new ArrayList<>();
+    private CommonAdapter<BodyBean> adapter;
+    private List<BodyBean> list = new ArrayList<>();
 
     @Override
     public void setRootView() {
@@ -66,11 +64,11 @@ public class GeneralOrderActivity extends BaseActivity {
     public void initData() {
         super.initData();
 
-        getOrderList("17301207022");
+        getOrderList(UserUtils.getTel(this));
 
-        adapter = new CommonAdapter<OrderList>(this, R.layout.order_mine_item) {
+        adapter = new CommonAdapter<BodyBean>(this, R.layout.order_mine_item) {
             @Override
-            public void convert(ViewHolder helper, OrderList item) {
+            public void convert(ViewHolder helper, BodyBean item) {
                 helper.setText(R.id.order_type, item.getBusiness_name());
 
                 TextView order_state = helper.getView(R.id.order_state);
@@ -103,13 +101,15 @@ public class GeneralOrderActivity extends BaseActivity {
     }
 
     private void getOrderList(String phone) {
-        KJHttpUtil.getHttp(Contacts.GET_ORDER_LIST + phone,new HttpCallBack() {
+        KJHttpUtil.getHttp(Contacts.GET_ORDER_LIST + phone, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
 
                 Log.i("data", t);
-                list = JSON.parseArray(t, OrderList.class);
+                OrderList lists = JSON.parseObject(t, OrderList.class);
+                list.addAll(lists.getBody());
+
                 adapter.getDatas(list);
             }
 

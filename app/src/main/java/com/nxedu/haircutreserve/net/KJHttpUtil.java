@@ -21,6 +21,8 @@ public class KJHttpUtil {
             //超时时间
             config.TIMEOUT = 10000000;
             kjh = new KJHttp();
+        } else {
+            kjh.cleanCache();
         }
         return kjh;
     }
@@ -31,7 +33,7 @@ public class KJHttpUtil {
     }
 
     public static void getHttp(String url, HttpCallBack callBack) {
-        getKjHttp().get(url,callBack);
+        getKjHttp().get(url, callBack);
     }
 
     public static void postHttp(String url, HttpParams httpParams, boolean isCache,

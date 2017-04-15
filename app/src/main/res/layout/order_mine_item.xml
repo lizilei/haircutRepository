@@ -74,6 +74,7 @@
             android:layout_height="75dp"
             android:padding="10dp"
             android:src="@mipmap/icon_default" />
+
         <LinearLayout
             android:id="@+id/ll_id"
             android:layout_width="match_parent"

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -21,6 +22,7 @@ import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.activity.GoodShopActivity;
 import com.nxedu.haircutreserve.activity.HaircutActivity;
 import com.nxedu.haircutreserve.activity.HomeInfoActivity;
+import com.nxedu.haircutreserve.bean.HeadBean;
 import com.nxedu.haircutreserve.view.SlideShowView;
 
 import java.util.ArrayList;
@@ -36,7 +38,9 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     private Context context;
     private DisplayImageOptions options;
     private MyItemClickListener mItemClickListener;
-    private List<String> imgList;
+    private List<HeadBean.BodyBean> headCarousel;
+    private List<HeadBean.BodyBean> hairStylist;
+    private List<HeadBean.BodyBean> imgList;
     //type
     public static final int TYPE_1 = 0xff01;
     public static final int TYPE_2 = 0xff02;
@@ -44,10 +48,8 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     public static final int TYPE_4 = 0xff04;
     public static final int TYPE_MAIN = 0xffff;
 
-    public HairCutHomeMultipleItemAdapter(Context context, List<String> imgList) {
+    public HairCutHomeMultipleItemAdapter(Context context) {
         this.context = context;
-//        this.results = results;
-        this.imgList = imgList;
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.cheese_1) //设置图片在下载期间显示的图片
                 .showImageForEmptyUri(R.drawable.cheese_1)//设置图片Uri为空或是错误的时候显示的图片
@@ -63,6 +65,23 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
                 .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
                 .displayer(new FadeInBitmapDisplayer(100))//是否图片加载好后渐入的动画时间
                 .build();//构建完成
+    }
+    public void setDatas(List<HeadBean.BodyBean> data){
+        this.headCarousel = data;
+        notifyDataSetChanged();
+    }
+    public void setDataStylist(List<HeadBean.BodyBean> data){
+        this.hairStylist = data;
+        notifyDataSetChanged();
+    }
+    public void setDataStyle(List<HeadBean.BodyBean> data){
+        this.imgList = data;
+
+        imgList.add(0,new HeadBean.BodyBean());
+        imgList.add(0,new HeadBean.BodyBean());
+        imgList.add(0,new HeadBean.BodyBean());
+        imgList.add(0,new HeadBean.BodyBean());
+        notifyDataSetChanged();
     }
 
     @Override
@@ -100,8 +119,8 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     }
 
     @Override
-    public int getItemCount() {
-        return imgList.size();
+        public int getItemCount() {
+            return imgList!=null?imgList.size():0;
     }
 
     @Override
@@ -143,21 +162,17 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
         }
     }
 
-    private void bindType1(MyViewHolder1 holder, int position) {
-        String img1 = "http://img.faxingzhan.com/170327/12-1F32F94301144_728_330.jpg";
-        String img2 = "http://img.faxingzhan.com/170327/12-1F32F9460O43_728_330.jpg";
-        String img3 = "http://img.faxingzhan.com/170327/12-1F32G0012BS_728_330.jpg";
-        String img4 = "http://img.faxingzhan.com/170327/12-1F32G0161J59_728_330.jpg";
-        String img5 = "http://img.faxingzhan.com/170327/12-1F32G02245193_728_330.png";
-        String[] imgs = new String[]{img1, img2, img3, img4, img5};
-        holder.slideShowView.setImageUrls(imgs);
+    private void bindType1(MyViewHolder1 holder, final int position) {
+        holder.slideShowView.setImageUrls(headCarousel);
         holder.slideShowView.startPlay();
-        holder.slideShowView.setOnGolistener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context, HomeInfoActivity.class));
-            }
-        });
+//        holder.slideShowView.setOnGolistener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, HomeInfoActivity.class);
+//                intent.putExtra("url",headCarousel.get(position).getContenturl());
+//                context.startActivity(intent);
+//            }
+//        });
     }
 
     private void bindType2(MyViewHolder2 holder, int position) {
@@ -169,34 +184,25 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     }
 
     private void bindType4(MyViewHolder4 holder, int position) {
+        RecycleItemAdapterType4 adapter = new RecycleItemAdapterType4(context);
+        adapter.getResults(hairStylist);
         holder.item_recyc_type4.setLayoutManager(new GridLayoutManager(holder.item_recyc_type4.getContext(), 3, GridLayoutManager.VERTICAL, false));
-        List<String> results = new ArrayList<String>();
-        String img1 = "http://img.hairbobo.com/uploadimg/16/04/25/160425084827227.jpg";
-        String img2 = "http://img.hairbobo.com/uploadimg/16/06/07/160607110246063.jpg";
-        String img3 = "http://img.hairbobo.com/uploadimg/14/09/23/140923220731510.jpg";
-        String img4 = "http://img.hairbobo.com/uploadimg/16/10/09/161009014529117.jpg";
-        String img5 = "http://img.hairbobo.com/uploadimg/16/11/21/161121225710153.jpg";
-        String img6 = "http://img.hairbobo.com/uploadimg/16/09/14/160914065028908.jpg";
-        results.add(img1);
-        results.add(img2);
-        results.add(img3);
-        results.add(img4);
-        results.add(img5);
-        results.add(img6);
-        RecycleItemAdapterType4 adapter = new RecycleItemAdapterType4(context, results);
-        holder.item_recyc_type4.setAdapter(adapter);
         adapter.setItemClickListener(new RecycleItemAdapterType4.MyItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
-                context.startActivity(new Intent(context, HomeInfoActivity.class));
+//                Log.e("---aa",hairStylist.get(position).getTitle()+"--"+hairStylist.size());
+                Intent intent = new Intent(context, HomeInfoActivity.class);
+                intent.putExtra("url",hairStylist.get(position).getContenturl());
+                context.startActivity(intent);
             }
         });
+        holder.item_recyc_type4.setAdapter(adapter);
         holder.item_recyc_type4.setNestedScrollingEnabled(false);
     }
 
     private void bindTypeMain(MyViewHolderMain holder, int position) {
-        ImageLoader.getInstance().displayImage(imgList.get(position), holder.item_imgmain, options);
+        holder.tv.setText(imgList.get(position).getTitle());
+        ImageLoader.getInstance().displayImage(imgList.get(position).getImageurl(), holder.item_imgmain, options);
     }
 
     public class MyViewHolder1 extends RecyclerView.ViewHolder {
@@ -274,6 +280,7 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
     }
 
     public class MyViewHolderMain extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private final TextView tv;
         public ImageView item_imgmain;
         private MyItemClickListener mListener;
 
@@ -283,6 +290,7 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
             this.mListener = myItemClickListener;
             itemView.setOnClickListener(this);
             item_imgmain = (ImageView) itemView.findViewById(R.id.item_imgmain);
+            tv = ((TextView) itemView.findViewById(R.id.item_imgmain_tv));
         }
 
         @Override

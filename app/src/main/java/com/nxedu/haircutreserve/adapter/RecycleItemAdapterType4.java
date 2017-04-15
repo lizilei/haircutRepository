@@ -3,10 +3,12 @@ package com.nxedu.haircutreserve.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -14,25 +16,27 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.bean.HeadBean;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/11/24.
  */
-public class RecycleItemAdapterType4 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecycleItemAdapterType4 extends RecyclerView.Adapter {
     private Context context;
-    private List<String> results;
+    private List<HeadBean.BodyBean> results;
     private MyItemClickListener mItemClickListener;
 
     //get & set
-    public List<String> getResults() {
-        return results;
+    public void getResults(List<HeadBean.BodyBean> results) {
+        this.results = results;
+//        results.add(new HeadBean.BodyBean());
+        notifyDataSetChanged();
     }
 
-    public RecycleItemAdapterType4(Context context, List<String> results) {
+    public RecycleItemAdapterType4(Context context) {
         this.context = context;
-        this.results = results;
     }
 
     @Override
@@ -49,10 +53,8 @@ public class RecycleItemAdapterType4 extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemCount() {
-        return results.size();
+        return results!=null? results.size():0;
     }
-
-    /////////////////////////////
 
     private void bind(ItemViewHolder holder, int position){
         DisplayImageOptions options;
@@ -71,15 +73,19 @@ public class RecycleItemAdapterType4 extends RecyclerView.Adapter<RecyclerView.V
                 .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
                 .displayer(new FadeInBitmapDisplayer(100))//是否图片加载好后渐入的动画时间
                 .build();//构建完成
-        ImageLoader.getInstance().displayImage(results.get(position), holder.item_recyc_type4_item_img, options);
+
+        ImageLoader.getInstance().displayImage(results.get(position).getImageurl(), holder.item_recyc_type4_item_img, options);
+        holder.tv.setText(results.get(position).getTitle());
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView tv;
         public ImageView item_recyc_type4_item_img;
         private MyItemClickListener mListener;
         public ItemViewHolder(View itemView, MyItemClickListener myItemClickListener) {
             super(itemView);
             item_recyc_type4_item_img = (ImageView) itemView.findViewById(R.id.item_recyc_type4_item_img);
+            tv = ((TextView) itemView.findViewById(R.id.item_recyc_type4_item_tv));
             //将全局的监听赋值给接口
             this.mListener = myItemClickListener;
             itemView.setOnClickListener(this);

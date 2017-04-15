@@ -80,7 +80,7 @@ public class PayNowActivity extends BaseActivity {
 
         if (ol != null) {
             cost_num.setText(ol.getOrder_price());
-            payment_detail_country_name_tv.setText(ol.getOrder_id());
+            payment_detail_country_name_tv.setText(ol.getOrder_id()+"");
             payment_detail_mode_tv.setText(ol.getProject_title());
         }
     }
@@ -146,7 +146,7 @@ public class PayNowActivity extends BaseActivity {
         order_name.setText(ol.getProject_title());
         order_type.setText(ol.getBusiness_name());
         order_total.setText("￥"+ol.getOrder_price());
-        order_num.setText(ol.getOrder_id());
+        order_num.setText(ol.getOrder_id()+"");
         order_create.setText(ol.getCreated());
 
         dtv.setOnClickListener(new View.OnClickListener() {

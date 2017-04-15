@@ -1,6 +1,7 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
     private TextView tv_total;
     @BindView(id = R.id.tv_order_money)
     private TextView tv_order_money;
-    @BindView(id = R.id.tv_name)
+    @BindView(id = R.id.tv_status)
     private TextView tv_status;
     @BindView(id = R.id.tv_totalCost)
     private TextView tv_totalCost;
@@ -72,10 +73,11 @@ public class GeneralOrderDetailActivity extends BaseActivity {
 
             tv_total.setText("￥" + ol.getOrder_price());
             tv_order_money.setText("￥0");
-            tv_status.setText(ol.getOrder_status());
+            Log.e("---ol",ol.getOrder_status()+"--");
+            tv_status.setText(ol.getOrder_status()==1?"待付款":"已付款");
             tv_totalCost.setText("￥" + ol.getOrder_price());
-            tv_num.setText(ol.getOrder_id());
-            tv_time.setText(ol.getCreated());
+            tv_num.setText(ol.getOrder_id()+"");
+            tv_time.setText(ol.getCreated()+"");
 
 
             if (ol.getOrder_status() == 1) {

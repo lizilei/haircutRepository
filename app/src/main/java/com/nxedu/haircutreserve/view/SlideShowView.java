@@ -1,6 +1,7 @@
 package com.nxedu.haircutreserve.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -24,6 +26,8 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.activity.HomeInfoActivity;
+import com.nxedu.haircutreserve.bean.HeadBean;
 import com.nxedu.haircutreserve.utils.MyStrUtil;
 
 import java.util.ArrayList;
@@ -52,7 +56,7 @@ public class SlideShowView extends FrameLayout {
     private OnClickListener goListener;
 
     //自定义轮播图的资源
-    private String[] imageUrls;
+    private List<HeadBean.BodyBean> imageUrls;
     //    private int[] imageSrcs;
     //放轮播图片的ImageView 的list
     private List<ImageView> imageViewsList;
@@ -77,6 +81,7 @@ public class SlideShowView extends FrameLayout {
         }
 
     };
+    private TextView tv_title;
 
     public SlideShowView(Context context) {
         this(context, null);
@@ -128,18 +133,19 @@ public class SlideShowView extends FrameLayout {
      * 初始化Views等UI
      */
     private void initUI(Context context) {
-        if (imageUrls == null || imageUrls.length == 0)
+        if (imageUrls == null || imageUrls.size() == 0)
             return;
 
         LayoutInflater.from(context).inflate(R.layout.layout_slideshow, this, true);
 
         LinearLayout dotLayout = (LinearLayout) findViewById(R.id.dotLayout);
+        tv_title = ((TextView) findViewById(R.id.tv_title));
         dotLayout.removeAllViews();
 
         // 热点个数与图片特殊相等
-        for (int i = 0; i < imageUrls.length; i++) {
+        for (int i = 0; i < imageUrls.size(); i++) {
             ImageView view = new ImageView(context);
-            view.setTag(imageUrls[i]);
+            view.setTag(imageUrls.get(i).getImageurl());
 //        	if(i==0)//给一个默认图
 //        		view.setBackgroundResource(R.drawable.defalt);
             view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -210,7 +216,9 @@ public class SlideShowView extends FrameLayout {
                         .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
                         .displayer(new FadeInBitmapDisplayer(100))//是否图片加载好后渐入的动画时间
                         .build();//构建完成
-                ImageLoader.getInstance().displayImage(imageUrls[position], imageView, options);
+                ImageLoader.getInstance().displayImage(imageUrls.get(position).getImageurl(), imageView, options);
+                tv_title.setText(imageUrls.get(position).getTitle());
+//                tv_title.setVisibility(GONE);
             }
             imageView.setBackgroundResource(R.color.white);
 
@@ -288,12 +296,21 @@ public class SlideShowView extends FrameLayout {
         }
 
         @Override
-        public void onPageSelected(int pos) {
-            imageViewsList.get(pos).setOnClickListener(goListener);
-            currentItem = pos;
+        public void onPageSelected(int position) {
+//            imageViewsList.get(position).setOnClickListener(goListener);
+            currentItem = position;
+            imageViewsList.get(position).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, HomeInfoActivity.class);
+                    intent.putExtra("url",imageUrls.get(currentItem).getContenturl());
+                    context.startActivity(intent);
+                }
+            });
+
             for (int i = 0; i < dotViewsList.size(); i++) {
-                if (i == pos) {
-                    ((View) dotViewsList.get(pos)).setBackgroundResource(R.drawable.shape_oval_dot_orage);
+                if (i == position) {
+                    ((View) dotViewsList.get(position)).setBackgroundResource(R.drawable.shape_oval_dot_orage);
                 } else {
                     ((View) dotViewsList.get(i)).setBackgroundResource(R.drawable.shape_oval_dot_dark);
                 }
@@ -340,17 +357,17 @@ public class SlideShowView extends FrameLayout {
         destoryBitmaps();
     }
 
-    public void setImageSrcs(int[] imageSrcs) {
-        if (MyStrUtil.isEmpty(imageSrcs)) {
-            return;
-        }
-        imageUrls = new String[imageSrcs.length];
-        for (int i = 0; i < imageSrcs.length; i++) {
-            imageUrls[i] = imageSrcs[i] + "";
-        }
-    }
+//    public void setImageSrcs(int[] imageSrcs) {
+//        if (MyStrUtil.isEmpty(imageSrcs)) {
+//            return;
+//        }
+//        imageUrls = new String[imageSrcs.length];
+//        for (int i = 0; i < imageSrcs.length; i++) {
+//            imageUrls.get(i) = imageSrcs[i] + "";
+//        }
+//    }
 
-    public void setImageUrls(String[] imageUrls) {
+    public void setImageUrls(List<HeadBean.BodyBean> imageUrls) {
         this.imageUrls = imageUrls;
     }
 

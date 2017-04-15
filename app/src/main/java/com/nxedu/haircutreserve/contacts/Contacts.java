@@ -94,4 +94,30 @@ public class Contacts {
      * 需要参数：用户属性值
      */
     public static final String GET_UPDATE_USER = ROOT_URL + "UpdateUserInfo?tel=";
+    /**
+     * 购物车待支付订单
+     * 需要参数：用户属性值
+     */
+    public static final String GET_SHOP_ORDER = ROOT_URL + "OrderPayList?tel=";
+    /**
+     * 获取商铺列表
+     */
+    public static final String GET_GOOD_SHOP = ROOT_URL + "GoodShop";
+    /**
+     * 获取首页轮播图
+     */
+    public static final String GET_HEAD_CAROUSEL = ROOT_URL + "HeadCarousel";
+    /**
+     * 获取店铺员工
+     * 需要参数：shop_id
+     */
+    public static final String GET_HAIRCUT_LIST = ROOT_URL + "HaircutList";
+    /**
+     * 获取发型类别
+     */
+    public static final String GET_HAIR_STYLE = ROOT_URL + "Hairstyle";
+    /**
+     * 获取首页发型师
+     */
+    public static final String GET_HAIRSTYLIST = ROOT_URL + "HairStylist";
 }

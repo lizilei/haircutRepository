@@ -72,11 +72,14 @@ public class GeneralOrderActivity extends BaseActivity {
                 helper.setText(R.id.order_type, item.getBusiness_name());
 
                 TextView order_state = helper.getView(R.id.order_state);
-                order_state.setText(item.getOrder_status());
-                if (item.getOrder_status() == 1)
+
+                if (item.getOrder_status() == 1) {
                     order_state.setSelected(true);
-                else
+                    order_state.setText("待付款");
+                }else {
                     order_state.setSelected(false);
+                    order_state.setText("已付款");
+                }
                 helper.setText(R.id.order_time, item.getCreated());
                 helper.setText(R.id.order_num, item.getOrder_id() + "");
                 helper.setText(R.id.order_title, item.getProject_title());

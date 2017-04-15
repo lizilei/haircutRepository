@@ -23,7 +23,7 @@ public class HomeInfoActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
-        webView.loadUrl("http://m.faxingzhan.com/a/45052.html");
+        webView.loadUrl(getIntent().getStringExtra("url"));
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

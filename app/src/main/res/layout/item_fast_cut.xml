@@ -6,7 +6,7 @@
     <RelativeLayout
         android:id="@+id/rl"
         android:layout_width="fill_parent"
-        android:layout_height="85.0dip"
+        android:layout_height="95dip"
         android:layout_marginLeft="15.0dip">
 
         <com.nxedu.haircutreserve.view.CircleImageView
@@ -44,7 +44,7 @@
 
         <TextView
             android:id="@+id/fast_salon_zone"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/fast_salon_name"
             android:layout_marginLeft="12.0dip"

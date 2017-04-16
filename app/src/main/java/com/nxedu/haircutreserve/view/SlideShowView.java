@@ -217,6 +217,7 @@ public class SlideShowView extends FrameLayout {
                         .displayer(new FadeInBitmapDisplayer(100))//是否图片加载好后渐入的动画时间
                         .build();//构建完成
                 ImageLoader.getInstance().displayImage(imageUrls.get(position).getImageurl(), imageView, options);
+
                 tv_title.setText(imageUrls.get(position).getTitle());
 //                tv_title.setVisibility(GONE);
             }

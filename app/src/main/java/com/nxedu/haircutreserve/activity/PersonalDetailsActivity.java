@@ -35,8 +35,11 @@ import com.nxedu.haircutreserve.view.CircleImageView;
 import com.nxedu.haircutreserve.view.DrawableTextView;
 
 import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.http.HttpParams;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.FileUtils;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * <p>@description:个人中心-用户信息设置</p>
@@ -263,8 +266,17 @@ public class PersonalDetailsActivity extends BaseActivity {
      */
     public void updateUserInfo(final String key, String value) {
         String phone = UserUtils.getTel(this);
+        try {
+            value = new String(value.getBytes("ISO-8859-1"), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
-        KJHttpUtil.getHttp(Contacts.GET_UPDATE_USER + phone + "&" + key + "=" + value, new HttpCallBack() {
+        HttpParams params = new HttpParams();
+        params.put("tel",phone);
+        params.put(key, value);
+
+        KJHttpUtil.postHttp(Contacts.GET_UPDATE_USER, params, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);

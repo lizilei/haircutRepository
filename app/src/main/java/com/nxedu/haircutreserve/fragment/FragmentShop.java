@@ -1,6 +1,9 @@
 package com.nxedu.haircutreserve.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,8 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.nxedu.haircutreserve.activity.GeneralOrderDetailActivity;
 import com.nxedu.haircutreserve.activity.MainActivity;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.activity.PayNowActivity;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
 import com.nxedu.haircutreserve.bean.OrderList;
@@ -25,6 +30,7 @@ import org.kymjs.kjframe.http.HttpParams;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.SupportFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,10 +55,21 @@ public class FragmentShop extends SupportFragment {
     private List<OrderList.BodyBean> data = new ArrayList<>();
     private CommonAdapter<OrderList.BodyBean> adapter;
 
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            data.clear();
+            getOrderList(UserUtils.getTel(aty));
+        }
+    };
+
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         aty = (MainActivity) getActivity();
         view = View.inflate(aty, R.layout.fragment_shop, null);
+        IntentFilter filter = new IntentFilter("com.haircut.order");
+        aty.registerReceiver(receiver, filter);
+
         return view;
     }
 
@@ -93,15 +110,15 @@ public class FragmentShop extends SupportFragment {
         for (int i = 0; i < data.size(); i++) {
             price += Integer.parseInt(data.get(i).getOrder_price());
         }
-        money.setText("￥"+price);
+        money.setText("￥" + price);
     }
 
     @Override
-    protected void initWidget(View parentView) {
+    protected void initWidget(final View parentView) {
         super.initWidget(parentView);
         adapter = new CommonAdapter<OrderList.BodyBean>(aty, R.layout.item_shop_order) {
             @Override
-            public void convert(ViewHolder helper, OrderList.BodyBean item) {
+            public void convert(ViewHolder helper, final OrderList.BodyBean item) {
                 helper.setText(R.id.order_type, item.getBusiness_name());
 
                 TextView order_state = helper.getView(R.id.order_state);
@@ -118,6 +135,15 @@ public class FragmentShop extends SupportFragment {
                 helper.setText(R.id.order_title, item.getProject_title());
                 helper.setText(R.id.order_price, "￥" + item.getOrder_price());
                 helper.setImageByUrl(R.id.order_cover, item.getCover_pic());
+                helper.getView(R.id.order_look).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(aty, GeneralOrderDetailActivity.class);
+                        intent.putExtra("order",item);
+                        intent.putExtra("pay","pay");
+                        startActivity(intent);
+                    }
+                });
             }
         };
         listView.setAdapter(adapter);
@@ -126,6 +152,14 @@ public class FragmentShop extends SupportFragment {
     @Override
     protected void widgetClick(View v) {
         super.widgetClick(v);
+        Intent intent = new Intent(aty, PayNowActivity.class);
+        intent.putExtra("order", (Serializable) data);
+        startActivity(intent);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        aty.unregisterReceiver(receiver);
     }
 }

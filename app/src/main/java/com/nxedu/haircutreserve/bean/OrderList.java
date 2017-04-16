@@ -180,5 +180,25 @@ public class OrderList implements Serializable {
         public void setAddress(String address) {
             this.address = address;
         }
+
+
+        @Override
+        public String toString() {
+            return "BodyBean{" +
+                    "order_id=" + order_id +
+                    ", order_status=" + order_status +
+                    ", project_title='" + project_title + '\'' +
+                    ", order_price='" + order_price + '\'' +
+                    ", cover_pic='" + cover_pic + '\'' +
+                    ", created='" + created + '\'' +
+                    ", business_name='" + business_name + '\'' +
+                    ", user_name='" + user_name + '\'' +
+                    ", tel='" + tel + '\'' +
+                    ", distance='" + distance + '\'' +
+                    ", address='" + address + '\'' +
+                    ", haircut_id=" + haircut_id +
+                    ", haircut_name='" + haircut_name + '\'' +
+                    '}';
+        }
     }
 }

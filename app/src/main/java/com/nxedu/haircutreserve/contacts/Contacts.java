@@ -93,7 +93,7 @@ public class Contacts {
      * 修改用户信息
      * 需要参数：用户属性值
      */
-    public static final String GET_UPDATE_USER = ROOT_URL + "UpdateUserInfo?tel=";
+    public static final String GET_UPDATE_USER = ROOT_URL + "UpdateUserInfo";
     /**
      * 购物车待支付订单
      * 需要参数：用户属性值
@@ -120,4 +120,8 @@ public class Contacts {
      * 获取首页发型师
      */
     public static final String GET_HAIRSTYLIST = ROOT_URL + "HairStylist";
+    /**
+     * 获取预约下单
+     */
+    public static final String POST_ADDORDERLIST = ROOT_URL + "AddOrderListInfo";
 }

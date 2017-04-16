@@ -16,6 +16,7 @@ import com.nxedu.haircutreserve.adapter.ViewHolder;
 import com.nxedu.haircutreserve.bean.GoodShopBean;
 import com.nxedu.haircutreserve.bean.HaircutList;
 import com.nxedu.haircutreserve.bean.OrderList;
+import com.nxedu.haircutreserve.bean.ReturnMsg;
 import com.nxedu.haircutreserve.contacts.Contacts;
 import com.nxedu.haircutreserve.net.KJHttpUtil;
 import com.nxedu.haircutreserve.utils.AppUtils;
@@ -25,6 +26,7 @@ import com.nxedu.haircutreserve.utils.ToastUtils;
 import com.nxedu.haircutreserve.utils.UserUtils;
 
 import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.http.HttpParams;
 import org.kymjs.kjframe.ui.BindView;
 
 import java.util.ArrayList;
@@ -34,13 +36,13 @@ public class ShopActivity extends BaseActivity {
 
     @BindView(id = R.id.app_top_text)
     private TextView tv_title;
-    @BindView(id = R.id.app_back_layout,click = true)
+    @BindView(id = R.id.app_back_layout, click = true)
     private RelativeLayout relativeLayout;
-    @BindView(id = R.id.layout_phone,click = true)
+    @BindView(id = R.id.layout_phone, click = true)
     private RelativeLayout relativeLayouts;
     @BindView(id = R.id.tv_booking_money_msg)
     private TextView money;
-    @BindView(id = R.id.tv_booking,click = true)
+    @BindView(id = R.id.tv_booking, click = true)
     private TextView book;
     @BindView(id = R.id.ig_shop_img)
     private ImageView imBg;
@@ -59,12 +61,14 @@ public class ShopActivity extends BaseActivity {
     private GoodShopBean goodShopBean;
     private int haircut_id;
     private String haircut_name;
+    private String price;
+
     @Override
     public void setRootView() {
         super.setRootView();
         setContentView(R.layout.activity_shop);
         shop_id = getIntent().getStringExtra("shop_id");
-        Log.e("--shop",shop_id+"--");
+        Log.e("--shop", shop_id + "--");
     }
 
     @Override
@@ -73,16 +77,17 @@ public class ShopActivity extends BaseActivity {
         getGoodShop();
         getHaircut();
     }
+
     private void getGoodShop() {
-        String url = Contacts.GET_GOOD_SHOP+"?shop_id="+shop_id;
+        String url = Contacts.GET_GOOD_SHOP + "?shop_id=" + shop_id;
         KJHttpUtil.getHttp(url, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                goodShopBean= JSON.parseObject(t,GoodShopBean.class);
+                goodShopBean = JSON.parseObject(t, GoodShopBean.class);
                 tv_title.setText(goodShopBean.getBody().get(0).getName());
                 tv_title.setVisibility(View.VISIBLE);
-                MyImageLoaderUtils.displayHeadIcon(goodShopBean.getBody().get(0).getImageurl(),imBg);
+                MyImageLoaderUtils.displayHeadIcon(goodShopBean.getBody().get(0).getImageurl(), imBg);
                 address.setText(goodShopBean.getBody().get(0).getAddress());
                 comment_num.setText(goodShopBean.getBody().get(0).getEvaluation_number());
                 satisfaction.setText(goodShopBean.getBody().get(0).getSatisfaction());
@@ -96,8 +101,9 @@ public class ShopActivity extends BaseActivity {
             }
         });
     }
+
     private void getHaircut() {
-        String url = Contacts.GET_HAIRCUT_LIST+"?shop_id="+shop_id;
+        String url = Contacts.GET_HAIRCUT_LIST + "?shop_id=" + shop_id;
         KJHttpUtil.getHttp(url, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
@@ -113,35 +119,38 @@ public class ShopActivity extends BaseActivity {
             }
         });
     }
+
     @Override
     public void initWidget() {
         super.initWidget();
-        adapter = new CommonAdapter<HaircutList.BodyBean>(this,R.layout.item_fast_cut) {
+        adapter = new CommonAdapter<HaircutList.BodyBean>(this, R.layout.item_fast_cut) {
             @Override
             public void convert(ViewHolder helper, HaircutList.BodyBean item) {
-                helper.setImageByUrl(R.id.fast_stylist_head,item.getImageurl());
-                helper.setText(R.id.fast_item_name,item.getName());
-                helper.setText(R.id.fast_salon_name,item.getShop_name());
-                helper.setText(R.id.fast_salon_zone,item.getAddress());
-                helper.setText(R.id.fast_far_me,item.getDistance());
-                helper.setText(R.id.fast_choumei_price,item.getConcessionalprice());
-                helper.setText(R.id.fast_Ori_price,item.getPrice());
+                helper.setImageByUrl(R.id.fast_stylist_head, item.getImageurl());
+                helper.setText(R.id.fast_item_name, item.getName());
+                helper.setText(R.id.fast_salon_name, item.getShop_name());
+                helper.setText(R.id.fast_salon_zone, item.getAddress());
+                helper.setText(R.id.fast_far_me, item.getDistance());
+                helper.setText(R.id.fast_choumei_price, item.getConcessionalprice());
+                helper.setText(R.id.fast_Ori_price, item.getPrice());
             }
         };
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                double price = Integer.parseInt(data.get(position).getConcessionalprice())*0.3;
-                double concessionprice = price*0.3;
-                money.setText("¥"+price);
+                double money1 = Integer.parseInt(data.get(position).getConcessionalprice()) * 0.3;
+
+                price = Math.round(money1) + "";
+                money.setText("¥" + price);
                 money.setTextColor(getResources().getColor(R.color.pink));
                 haircut_id = data.get(position).getId();
                 haircut_name = data.get(position).getName();
             }
         });
     }
-    public OrderList.BodyBean getOrderList(){
+
+    public void getOrderList() {
         OrderList.BodyBean bodyBean = new OrderList.BodyBean();
         bodyBean.setAddress(address.getText().toString());
         bodyBean.setBusiness_name("洗剪吹");
@@ -150,28 +159,53 @@ public class ShopActivity extends BaseActivity {
         bodyBean.setDistance(goodShopBean.getBody().get(0).getDistance());
         bodyBean.setHaircut_id(haircut_id);
         bodyBean.setHaircut_name(haircut_name);
-        bodyBean.setOrder_price(money.getText().toString());
+        bodyBean.setOrder_price(price);
         bodyBean.setUser_name(UserUtils.getUser(this).getUsername());
         bodyBean.setProject_title(tv_title.getText().toString());
         bodyBean.setCover_pic(goodShopBean.getBody().get(0).getImageurl());
-        return bodyBean;
+        Log.e("---ERROR", bodyBean.toString());
+        Log.e("---ERROR", JSON.toJSONString(bodyBean));
+
+        HttpParams params = new HttpParams();
+        params.put("addInfo", JSON.toJSONString(bodyBean));
+
+        KJHttpUtil.postHttp(Contacts.POST_ADDORDERLIST, params, false, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                ReturnMsg msg = JSON.parseObject(t, ReturnMsg.class);
+                ToastUtils.showToast(ShopActivity.this, msg.getMsg());
+
+                Intent intent = new Intent("com.haircut.order");
+                sendBroadcast(intent);
+                finish();
+            }
+
+            @Override
+            public void onFailure(int errorNo, String strMsg) {
+                super.onFailure(errorNo, strMsg);
+
+                Log.e("---ERROR", strMsg);
+            }
+        });
     }
+
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.app_back_layout:
                 finish();
                 break;
             case R.id.layout_phone:
-                AppUtils.toTel(ShopActivity.this,tel);
+                AppUtils.toTel(ShopActivity.this, tel);
                 break;
             case R.id.tv_booking:
                 String money1 = money.getText().toString().trim();
-                if (!money1.equals("")){
-
-                }else {
-                    ToastUtils.showToast(ShopActivity.this,"请选择发型师!!");
+                if (!money1.equals("")) {
+                    getOrderList();
+                } else {
+                    ToastUtils.showToast(ShopActivity.this, "请选择发型师!!");
                 }
                 break;
         }

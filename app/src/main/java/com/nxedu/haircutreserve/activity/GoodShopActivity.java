@@ -1,7 +1,10 @@
 package com.nxedu.haircutreserve.activity;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,13 +36,23 @@ public class GoodShopActivity extends BaseActivity {
     private TextView tv_top;
     @BindView(id = R.id.app_back_im,click = true)
 
-
     private CommonAdapter<GoodShopBean.BodyBean> adapter;
     private List<GoodShopBean.BodyBean> data = new ArrayList<>();
+
+    BroadcastReceiver receiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
+
     @Override
     public void setRootView() {
         super.setRootView();
         setContentView(R.layout.activity_good_shop);
+
+        IntentFilter filter=new IntentFilter("com.haircut.order");
+        registerReceiver(receiver,filter);
     }
 
     @Override
@@ -98,5 +111,11 @@ public class GoodShopActivity extends BaseActivity {
     public void widgetClick(View v) {
         super.widgetClick(v);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
     }
 }

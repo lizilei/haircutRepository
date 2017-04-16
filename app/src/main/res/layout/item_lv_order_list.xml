@@ -17,7 +17,7 @@
             android:layout_marginTop="21dp"
             android:text="订单编号"
             android:textColor="@color/commonly_text_color3"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/payment_detail_country_name_tv"
@@ -37,7 +37,7 @@
             android:layout_marginTop="17dp"
             android:text="订单名称"
             android:textColor="@color/commonly_text_color3"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/payment_detail_mode_tv"
@@ -59,9 +59,10 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="15.5dp"
             android:layout_marginRight="14dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/payment_now_tv_detail_selector"
             android:gravity="center"
-            android:padding="8dp"
+            android:padding="3dp"
             android:text="订单详情"
             android:textColor="#ED5E33"
             android:textSize="14sp" />

@@ -95,8 +95,13 @@ public class GeneralOrderDetailActivity extends BaseActivity {
 
 
             if (ol.getOrder_status() == 1) {
-                tv_order.setVisibility(View.VISIBLE);
-                tv_call.setVisibility(View.GONE);
+                if (getIntent().hasExtra("pay")) {
+                    tv_order.setVisibility(View.GONE);
+                    tv_call.setVisibility(View.GONE);
+                } else {
+                    tv_order.setVisibility(View.VISIBLE);
+                    tv_call.setVisibility(View.GONE);
+                }
             } else {
                 tv_order.setVisibility(View.GONE);
                 tv_call.setVisibility(View.VISIBLE);
@@ -109,11 +114,13 @@ public class GeneralOrderDetailActivity extends BaseActivity {
         super.initData();
 
         ol = (BodyBean) getIntent().getSerializableExtra("order");
+
         getHairCutInfo(ol.getHaircut_id());
     }
 
     /**
      * 获取发型师信息
+     *
      * @param haircut_id
      */
     public void getHairCutInfo(int haircut_id) {
@@ -125,7 +132,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
                 haircutBean = JSON.parseObject(t, HaircutList.class).getBody().get(0);
 
                 tv_haircut_name.setText(haircutBean.getName());
-                tv_haircut_money.setText(haircutBean.getConcessionalprice());
+                tv_haircut_money.setText("￥"+haircutBean.getConcessionalprice());
             }
 
             @Override
@@ -146,7 +153,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
                 break;
             case R.id.tv_order: //立即支付
                 Intent intent = new Intent(this, PayNowActivity.class);
-                List<BodyBean>list=new ArrayList<>();
+                List<BodyBean> list = new ArrayList<>();
                 list.add(ol);
                 intent.putExtra("order", (Serializable) list);
                 startActivity(intent);

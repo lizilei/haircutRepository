@@ -41,6 +41,10 @@ public class KJHttpUtil {
         getKjHttp().post(url, httpParams, isCache, callBack);
     }
 
+    public static void postHttp(String url, HttpParams params, HttpCallBack callBack) {
+        getKjHttp().post(url, params, callBack);
+    }
+
 
     /**
      * 下载apk

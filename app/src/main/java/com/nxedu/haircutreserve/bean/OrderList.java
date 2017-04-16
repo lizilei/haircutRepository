@@ -74,6 +74,24 @@ public class OrderList implements Serializable {
         private String tel;
         private String distance;
         private String address;
+        private int haircut_id;
+        private String haircut_name;
+
+        public String getHaircut_name() {
+            return haircut_name;
+        }
+
+        public void setHaircut_name(String haircut_name) {
+            this.haircut_name = haircut_name;
+        }
+
+        public int getHaircut_id() {
+            return haircut_id;
+        }
+
+        public void setHaircut_id(int haircut_id) {
+            this.haircut_id = haircut_id;
+        }
 
         public int getOrder_id() {
             return order_id;

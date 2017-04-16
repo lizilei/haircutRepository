@@ -86,7 +86,10 @@ public class GoodShopActivity extends BaseActivity {
         goodShopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(GoodShopActivity.this,ShopActivity.class));
+                Intent intent = new Intent(GoodShopActivity.this,ShopActivity.class);
+                intent.putExtra("shop_id",data.get(position).getId()+"");
+                Log.e("--shop",data.get(position).getId()+"--");
+                startActivity(intent);
             }
         });
     }

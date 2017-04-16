@@ -66,7 +66,9 @@ public class HaircutActivity extends BaseActivity {
         arrangstylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(HaircutActivity.this, ShopActivity.class));
+                Intent intent = new Intent(HaircutActivity.this, ShopActivity.class);
+                intent.putExtra("shop_id",data.get(position).getShop_id()+"");
+                startActivity(intent);
             }
         });
     }
@@ -82,9 +84,7 @@ public class HaircutActivity extends BaseActivity {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-
                 data.addAll(JSON.parseObject(t, HaircutList.class).getBody());
-
                 adapter.getDatas(data);
             }
 

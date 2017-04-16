@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/list_bg"
     android:orientation="vertical">
 
-    <include layout="@layout/include_title"/>
+    <include android:id="@+id/include3"
+        layout="@layout/include_title"/>
 
     <ScrollView
         android:id="@+id/scroll_shop"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/list_bg"
+        android:layout_below="@id/include3"
+        android:layout_above="@id/layout_bottom"
         android:fadingEdge="none"
         android:scrollbars="none">
 
@@ -85,6 +88,7 @@
                     android:layout_centerVertical="true"
                     android:paddingLeft="15.0dip"
                     android:paddingRight="15.0dip"
+                    android:visibility="gone"
                     android:src="@drawable/btn_shop_call" />
 
                 <ImageView
@@ -123,6 +127,7 @@
                 android:id="@+id/layout_shop_branch"
                 android:layout_width="fill_parent"
                 android:layout_height="45.0dip"
+                android:visibility="gone"
                 android:layout_marginBottom="15.0dip"
                 android:background="@color/white">
 
@@ -216,6 +221,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:orientation="horizontal">
 
                         <TextView
@@ -250,7 +256,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ListView
+                <com.nxedu.haircutreserve.view.ListViewNoScroll
                     android:id="@+id/list_shop_item_type"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
@@ -348,4 +354,4 @@
             android:textColor="@color/white"
             android:textSize="16.0sp" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

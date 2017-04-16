@@ -81,7 +81,7 @@ public class FragmentHome extends SupportFragment implements SwipeRefreshLayout.
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-//                Log.e("---hah",t);
+                Log.e("---hah",t);
                 HeadBean headBean = JSON.parseObject(t,HeadBean.class);
                 headCarousel.addAll(headBean.getBody());
                 adapter.setDatas(headCarousel);

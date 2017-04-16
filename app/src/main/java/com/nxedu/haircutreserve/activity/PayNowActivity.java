@@ -1,6 +1,7 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +11,23 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import com.alibaba.fastjson.JSON;
 import com.nxedu.haircutreserve.R;
-import com.nxedu.haircutreserve.bean.IdCard;
-import com.nxedu.haircutreserve.bean.OrderList;
-import com.nxedu.haircutreserve.bean.OrderList.BodyBean;
-import com.nxedu.haircutreserve.utils.ConversionUtil;
-import com.nxedu.haircutreserve.view.DrawableTextView;
+import com.nxedu.haircutreserve.adapter.CommonAdapter;
+import com.nxedu.haircutreserve.adapter.ViewHolder;
+import com.nxedu.haircutreserve.bean.HaircutList;
 
+import com.nxedu.haircutreserve.bean.OrderList.BodyBean;
+import com.nxedu.haircutreserve.contacts.Contacts;
+import com.nxedu.haircutreserve.net.KJHttpUtil;
+import com.nxedu.haircutreserve.view.DrawableTextView;
+import com.nxedu.haircutreserve.view.ListViewNoScroll;
+
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>@description:通用订单支付页面</p>
@@ -47,14 +56,12 @@ public class PayNowActivity extends BaseActivity {
 
     @BindView(id = R.id.cost_num)
     private TextView cost_num;
-    @BindView(id = R.id.payment_detail_country_name_tv)
-    private TextView payment_detail_country_name_tv;
-    @BindView(id = R.id.payment_detail_mode_tv)
-    private TextView payment_detail_mode_tv;
-    @BindView(id = R.id.payment_detail_detail_tv, click = true)
-    private TextView payment_detail_detail_tv;
+    @BindView(id = R.id.lv_order)
+    private ListViewNoScroll lv_order;
+    private CommonAdapter<BodyBean> adapter;
+    private List<BodyBean> data = new ArrayList<>();
 
-    private BodyBean ol;
+
     private PopupWindow mPopupWindow;
 
     @Override
@@ -67,7 +74,7 @@ public class PayNowActivity extends BaseActivity {
     public void initData() {
         super.initData();
 
-        ol = (BodyBean) getIntent().getSerializableExtra("order");
+        data = (List<BodyBean>) getIntent().getSerializableExtra("order");
     }
 
     @Override
@@ -78,11 +85,28 @@ public class PayNowActivity extends BaseActivity {
         tv_center.setVisibility(View.VISIBLE);
         pay_wechat_img.setSelected(true);
 
-        if (ol != null) {
-            cost_num.setText(ol.getOrder_price());
-            payment_detail_country_name_tv.setText(ol.getOrder_id()+"");
-            payment_detail_mode_tv.setText(ol.getProject_title());
+        int orderPrice = 0;
+        for (BodyBean bean : data) {
+            orderPrice += Integer.parseInt(bean.getOrder_price());
         }
+        cost_num.setText(orderPrice + "");
+
+        adapter = new CommonAdapter<BodyBean>(this, data, R.layout.item_lv_order_list) {
+            @Override
+            public void convert(final ViewHolder helper, BodyBean item) {
+                helper.setText(R.id.payment_detail_country_name_tv, item.getOrder_id() + "");
+                helper.setText(R.id.payment_detail_mode_tv, item.getProject_title());
+
+                helper.getView(R.id.payment_detail_detail_tv).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showPopUpWindow(helper.getPosition());
+                    }
+                });
+            }
+        };
+        lv_order.setAdapter(adapter);
+
     }
 
     @Override
@@ -117,13 +141,11 @@ public class PayNowActivity extends BaseActivity {
                 pay_wechat_img.setSelected(false);
                 pay_alipay_img.setSelected(true);
                 break;
-            case R.id.payment_detail_detail_tv:
-                showPopUpWindow();
-                break;
         }
     }
 
-    private void showPopUpWindow() {
+    private void showPopUpWindow(int position) {
+
 
         View view = LayoutInflater.from(this).inflate(R.layout.popup_payment_detail, null);
 
@@ -139,15 +161,39 @@ public class PayNowActivity extends BaseActivity {
         TextView order_total = (TextView) view.findViewById(R.id.popup_payment_detail_deposit);
         TextView order_num = (TextView) view.findViewById(R.id.popup_payment_detail_order_id);
         TextView order_create = (TextView) view.findViewById(R.id.popup_payment_detail_create_time);
+        //发型师
+        final TextView haircut_name = (TextView) view.findViewById(R.id.popup_haircut_name);
+        final TextView haircut_money = (TextView) view.findViewById(R.id.popup_payment_detail_deposit);
 
-        user_name.setText(ol.getUser_name());
-        user_phone.setText(ol.getTel());
 
-        order_name.setText(ol.getProject_title());
-        order_type.setText(ol.getBusiness_name());
-        order_total.setText("￥"+ol.getOrder_price());
-        order_num.setText(ol.getOrder_id()+"");
-        order_create.setText(ol.getCreated());
+        KJHttpUtil.getHttp(Contacts.GET_HAIRCUT_LIST + "?id=" + data.get(position).getHaircut_id(), new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                HaircutList.BodyBean haircutBean = JSON.parseObject(t, HaircutList.class).getBody().get(0);
+
+                haircut_name.setText(haircutBean.getName());
+                haircut_money.setText(haircutBean.getPrice());
+            }
+
+            @Override
+            public void onFailure(int errorNo, String strMsg) {
+                super.onFailure(errorNo, strMsg);
+
+                Log.i("error", strMsg);
+            }
+        });
+
+        BodyBean bean = data.get(position);
+
+        user_name.setText(bean.getUser_name());
+        user_phone.setText(bean.getTel());
+
+        order_name.setText(bean.getProject_title());
+        order_type.setText(bean.getBusiness_name());
+        order_total.setText("￥" + bean.getOrder_price());
+        order_num.setText(bean.getOrder_id() + "");
+        order_create.setText(bean.getCreated());
 
         dtv.setOnClickListener(new View.OnClickListener() {
             @Override

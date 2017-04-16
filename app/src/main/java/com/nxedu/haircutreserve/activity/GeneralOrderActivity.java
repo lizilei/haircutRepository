@@ -76,13 +76,14 @@ public class GeneralOrderActivity extends BaseActivity {
                 if (item.getOrder_status() == 1) {
                     order_state.setSelected(true);
                     order_state.setText("待付款");
-                }else {
+                } else {
                     order_state.setSelected(false);
                     order_state.setText("已付款");
                 }
                 helper.setText(R.id.order_time, item.getCreated());
                 helper.setText(R.id.order_num, item.getOrder_id() + "");
                 helper.setText(R.id.order_title, item.getProject_title());
+                helper.setText(R.id.haircut_name, item.getHaircut_name());
                 helper.setText(R.id.order_price, "￥" + item.getOrder_price());
                 helper.setImageByUrl(R.id.order_cover, item.getCover_pic());
             }

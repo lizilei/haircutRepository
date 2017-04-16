@@ -51,20 +51,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 android:paddingLeft="25dp">
 
                 <TextView
-                    android:id="@+id/popup_payment_detail_home_type"
+                    android:id="@+id/haircut_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    android:text="商品类型"
+                    android:text="发型师"
                     android:textColor="@color/commonly_text_color3"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/popup_payment_detail_home"
+                    android:id="@+id/popup_haircut_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/commonly_text_color6"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <TextView
+                    android:id="@+id/haircut_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:text="理发费"
+                    android:textColor="@color/commonly_text_color3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/popup_haircut_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"

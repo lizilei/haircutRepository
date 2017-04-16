@@ -81,8 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/order_cover"
             android:orientation="horizontal"
-            android:paddingLeft="18dp"
-            android:paddingTop="18dp">
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/tv_order_num"
@@ -110,9 +110,8 @@
             android:layout_below="@id/ll_id"
             android:layout_toRightOf="@id/order_cover"
             android:orientation="horizontal"
-            android:paddingBottom="18dp"
-            android:paddingLeft="18dp"
-            android:paddingTop="16dp">
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp">
 
             <TextView
                 android:id="@+id/tv_order_title"
@@ -133,7 +132,34 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_haircut_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_name"
+            android:layout_toRightOf="@id/order_cover"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp">
 
+            <TextView
+                android:id="@+id/tv_haircut_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发型师："
+                android:textColor="@color/commonly_text_color6"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/haircut_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_order_title"
+                android:textColor="@color/commonly_text_color6"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

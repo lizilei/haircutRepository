@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="116.5dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:id="@+id/payment_detail_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:text="订单编号"
+            android:textColor="@color/commonly_text_color3"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/payment_detail_country_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="22dp"
+            android:layout_toRightOf="@+id/payment_detail_tv"
+            android:textColor="@color/commonly_text_color6"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/payment_detail_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/payment_detail_tv"
+            android:layout_marginTop="17dp"
+            android:text="订单名称"
+            android:textColor="@color/commonly_text_color3"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/payment_detail_mode_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/payment_detail_country_name_tv"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="19dp"
+            android:layout_toRightOf="@+id/payment_detail_mode"
+            android:singleLine="true"
+            android:textColor="@color/commonly_text_color6"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/payment_detail_detail_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="15.5dp"
+            android:layout_marginRight="14dp"
+            android:background="@drawable/payment_now_tv_detail_selector"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="订单详情"
+            android:textColor="#ED5E33"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</LinearLayout>

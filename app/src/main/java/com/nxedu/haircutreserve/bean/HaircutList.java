@@ -1,5 +1,6 @@
 package com.nxedu.haircutreserve.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * @since 2017/4/15
  */
 
-public class HaircutList {
+public class HaircutList implements Serializable{
 
 
     /**
@@ -49,7 +50,7 @@ public class HaircutList {
         this.body = body;
     }
 
-    public static class BodyBean {
+    public static class BodyBean implements Serializable{
         /**
          * id : 1
          * name : 张伟

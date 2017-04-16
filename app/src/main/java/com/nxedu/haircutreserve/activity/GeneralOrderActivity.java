@@ -110,7 +110,7 @@ public class GeneralOrderActivity extends BaseActivity {
             public void onSuccess(String t) {
                 super.onSuccess(t);
 
-                Log.i("data", t);
+                Log.e("----data", t);
                 OrderList lists = JSON.parseObject(t, OrderList.class);
                 list.addAll(lists.getBody());
 

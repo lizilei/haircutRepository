@@ -18,6 +18,7 @@ import com.nxedu.haircutreserve.utils.AppUtils;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,7 +125,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
                 haircutBean = JSON.parseObject(t, HaircutList.class).getBody().get(0);
 
                 tv_haircut_name.setText(haircutBean.getName());
-                tv_haircut_money.setText(haircutBean.getPrice());
+                tv_haircut_money.setText(haircutBean.getConcessionalprice());
             }
 
             @Override
@@ -147,7 +148,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
                 Intent intent = new Intent(this, PayNowActivity.class);
                 List<BodyBean>list=new ArrayList<>();
                 list.add(ol);
-                intent.putExtra("order", ol);
+                intent.putExtra("order", (Serializable) list);
                 startActivity(intent);
                 break;
             case R.id.tv_call: //联系我们

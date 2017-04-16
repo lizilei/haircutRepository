@@ -1,5 +1,6 @@
 package com.nxedu.haircutreserve.activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,11 +15,14 @@ import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
 import com.nxedu.haircutreserve.bean.GoodShopBean;
 import com.nxedu.haircutreserve.bean.HaircutList;
+import com.nxedu.haircutreserve.bean.OrderList;
 import com.nxedu.haircutreserve.contacts.Contacts;
 import com.nxedu.haircutreserve.net.KJHttpUtil;
 import com.nxedu.haircutreserve.utils.AppUtils;
 import com.nxedu.haircutreserve.utils.MyImageLoaderUtils;
+import com.nxedu.haircutreserve.utils.TimeUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
+import com.nxedu.haircutreserve.utils.UserUtils;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
@@ -52,6 +56,9 @@ public class ShopActivity extends BaseActivity {
     private List<HaircutList.BodyBean> data = new ArrayList<>();
     private CommonAdapter<HaircutList.BodyBean> adapter;
     private String tel;
+    private GoodShopBean goodShopBean;
+    private int haircut_id;
+    private String haircut_name;
     @Override
     public void setRootView() {
         super.setRootView();
@@ -72,7 +79,7 @@ public class ShopActivity extends BaseActivity {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                GoodShopBean goodShopBean= JSON.parseObject(t,GoodShopBean.class);
+                goodShopBean= JSON.parseObject(t,GoodShopBean.class);
                 tv_title.setText(goodShopBean.getBody().get(0).getName());
                 tv_title.setVisibility(View.VISIBLE);
                 MyImageLoaderUtils.displayHeadIcon(goodShopBean.getBody().get(0).getImageurl(),imBg);
@@ -129,10 +136,26 @@ public class ShopActivity extends BaseActivity {
                 double concessionprice = price*0.3;
                 money.setText("¥"+price);
                 money.setTextColor(getResources().getColor(R.color.pink));
+                haircut_id = data.get(position).getId();
+                haircut_name = data.get(position).getName();
             }
         });
     }
-
+    public OrderList.BodyBean getOrderList(){
+        OrderList.BodyBean bodyBean = new OrderList.BodyBean();
+        bodyBean.setAddress(address.getText().toString());
+        bodyBean.setBusiness_name("洗剪吹");
+        bodyBean.setCreated(TimeUtils.getCurrentTime());
+        bodyBean.setTel(UserUtils.getUser(this).getTel());
+        bodyBean.setDistance(goodShopBean.getBody().get(0).getDistance());
+        bodyBean.setHaircut_id(haircut_id);
+        bodyBean.setHaircut_name(haircut_name);
+        bodyBean.setOrder_price(money.getText().toString());
+        bodyBean.setUser_name(UserUtils.getUser(this).getUsername());
+        bodyBean.setProject_title(tv_title.getText().toString());
+        bodyBean.setCover_pic(goodShopBean.getBody().get(0).getImageurl());
+        return bodyBean;
+    }
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);

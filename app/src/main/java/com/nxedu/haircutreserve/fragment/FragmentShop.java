@@ -1,5 +1,6 @@
 package com.nxedu.haircutreserve.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,21 +28,27 @@ import org.kymjs.kjframe.ui.SupportFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-/**商品订单
+/**
+ * 商品订单
+ *
  * @author dupeng
  * @version 1.0.0
  * @since 2017/3/22 10:08
  */
 
-public class FragmentShop  extends SupportFragment {
+public class FragmentShop extends SupportFragment {
     @BindView(id = R.id.layout_empty)
     private RelativeLayout empty;
     @BindView(id = R.id.lv_shopping_cart)
     private ListView listView;
+    @BindView(id = R.id.tv_total_money)
+    private TextView money;
+    @BindView(id = R.id.tv_settlement, click = true)
     private MainActivity aty;
     private View view;
     private List<OrderList.BodyBean> data = new ArrayList<>();
     private CommonAdapter<OrderList.BodyBean> adapter;
+
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         aty = (MainActivity) getActivity();
@@ -54,6 +61,7 @@ public class FragmentShop  extends SupportFragment {
         super.initData();
         getOrderList(UserUtils.getTel(aty));
     }
+
     private void getOrderList(String phone) {
         KJHttpUtil.getHttp(Contacts.GET_SHOP_ORDER + phone, new HttpCallBack() {
             @Override
@@ -62,11 +70,12 @@ public class FragmentShop  extends SupportFragment {
 
                 Log.i("---=-data", t);
                 OrderList lists = JSON.parseObject(t, OrderList.class);
-                if (lists.getBody()!=null){
+                if (lists.getBody() != null) {
                     data.addAll(lists.getBody());
                     empty.setVisibility(View.GONE);
                     adapter.getDatas(data);
-                }else {
+                    addMoney(data);
+                } else {
                     empty.setVisibility(View.VISIBLE);
                 }
             }
@@ -78,10 +87,19 @@ public class FragmentShop  extends SupportFragment {
             }
         });
     }
+
+    private void addMoney(List<OrderList.BodyBean> data) {
+        int price = 0;
+        for (int i = 0; i < data.size(); i++) {
+            price += Integer.parseInt(data.get(i).getOrder_price());
+        }
+        money.setText("￥"+price);
+    }
+
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-        adapter = new CommonAdapter<OrderList.BodyBean>(aty,R.layout.item_shop_order) {
+        adapter = new CommonAdapter<OrderList.BodyBean>(aty, R.layout.item_shop_order) {
             @Override
             public void convert(ViewHolder helper, OrderList.BodyBean item) {
                 helper.setText(R.id.order_type, item.getBusiness_name());
@@ -91,7 +109,7 @@ public class FragmentShop  extends SupportFragment {
                 if (item.getOrder_status() == 1) {
                     order_state.setSelected(true);
                     order_state.setText("待付款");
-                }else {
+                } else {
                     order_state.setSelected(false);
                     order_state.setText("已付款");
                 }
@@ -103,5 +121,11 @@ public class FragmentShop  extends SupportFragment {
             }
         };
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void widgetClick(View v) {
+        super.widgetClick(v);
+
     }
 }

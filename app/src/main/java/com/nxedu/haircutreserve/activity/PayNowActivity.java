@@ -153,7 +153,6 @@ public class PayNowActivity extends BaseActivity {
 
 
         TextView order_name = (TextView) view.findViewById(R.id.popup_payment_detail_title);
-        TextView order_type = (TextView) view.findViewById(R.id.popup_payment_detail_home);
         //联系人
         TextView user_name = (TextView) view.findViewById(R.id.popup_payment_detail_contact_name);
         TextView user_phone = (TextView) view.findViewById(R.id.popup_payment_detail_contact_phone);
@@ -163,7 +162,7 @@ public class PayNowActivity extends BaseActivity {
         TextView order_create = (TextView) view.findViewById(R.id.popup_payment_detail_create_time);
         //发型师
         final TextView haircut_name = (TextView) view.findViewById(R.id.popup_haircut_name);
-        final TextView haircut_money = (TextView) view.findViewById(R.id.popup_payment_detail_deposit);
+        final TextView haircut_money = (TextView) view.findViewById(R.id.popup_haircut_money);
 
 
         KJHttpUtil.getHttp(Contacts.GET_HAIRCUT_LIST + "?id=" + data.get(position).getHaircut_id(), new HttpCallBack() {
@@ -171,9 +170,9 @@ public class PayNowActivity extends BaseActivity {
             public void onSuccess(String t) {
                 super.onSuccess(t);
                 HaircutList.BodyBean haircutBean = JSON.parseObject(t, HaircutList.class).getBody().get(0);
-
+                Log.e("---pay",t);
                 haircut_name.setText(haircutBean.getName());
-                haircut_money.setText(haircutBean.getPrice());
+                haircut_money.setText(haircutBean.getConcessionalprice());
             }
 
             @Override
@@ -190,7 +189,6 @@ public class PayNowActivity extends BaseActivity {
         user_phone.setText(bean.getTel());
 
         order_name.setText(bean.getProject_title());
-        order_type.setText(bean.getBusiness_name());
         order_total.setText("￥" + bean.getOrder_price());
         order_num.setText(bean.getOrder_id() + "");
         order_create.setText(bean.getCreated());

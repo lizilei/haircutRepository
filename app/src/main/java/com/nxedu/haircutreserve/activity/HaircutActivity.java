@@ -1,6 +1,9 @@
 package com.nxedu.haircutreserve.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -29,14 +32,23 @@ public class HaircutActivity extends BaseActivity {
     private ListView arrangstylist;
     @BindView(id = R.id.app_top_text)
     private TextView tv_top;
-    @BindView(id = R.id.iv_title_back, click = true)
+    @BindView(id = R.id.app_back_im, click = true)
     private CommonAdapter<HaircutList.BodyBean> adapter;
     private List<HaircutList.BodyBean> data = new ArrayList<>();
+
+    BroadcastReceiver receiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     public void setRootView() {
         super.setRootView();
         setContentView(R.layout.activity_haircut);
+        IntentFilter filter=new IntentFilter("com.haircut.order");
+        registerReceiver(receiver,filter);
     }
 
     @Override
@@ -93,5 +105,11 @@ public class HaircutActivity extends BaseActivity {
                 super.onFailure(errorNo, strMsg);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
     }
 }

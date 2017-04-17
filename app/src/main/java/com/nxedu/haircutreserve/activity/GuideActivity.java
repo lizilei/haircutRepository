@@ -82,7 +82,7 @@ public class GuideActivity extends BaseActivity {
                         btn_Experience.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(GuideActivity.this,MainActivity.class));
+                                startActivity(new Intent(GuideActivity.this,StartActivity.class));
                                 finish();
                             }
                         });

@@ -86,12 +86,15 @@ public class Contacts {
 
     /**
      * 添加新用户  在发送验证码之前调用
+     * post请求
+     * 参数：tel、 username
      */
-    public static final String GET_ADD_USER = ROOT_URL + "AddUserInfo?tel=";
+    public static final String GET_ADD_USER = ROOT_URL + "AddUserInfo";
 
     /**
      * 修改用户信息
      * 需要参数：用户属性值
+     * post请求
      */
     public static final String GET_UPDATE_USER = ROOT_URL + "UpdateUserInfo";
     /**

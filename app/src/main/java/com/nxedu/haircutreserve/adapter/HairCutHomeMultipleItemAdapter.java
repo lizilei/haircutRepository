@@ -228,19 +228,15 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.layout_wash_cut_blow:
-                    Toast.makeText(context, "洗剪吹", Toast.LENGTH_SHORT).show();
                     context.startActivity(new Intent(context, HaircutActivity.class));
                     break;
                 case R.id.layout_hair_dye:
-                    Toast.makeText(context, "染发", Toast.LENGTH_SHORT).show();
                     context.startActivity(new Intent(context, HaircutActivity.class));
                     break;
                 case R.id.layout_hu_fa:
-                    Toast.makeText(context, "护发", Toast.LENGTH_SHORT).show();
                     context.startActivity(new Intent(context, HaircutActivity.class));
                     break;
                 case R.id.layout_hair_perm:
-                    Toast.makeText(context, "烫发", Toast.LENGTH_SHORT).show();
                     context.startActivity(new Intent(context, HaircutActivity.class));
                     break;
             }
@@ -259,11 +255,9 @@ public class HairCutHomeMultipleItemAdapter extends RecyclerView.Adapter<Recycle
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.layout_good_shop:
-                    Toast.makeText(context, "身边好店", Toast.LENGTH_SHORT).show();
                     context.startActivity(new Intent(context, GoodShopActivity.class));
                     break;
                 case R.id.layout_booking_hairstylist:
-                    Toast.makeText(context, "预约发型", Toast.LENGTH_SHORT).show();
                     context.startActivity(new Intent(context, GoodShopActivity.class));
                     break;
             }

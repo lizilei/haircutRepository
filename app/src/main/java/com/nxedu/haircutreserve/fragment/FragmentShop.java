@@ -87,7 +87,7 @@ public class FragmentShop extends SupportFragment {
 
                 Log.i("---=-data", t);
                 OrderList lists = JSON.parseObject(t, OrderList.class);
-                if (lists.getBody() != null) {
+                if (lists.getBody().size()>0) {
                     data.addAll(lists.getBody());
                     empty.setVisibility(View.GONE);
                     adapter.getDatas(data);

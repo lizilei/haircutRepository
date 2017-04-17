@@ -1,7 +1,12 @@
 package com.nxedu.haircutreserve.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nxedu.haircutreserve.activity.GeneralCouponActivity;
 import com.nxedu.haircutreserve.R;
 import com.nxedu.haircutreserve.activity.GeneralCollectionActivity;
@@ -23,6 +29,7 @@ import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
 import com.nxedu.haircutreserve.bean.MeData;
 import com.nxedu.haircutreserve.utils.AppUtils;
+import com.nxedu.haircutreserve.utils.MyImageLoaderUtils;
 import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 import com.nxedu.haircutreserve.view.CircleImageView;
@@ -31,6 +38,7 @@ import com.nxedu.haircutreserve.view.ListViewNoScroll;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.SupportFragment;
+import org.kymjs.kjframe.utils.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,12 +78,24 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
 
     private String userType = "1";
 
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String path = intent.getStringExtra("path");
+            Bitmap bm = BitmapFactory.decodeFile(path);
+            meAvatar.setImageBitmap(bm);
+        }
+    };
+
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         aty = (MainActivity) getActivity();
         view = View.inflate(aty, R.layout.fragment_me, null);
-        return view;
 
+        IntentFilter filter = new IntentFilter("com.change.avatar");
+        aty.registerReceiver(receiver, filter);
+
+        return view;
     }
 
     @Override
@@ -87,6 +107,11 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     protected void initData() {
         super.initData();
         iv_back.setVisibility(View.GONE);
+        String ss = PreferenceUtils.getPrefString(aty, "avatarPath", null);
+        if (ss != null) {
+            meAvatar.setImageBitmap(BitmapFactory.decodeFile(ss));
+        }
+
         String phone = PreferenceUtils.getPrefString(aty, "phone", null);
         if (phone != null)
             fragment_me_username.setText(phone);
@@ -168,5 +193,11 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
                 return;
         }
         startActivity(intent);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        aty.unregisterReceiver(receiver);
     }
 }

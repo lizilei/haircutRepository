@@ -21,10 +21,11 @@
             android:src="@drawable/cheese_1" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/item_imgmain_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:duplicateParentState="true"
+            android:layout_gravity="center_horizontal"
             android:text="New Text" />
     </LinearLayout>
 

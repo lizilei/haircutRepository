@@ -10,6 +10,8 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nxedu.haircutreserve.contacts.Contacts;
 
+import java.io.File;
+
 import cn.smssdk.SMSSDK;
 
 /**
@@ -37,5 +39,9 @@ public class app extends Application {
                 .writeDebugLogs() // Remove for release app
                 .build();//开始构建
         ImageLoader.getInstance().init(config);
+
+        File file = new File(Contacts.PictureDir);
+        if (!file.exists())
+            file.mkdir();
     }
 }

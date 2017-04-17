@@ -1,15 +1,26 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.bean.HaircutList;
 import com.nxedu.haircutreserve.bean.OrderList;
+import com.nxedu.haircutreserve.bean.OrderList.BodyBean;
+import com.nxedu.haircutreserve.contacts.Contacts;
+import com.nxedu.haircutreserve.net.KJHttpUtil;
 import com.nxedu.haircutreserve.utils.AppUtils;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>@description:订单详情页</p>
@@ -28,11 +39,15 @@ public class GeneralOrderDetailActivity extends BaseActivity {
     private TextView tv_card;
     @BindView(id = R.id.tv_phone)
     private TextView tv_phone;
+    @BindView(id = R.id.tv_haircut_name)
+    private TextView tv_haircut_name;
+    @BindView(id = R.id.tv_haircut_money)
+    private TextView tv_haircut_money;
     @BindView(id = R.id.tv_total)
     private TextView tv_total;
     @BindView(id = R.id.tv_order_money)
     private TextView tv_order_money;
-    @BindView(id = R.id.tv_name)
+    @BindView(id = R.id.tv_status)
     private TextView tv_status;
     @BindView(id = R.id.tv_totalCost)
     private TextView tv_totalCost;
@@ -49,9 +64,9 @@ public class GeneralOrderDetailActivity extends BaseActivity {
     @BindView(id = R.id.app_top_text)
     private TextView tv_center;
     @BindView(id = R.id.app_back_im, click = true)
-    private ImageView iv_back;
 
-    private OrderList ol;
+    private BodyBean ol;
+    private HaircutList.BodyBean haircutBean;
 
     @Override
     public void setRootView() {
@@ -66,21 +81,27 @@ public class GeneralOrderDetailActivity extends BaseActivity {
             tv_center.setText(ol.getProject_title());
             tv_center.setVisibility(View.VISIBLE);
 
-            tv_name.setText(ol.getIdcard().get(0).getIdcard_name());
-            tv_card.setText(ol.getIdcard().get(0).getOrder_idcard_id());
-            tv_phone.setText(ol.getIdcard().get(0).getIdcard_no());
+            tv_name.setText(ol.getUser_name());
+            tv_card.setText(ol.getTel());
+            tv_phone.setText(ol.getTel());
 
             tv_total.setText("￥" + ol.getOrder_price());
             tv_order_money.setText("￥0");
-            tv_status.setText(ol.getOrder_status());
+            Log.e("---ol", ol.getOrder_status() + "--");
+            tv_status.setText(ol.getOrder_status() == 1 ? "待付款" : "已付款");
             tv_totalCost.setText("￥" + ol.getOrder_price());
-            tv_num.setText(ol.getOrder_id());
-            tv_time.setText(ol.getCreated());
+            tv_num.setText(ol.getOrder_id() + "");
+            tv_time.setText(ol.getCreated() + "");
 
 
-            if (ol.getOrder_status().equals("未付款")) {
-                tv_order.setVisibility(View.VISIBLE);
-                tv_call.setVisibility(View.GONE);
+            if (ol.getOrder_status() == 1) {
+                if (getIntent().hasExtra("pay")) {
+                    tv_order.setVisibility(View.GONE);
+                    tv_call.setVisibility(View.GONE);
+                } else {
+                    tv_order.setVisibility(View.VISIBLE);
+                    tv_call.setVisibility(View.GONE);
+                }
             } else {
                 tv_order.setVisibility(View.GONE);
                 tv_call.setVisibility(View.VISIBLE);
@@ -92,7 +113,35 @@ public class GeneralOrderDetailActivity extends BaseActivity {
     public void initData() {
         super.initData();
 
-        ol = (OrderList) getIntent().getSerializableExtra("order");
+        ol = (BodyBean) getIntent().getSerializableExtra("order");
+
+        getHairCutInfo(ol.getHaircut_id());
+    }
+
+    /**
+     * 获取发型师信息
+     *
+     * @param haircut_id
+     */
+    public void getHairCutInfo(int haircut_id) {
+        KJHttpUtil.getHttp(Contacts.GET_HAIRCUT_LIST + "?id=" + haircut_id, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+
+                haircutBean = JSON.parseObject(t, HaircutList.class).getBody().get(0);
+
+                tv_haircut_name.setText(haircutBean.getName());
+                tv_haircut_money.setText("￥"+haircutBean.getConcessionalprice());
+            }
+
+            @Override
+            public void onFailure(int errorNo, String strMsg) {
+                super.onFailure(errorNo, strMsg);
+
+                Log.i("error", strMsg);
+            }
+        });
     }
 
     @Override
@@ -104,7 +153,9 @@ public class GeneralOrderDetailActivity extends BaseActivity {
                 break;
             case R.id.tv_order: //立即支付
                 Intent intent = new Intent(this, PayNowActivity.class);
-                intent.putExtra("order", ol);
+                List<BodyBean> list = new ArrayList<>();
+                list.add(ol);
+                intent.putExtra("order", (Serializable) list);
                 startActivity(intent);
                 break;
             case R.id.tv_call: //联系我们

@@ -19,21 +19,30 @@ public class KJHttpUtil {
         if (kjh == null) {
             HttpConfig config = new HttpConfig();
             //超时时间
-            config.TIMEOUT = 1000 * 15;
+            config.TIMEOUT = 10000000;
             kjh = new KJHttp();
+        } else {
+            kjh.cleanCache();
         }
         return kjh;
     }
 
     public static void getHttp(String url, HttpParams httpParams, boolean isCache,
-                               HttpCallBack CallBack) {
-        getKjHttp().get(url, httpParams, isCache, CallBack);
+                               HttpCallBack callBack) {
+        getKjHttp().get(url, httpParams, isCache, callBack);
     }
 
+    public static void getHttp(String url, HttpCallBack callBack) {
+        getKjHttp().get(url, callBack);
+    }
 
     public static void postHttp(String url, HttpParams httpParams, boolean isCache,
-                                HttpCallBack CallBack) {
-        getKjHttp().post(url, httpParams, isCache, CallBack);
+                                HttpCallBack callBack) {
+        getKjHttp().post(url, httpParams, isCache, callBack);
+    }
+
+    public static void postHttp(String url, HttpParams params, HttpCallBack callBack) {
+        getKjHttp().post(url, params, callBack);
     }
 
 

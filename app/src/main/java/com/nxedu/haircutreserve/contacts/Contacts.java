@@ -1,5 +1,9 @@
 package com.nxedu.haircutreserve.contacts;
 
+import android.os.Environment;
+
+import java.io.File;
+
 /**
  * <p>@description: 常量</p>
  *
@@ -16,6 +20,10 @@ public class Contacts {
      */
     public static final String sms_app_key = "1c8ef502dfe08";
     public static final String sms_app_secret = "c61f4fa1bb029a75f6cff94166a33ebc";
+
+    public static final String ROOT_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
+
+    public static String PictureDir = ROOT_PATH + "Haircut/image/";
 
     public static final String[] imgs = new String[]{
             "http://www.faxingzhan.com/uploads/170320/65_100823_1.jpg",
@@ -54,4 +62,66 @@ public class Contacts {
             "http://img.faxingzhan.com/allimg/170306/65-1F3061522280-L_260_336.jpg",
             "http://img.faxingzhan.com/allimg/170314/65-1F3141055230-L_260_336.jpg",
             "http://img.faxingzhan.com/allimg/170314/65-1F3141055230-L_260_336.jpg"};
+
+
+    //http://localhost:8080/haircutht/OrderListInfos?phone=17301207022
+
+    /**
+     * 内网地址
+     */
+    public static final String ROOT_URL = "http://10.0.2.2:8080/haircutht/";
+
+
+    /**
+     * 登录接口
+     */
+    public static final String GET_USER_LOGIN = ROOT_URL + "QUserinfos?tel=";
+
+    /**
+     * 获取订单列表
+     * GET 请求
+     * params tel  用户电话号码
+     */
+    public static final String GET_ORDER_LIST = ROOT_URL + "OrderListInfos?tel=";
+
+    /**
+     * 添加新用户  在发送验证码之前调用
+     */
+    public static final String GET_ADD_USER = ROOT_URL + "AddUserInfo?tel=";
+
+    /**
+     * 修改用户信息
+     * 需要参数：用户属性值
+     */
+    public static final String GET_UPDATE_USER = ROOT_URL + "UpdateUserInfo";
+    /**
+     * 购物车待支付订单
+     * 需要参数：用户属性值
+     */
+    public static final String GET_SHOP_ORDER = ROOT_URL + "OrderPayList?tel=";
+    /**
+     * 获取商铺列表
+     */
+    public static final String GET_GOOD_SHOP = ROOT_URL + "GoodShop";
+    /**
+     * 获取首页轮播图
+     */
+    public static final String GET_HEAD_CAROUSEL = ROOT_URL + "HeadCarousel";
+    /**
+     * 获取店铺员工
+     * 需要参数：shop_id
+     */
+    public static final String GET_HAIRCUT_LIST = ROOT_URL + "HaircutList";
+    /**
+     * 获取发型类别
+     */
+    public static final String GET_HAIR_STYLE = ROOT_URL + "Hairstyle";
+    /**
+     * 获取首页发型师
+     */
+    public static final String GET_HAIRSTYLIST = ROOT_URL + "HairStylist";
+    /**
+     * 获取预约下单
+     */
+    public static final String POST_ADDORDERLIST = ROOT_URL + "AddOrderListInfo";
 }

@@ -15,202 +15,190 @@ import java.util.List;
 public class OrderList implements Serializable {
 
     /**
-     * "project_id": "0",//项目id
-     * 'created': "2016-06-27 19:30:14",//创建时间
-     * 'order_status': "1",  //订单状态1未付款2已付款
-     * 'phone': "15123698527",//电话
-     * 'user_name': "15123698527",//用户名
-     * 'order_price': "100",//价格
-     * 'business_id': "2",//项目类型id
-     * 'project_title': null,  //项目标题
-     * 'cover_pic': "http://localhost", //封面图
-     * 'order_id': 320,//订单编号
-     * data : {"country_immigrant_type_id":"1","immigrant_type_id":"1","cit_title":"EB5移民"}
+     * code : 0
+     * msg : success
+     * body : [{"order_id":2,"order_status":2,"project_title":"靓装造型","order_price":"60","cover_pic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492744264&di=d9f7a3bdc000336d09","created":"2017-04-11 00:00:00.0","business_name":"补水护发","user_name":"lizilei","tel":"17301207022","distance":"14.3km","address":"兴庆区进宁北街66-10妇幼保健院向北50米"},{"order_id":3,"order_status":1,"project_title":"佑米造型（金凤万达店）","order_price":"80","cover_pic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492744209&di=96a46488dcdfd543d6","created":"2017-04-14 00:00:00.0","business_name":"洗剪吹","user_name":"lizilei","tel":"17301207022","distance":"11.4km","address":"金凤区正源北街南侧金凤万达广场B座1607号公寓"},{"order_id":4,"order_status":1,"project_title":"英皇沙宣国际美发沙龙（西夏万达店）","order_price":"120","cover_pic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492745259&di=23c20a2435989d7fd2","created":"2017-03-22 14:33:50.0","business_name":"美发","user_name":"lizilei","tel":"17301207022","distance":"2.4km","address":"西夏区西夏万达公寓b座1503室"}]
      */
-    private String company_id;
-    private String order_id;
-    private String business_id;
-    private String project_id;
-    private String project_title;
-    private String order_status;
-    private String user_name;
-    private String created;
-    private String country_id;
-    private String country_name_cn;
-    private String adviser_name;
-    private String adviser_user_id;
-    private String adviser_avatar;
-    private String cover_pic;
-    private String phone;
-    private String order_price;
-    private OrderData data;
-    private List<IdCard> idcard;
 
-    public List<IdCard> getIdcard() {
-        return idcard;
+    private int code;
+    private String msg;
+    private List<BodyBean> body;
+
+    public int getCode() {
+        return code;
     }
 
-    public void setIdcard(List<IdCard> idcard) {
-        this.idcard = idcard;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public String getOrder_price() {
-        return order_price;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setOrder_price(String order_price) {
-        this.order_price = order_price;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public List<BodyBean> getBody() {
+        return body;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setBody(List<BodyBean> body) {
+        this.body = body;
     }
 
-    public String getPhone() {
-        return phone;
-    }
+    public static class BodyBean implements Serializable{
+        /**
+         * order_id : 2
+         * order_status : 2
+         * project_title : 靓装造型
+         * order_price : 60
+         * cover_pic : https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492744264&di=d9f7a3bdc000336d09
+         * created : 2017-04-11 00:00:00.0
+         * business_name : 补水护发
+         * user_name : lizilei
+         * tel : 17301207022
+         * distance : 14.3km
+         * address : 兴庆区进宁北街66-10妇幼保健院向北50米
+         */
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+        private int order_id;
+        private int order_status;
+        private String project_title;
+        private String order_price;
+        private String cover_pic;
+        private String created;
+        private String business_name;
+        private String user_name;
+        private String tel;
+        private String distance;
+        private String address;
+        private int haircut_id;
+        private String haircut_name;
 
-    public OrderData getData() {
-        return data;
-    }
+        public String getHaircut_name() {
+            return haircut_name;
+        }
 
-    public void setData(OrderData data) {
-        this.data = data;
-    }
+        public void setHaircut_name(String haircut_name) {
+            this.haircut_name = haircut_name;
+        }
 
-    public String getCompany_id() {
-        return company_id;
-    }
+        public int getHaircut_id() {
+            return haircut_id;
+        }
 
-    public void setCompany_id(String company_id) {
-        this.company_id = company_id;
-    }
+        public void setHaircut_id(int haircut_id) {
+            this.haircut_id = haircut_id;
+        }
 
-    public String getOrder_id() {
-        return order_id;
-    }
+        public int getOrder_id() {
+            return order_id;
+        }
 
-    public void setOrder_id(String order_id) {
-        this.order_id = order_id;
-    }
+        public void setOrder_id(int order_id) {
+            this.order_id = order_id;
+        }
 
-    public String getBusiness_id() {
-        return business_id;
-    }
+        public int getOrder_status() {
+            return order_status;
+        }
 
-    public void setBusiness_id(String business_id) {
-        this.business_id = business_id;
-    }
+        public void setOrder_status(int order_status) {
+            this.order_status = order_status;
+        }
 
-    public String getProject_id() {
-        return project_id;
-    }
+        public String getProject_title() {
+            return project_title;
+        }
 
-    public void setProject_id(String project_id) {
-        this.project_id = project_id;
-    }
+        public void setProject_title(String project_title) {
+            this.project_title = project_title;
+        }
 
-    public String getProject_title() {
-        return project_title;
-    }
+        public String getOrder_price() {
+            return order_price;
+        }
 
-    public void setProject_title(String project_title) {
-        this.project_title = project_title;
-    }
+        public void setOrder_price(String order_price) {
+            this.order_price = order_price;
+        }
 
-    public String getOrder_status() {
-        return order_status;
-    }
+        public String getCover_pic() {
+            return cover_pic;
+        }
 
-    public void setOrder_status(String order_status) {
-        this.order_status = order_status;
-    }
+        public void setCover_pic(String cover_pic) {
+            this.cover_pic = cover_pic;
+        }
 
-    public String getCreated() {
-        return created;
-    }
+        public String getCreated() {
+            return created;
+        }
 
-    public void setCreated(String created) {
-        this.created = created;
-    }
+        public void setCreated(String created) {
+            this.created = created;
+        }
 
-    public String getCountry_id() {
-        return country_id;
-    }
+        public String getBusiness_name() {
+            return business_name;
+        }
 
-    public void setCountry_id(String country_id) {
-        this.country_id = country_id;
-    }
+        public void setBusiness_name(String business_name) {
+            this.business_name = business_name;
+        }
 
-    public String getCountry_name_cn() {
-        return country_name_cn;
-    }
+        public String getUser_name() {
+            return user_name;
+        }
 
-    public void setCountry_name_cn(String country_name_cn) {
-        this.country_name_cn = country_name_cn;
-    }
+        public void setUser_name(String user_name) {
+            this.user_name = user_name;
+        }
 
-    public String getAdviser_name() {
-        return adviser_name;
-    }
+        public String getTel() {
+            return tel;
+        }
 
-    public void setAdviser_name(String adviser_name) {
-        this.adviser_name = adviser_name;
-    }
+        public void setTel(String tel) {
+            this.tel = tel;
+        }
 
-    public String getAdviser_user_id() {
-        return adviser_user_id;
-    }
+        public String getDistance() {
+            return distance;
+        }
 
-    public void setAdviser_user_id(String adviser_user_id) {
-        this.adviser_user_id = adviser_user_id;
-    }
+        public void setDistance(String distance) {
+            this.distance = distance;
+        }
 
-    public String getAdviser_avatar() {
-        return adviser_avatar;
-    }
+        public String getAddress() {
+            return address;
+        }
 
-    public void setAdviser_avatar(String adviser_avatar) {
-        this.adviser_avatar = adviser_avatar;
-    }
+        public void setAddress(String address) {
+            this.address = address;
+        }
 
-    public String getCover_pic() {
-        return cover_pic;
-    }
 
-    public void setCover_pic(String cover_pic) {
-        this.cover_pic = cover_pic;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderList{" +
-                "company_id='" + company_id + '\'' +
-                ", order_id='" + order_id + '\'' +
-                ", business_id='" + business_id + '\'' +
-                ", project_id='" + project_id + '\'' +
-                ", project_title='" + project_title + '\'' +
-                ", order_status='" + order_status + '\'' +
-                ", user_name='" + user_name + '\'' +
-                ", created='" + created + '\'' +
-                ", country_id='" + country_id + '\'' +
-                ", country_name_cn='" + country_name_cn + '\'' +
-                ", adviser_name='" + adviser_name + '\'' +
-                ", adviser_user_id='" + adviser_user_id + '\'' +
-                ", adviser_avatar='" + adviser_avatar + '\'' +
-                ", cover_pic='" + cover_pic + '\'' +
-                ", phone='" + phone + '\'' +
-                ", order_price='" + order_price + '\'' +
-                ", data=" + data +
-                ", idcard=" + idcard +
-                '}';
+        @Override
+        public String toString() {
+            return "BodyBean{" +
+                    "order_id=" + order_id +
+                    ", order_status=" + order_status +
+                    ", project_title='" + project_title + '\'' +
+                    ", order_price='" + order_price + '\'' +
+                    ", cover_pic='" + cover_pic + '\'' +
+                    ", created='" + created + '\'' +
+                    ", business_name='" + business_name + '\'' +
+                    ", user_name='" + user_name + '\'' +
+                    ", tel='" + tel + '\'' +
+                    ", distance='" + distance + '\'' +
+                    ", address='" + address + '\'' +
+                    ", haircut_id=" + haircut_id +
+                    ", haircut_name='" + haircut_name + '\'' +
+                    '}';
+        }
     }
 }

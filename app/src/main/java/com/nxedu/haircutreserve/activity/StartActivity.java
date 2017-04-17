@@ -12,11 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.alibaba.fastjson.JSON;
 import com.nxedu.haircutreserve.R;
+import com.nxedu.haircutreserve.bean.ReturnMsg;
+import com.nxedu.haircutreserve.contacts.Contacts;
+import com.nxedu.haircutreserve.net.KJHttpUtil;
 import com.nxedu.haircutreserve.utils.AppUtils;
 import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 
 import cn.smssdk.EventHandler;
@@ -52,6 +59,8 @@ public class StartActivity extends BaseActivity {
     private String phone;
     private Context context = this;
 
+    private boolean isNewUser = false;
+
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -60,14 +69,18 @@ public class StartActivity extends BaseActivity {
             int result = msg.arg2;
             Object data = msg.obj;
 
+            if (msg.what == 100) {//登录成功
+                PreferenceUtils.setPrefString(context, "phone", phone);
+                startActivity(new Intent(context, MainActivity.class));
+                finish();
+                return;
+            }
+
             if (result == SMSSDK.RESULT_COMPLETE) {
                 //回调完成
                 if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                     //提交验证码成功
-                    ToastUtils.showToast((Activity) context, "登陆成功");
-                    PreferenceUtils.setPrefString(context, "phone", phone);
-                    startActivity(new Intent(context, MainActivity.class));
-                    finish();
+                    login(phone);
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                     //获取验证码成功
                     mEdtUserPhone.setFocusable(false);
@@ -111,6 +124,7 @@ public class StartActivity extends BaseActivity {
         super.initData();
 //        mTvTitle.setText("理发店管理系统");
         iv_back.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -133,11 +147,16 @@ public class StartActivity extends BaseActivity {
                     ToastUtils.showToast(this, "请先输入手机号");
                     return;
                 }
-                if (verCode.equals("") || verCode == null) {
-                    ToastUtils.showToast(this, "请先输入验证码");
-                    return;
+                if (isNewUser) {
+                    if (verCode.equals("") || verCode == null) {
+                        ToastUtils.showToast(this, "请先输入验证码");
+                        return;
+                    }
+                    SMSSDK.submitVerificationCode("86", phone, verCode);
+                } else {
+                    login(phone);
                 }
-                SMSSDK.submitVerificationCode("86", phone, verCode);
+
                 break;
             case R.id.btn_login_activity_user_verification_code:
                 if (phone.equals("") || phone == null) {
@@ -149,25 +168,82 @@ public class StartActivity extends BaseActivity {
                     ToastUtils.showToast(this, "请输入有效的手机号码...");
                     return;
                 }
+                addUserInfo(phone);
 
-                SMSSDK.getVerificationCode("+86", phone, new OnSendMessageHandler() {
-                    @Override
-                    public boolean onSendMessage(String country, String phone) {
-                        Log.i("---log", country + "---" + phone);
-
-//                        if (country == "cn") {//此号码无须实际接收短信
-//                            return false;
-//                        } else if (country == "en") {
-//                            return false;
-//                        }
-                        return false;
-                    }
-                });
-                time.start();
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 登录接口
+     *
+     * @param tel
+     */
+    public void login(String tel) {
+        KJHttpUtil.getHttp(Contacts.GET_USER_LOGIN + tel, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+
+                Log.i("--------date", t);
+
+                ReturnMsg msg = JSON.parseObject(t, ReturnMsg.class);
+                if (msg.getCode() == 0) {
+                    mHandler.sendEmptyMessage(100);
+                    try {
+                        PreferenceUtils.setPrefString(aty, "userInfo", new JSONObject(t).getString("body"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else if (msg.getCode() == 1) {
+                    ToastUtils.showToast(aty, msg.getMsg());
+                }
+            }
+
+            @Override
+            public void onFailure(int errorNo, String strMsg) {
+                super.onFailure(errorNo, strMsg);
+            }
+        });
+    }
+
+
+    /**
+     * 检测用户是否存在
+     *
+     * @param tel
+     */
+    public void addUserInfo(String tel) {
+        KJHttpUtil.getHttp(Contacts.GET_ADD_USER + tel, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+
+                ReturnMsg msg = JSON.parseObject(t, ReturnMsg.class);
+                if (msg.getCode() == 99) {
+                    isNewUser = false;
+                    ToastUtils.showToast(aty, msg.getMsg());
+                    return;
+                } else if (msg.getCode() == 0) {
+                    isNewUser = true;
+                    SMSSDK.getVerificationCode("+86", phone, new OnSendMessageHandler() {
+                        @Override
+                        public boolean onSendMessage(String country, String phone) {
+                            Log.i("---log", country + "---" + phone);
+                            return false;
+                        }
+                    });
+                    time.start();
+                }
+            }
+
+            @Override
+            public void onFailure(int errorNo, String strMsg) {
+                super.onFailure(errorNo, strMsg);
+            }
+        });
     }
 
     class TimeCount extends CountDownTimer {

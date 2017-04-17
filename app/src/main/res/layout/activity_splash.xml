@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@mipmap/guide_bg_3"
+    android:background="@color/pink"
     android:orientation="vertical">
 
-    <ImageView
+    <com.nxedu.haircutreserve.view.CircleImageView
         android:id="@+id/iv_choumei"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/logo"
+        android:layout_centerInParent="true"
         android:scaleType="fitXY" />
 
     <LinearLayout
@@ -18,7 +20,7 @@
         android:layout_alignParentBottom="true"
         android:background="@mipmap/login"
         android:orientation="horizontal"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <Button
             android:id="@+id/btn_splash_to_home"
@@ -27,7 +29,7 @@
             android:layout_weight="1.0"
             android:background="@color/transparent"
             android:text="@string/shopcart_watch"
-            android:textColor="@color/sale_time_black"
+            android:textColor="@color/black_51"
             android:textSize="12.0sp" />
 
         <ImageView

@@ -14,6 +14,7 @@ import com.nxedu.haircutreserve.bean.OrderList.BodyBean;
 import com.nxedu.haircutreserve.contacts.Contacts;
 import com.nxedu.haircutreserve.net.KJHttpUtil;
 import com.nxedu.haircutreserve.utils.AppUtils;
+import com.nxedu.haircutreserve.utils.UserUtils;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
@@ -82,7 +83,7 @@ public class GeneralOrderDetailActivity extends BaseActivity {
             tv_center.setVisibility(View.VISIBLE);
 
             tv_name.setText(ol.getUser_name());
-            tv_card.setText(ol.getTel());
+            tv_card.setText(UserUtils.getUser(this).getIdcard());
             tv_phone.setText(ol.getTel());
 
             tv_total.setText("￥" + ol.getOrder_price());

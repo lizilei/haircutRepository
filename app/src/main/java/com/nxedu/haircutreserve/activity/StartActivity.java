@@ -24,6 +24,7 @@ import com.nxedu.haircutreserve.utils.ToastUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.http.HttpParams;
 import org.kymjs.kjframe.ui.BindView;
 
 import cn.smssdk.EventHandler;
@@ -31,7 +32,7 @@ import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
 
 /**
- * 这个是开始页面  哈哈
+ * 这个是开始页面
  *
  * @author dupeng
  * @version 1.0.0
@@ -44,6 +45,8 @@ public class StartActivity extends BaseActivity {
 //    private TextView mTvTitle;
     @BindView(id = R.id.edt_login_activity_user_phone)
     private EditText mEdtUserPhone;
+    @BindView(id = R.id.edt_login_activity_user_name)
+    private EditText mEdtUserName;
     @BindView(id = R.id.edt_login_activity_user_verification_code)
     private EditText mEdtUserVerificationCode;
     @BindView(id = R.id.btn_login_activity_user_verification_code, click = true)
@@ -57,6 +60,7 @@ public class StartActivity extends BaseActivity {
     private EventHandler eh;
 
     private String phone;
+    private String name;
     private Context context = this;
 
     private boolean isNewUser = false;
@@ -135,6 +139,7 @@ public class StartActivity extends BaseActivity {
     @Override
     public void widgetClick(View v) {
         phone = mEdtUserPhone.getText().toString().trim();
+        name = mEdtUserName.getText().toString().trim();
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.btn_user_login1:
@@ -145,6 +150,10 @@ public class StartActivity extends BaseActivity {
                 String verCode = mEdtUserVerificationCode.getText().toString().trim();
                 if (phone.equals("") || phone == null) {
                     ToastUtils.showToast(this, "请先输入手机号");
+                    return;
+                }
+                if (name.equals("") || name == null) {
+                    ToastUtils.showToast(this, "请先输入用户名");
                     return;
                 }
                 if (isNewUser) {
@@ -159,6 +168,10 @@ public class StartActivity extends BaseActivity {
 
                 break;
             case R.id.btn_login_activity_user_verification_code:
+                if (name.equals("") || name == null) {
+                    ToastUtils.showToast(this, "请先输入用户名");
+                    return;
+                }
                 if (phone.equals("") || phone == null) {
                     ToastUtils.showToast(this, "请先输入手机号");
                     return;
@@ -168,7 +181,7 @@ public class StartActivity extends BaseActivity {
                     ToastUtils.showToast(this, "请输入有效的手机号码...");
                     return;
                 }
-                addUserInfo(phone);
+                addUserInfo(phone,name);
 
                 break;
             default:
@@ -182,6 +195,7 @@ public class StartActivity extends BaseActivity {
      * @param tel
      */
     public void login(String tel) {
+
         KJHttpUtil.getHttp(Contacts.GET_USER_LOGIN + tel, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
@@ -215,8 +229,12 @@ public class StartActivity extends BaseActivity {
      *
      * @param tel
      */
-    public void addUserInfo(String tel) {
-        KJHttpUtil.getHttp(Contacts.GET_ADD_USER + tel, new HttpCallBack() {
+    public void addUserInfo(String tel, String username) {
+
+        HttpParams params = new HttpParams();
+        params.put("tel", tel);
+        params.put("username", username);
+        KJHttpUtil.postHttp(Contacts.GET_ADD_USER, params, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);

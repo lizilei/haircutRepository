@@ -10,8 +10,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@mipmap/logo"
-        android:layout_centerInParent="true"
-        android:scaleType="fitXY" />
+        android:layout_centerInParent="true" />
 
     <LinearLayout
         android:id="@+id/layout_splash_in"

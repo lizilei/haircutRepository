@@ -81,25 +81,6 @@
                 android:minHeight="45.0dip">
 
                 <ImageView
-                    android:id="@+id/iv_shop_call"
-                    android:layout_width="50.0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:paddingLeft="15.0dip"
-                    android:paddingRight="15.0dip"
-                    android:visibility="gone"
-                    android:src="@drawable/btn_shop_call" />
-
-                <ImageView
-                    android:id="@+id/iv_shop_info_line"
-                    android:layout_width="1.0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_shop_call"
-                    android:background="@mipmap/dianpuxiangqing_shugang_37" />
-
-                <ImageView
                     android:id="@+id/iv_shop_info_addr"
                     android:layout_width="17.0dip"
                     android:layout_height="20.0dip"
@@ -117,37 +98,7 @@
                     android:layout_marginBottom="9.0dip"
                     android:layout_marginRight="14.0dip"
                     android:layout_marginTop="11.0dip"
-                    android:layout_toLeftOf="@id/iv_shop_info_line"
                     android:layout_toRightOf="@id/iv_shop_info_addr"
-                    android:textColor="@color/deep_color"
-                    android:textSize="15.0sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_shop_branch"
-                android:layout_width="fill_parent"
-                android:layout_height="45.0dip"
-                android:visibility="gone"
-                android:layout_marginBottom="15.0dip"
-                android:background="@color/white">
-
-                <ImageView
-                    android:id="@+id/iv_shop_branch_arrow"
-                    android:layout_width="6.0dip"
-                    android:layout_height="10.5dip"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15.0dip"
-                    android:layout_marginRight="15.0dip"
-                    android:background="@mipmap/tongyong_xiayiye" />
-
-                <TextView
-                    android:id="@+id/tv_shop_branch"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="14.0dip"
-                    android:layout_toLeftOf="@id/iv_shop_branch_arrow"
                     android:textColor="@color/deep_color"
                     android:textSize="15.0sp" />
             </RelativeLayout>

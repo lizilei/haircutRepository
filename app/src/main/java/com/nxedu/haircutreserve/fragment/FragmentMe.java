@@ -28,10 +28,12 @@ import com.nxedu.haircutreserve.activity.StartActivity;
 import com.nxedu.haircutreserve.adapter.CommonAdapter;
 import com.nxedu.haircutreserve.adapter.ViewHolder;
 import com.nxedu.haircutreserve.bean.MeData;
+import com.nxedu.haircutreserve.bean.User;
 import com.nxedu.haircutreserve.utils.AppUtils;
 import com.nxedu.haircutreserve.utils.MyImageLoaderUtils;
 import com.nxedu.haircutreserve.utils.PreferenceUtils;
 import com.nxedu.haircutreserve.utils.ToastUtils;
+import com.nxedu.haircutreserve.utils.UserUtils;
 import com.nxedu.haircutreserve.view.CircleImageView;
 import com.nxedu.haircutreserve.view.DrawableTextView;
 import com.nxedu.haircutreserve.view.ListViewNoScroll;
@@ -75,6 +77,8 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
     private ImageView iv_back;
     @BindView(id = R.id.fragment_me_username)
     private TextView fragment_me_username;
+    @BindView(id = R.id.fragment_me_commpany)
+    private TextView fragment_me_commpany;
 
     private String userType = "1";
 
@@ -112,9 +116,8 @@ public class FragmentMe extends SupportFragment implements AdapterView.OnItemCli
             meAvatar.setImageBitmap(BitmapFactory.decodeFile(ss));
         }
 
-        String phone = PreferenceUtils.getPrefString(aty, "phone", null);
-        if (phone != null)
-            fragment_me_username.setText(phone);
+        fragment_me_username.setText(UserUtils.getTel(aty));
+        fragment_me_commpany.setText(UserUtils.getUser(aty).getUsername() != null ? UserUtils.getUser(aty).getUsername() : "");
         switch (userType) {
             case "1"://普通用户
                 textData = getResources().getStringArray(R.array.general_text);

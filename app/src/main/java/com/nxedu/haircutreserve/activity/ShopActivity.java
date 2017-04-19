@@ -1,6 +1,7 @@
 package com.nxedu.haircutreserve.activity;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -62,6 +63,8 @@ public class ShopActivity extends BaseActivity {
     private int haircut_id;
     private String haircut_name;
     private String price;
+    private String imageurl;
+    private String distance;
 
     @Override
     public void setRootView() {
@@ -137,6 +140,7 @@ public class ShopActivity extends BaseActivity {
         };
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 double money1 = Integer.parseInt(data.get(position).getConcessionalprice()) * 0.3;
@@ -146,6 +150,8 @@ public class ShopActivity extends BaseActivity {
                 money.setTextColor(getResources().getColor(R.color.pink));
                 haircut_id = data.get(position).getId();
                 haircut_name = data.get(position).getName();
+                distance = goodShopBean.getBody().get(position).getDistance();
+                imageurl = goodShopBean.getBody().get(position).getImageurl();
             }
         });
     }
@@ -156,13 +162,13 @@ public class ShopActivity extends BaseActivity {
         bodyBean.setBusiness_name("洗剪吹");
         bodyBean.setCreated(TimeUtils.getCurrentTime());
         bodyBean.setTel(UserUtils.getUser(this).getTel());
-        bodyBean.setDistance(goodShopBean.getBody().get(0).getDistance());
+        bodyBean.setDistance(distance);
         bodyBean.setHaircut_id(haircut_id);
         bodyBean.setHaircut_name(haircut_name);
         bodyBean.setOrder_price(price);
         bodyBean.setUser_name(UserUtils.getUser(this).getUsername());
         bodyBean.setProject_title(tv_title.getText().toString());
-        bodyBean.setCover_pic(goodShopBean.getBody().get(0).getImageurl());
+        bodyBean.setCover_pic(imageurl);
         Log.e("---ERROR", bodyBean.toString());
         Log.e("---ERROR", JSON.toJSONString(bodyBean));
 
@@ -202,7 +208,7 @@ public class ShopActivity extends BaseActivity {
                 break;
             case R.id.tv_booking:
                 String money1 = money.getText().toString().trim();
-                if (!money1.equals("")) {
+                if (!TextUtils.isEmpty(money1)) {
                     getOrderList();
                 } else {
                     ToastUtils.showToast(ShopActivity.this, "请选择发型师!!");

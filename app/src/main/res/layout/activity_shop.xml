@@ -280,7 +280,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="17.0dip"
-                android:text="@string/booking_money"
+                android:hint="@string/booking_money"
                 android:textColor="@color/gray"
                 android:textSize="15.0sp" />
 

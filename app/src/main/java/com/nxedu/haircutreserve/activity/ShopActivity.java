@@ -63,8 +63,6 @@ public class ShopActivity extends BaseActivity {
     private int haircut_id;
     private String haircut_name;
     private String price;
-    private String imageurl;
-    private String distance;
 
     @Override
     public void setRootView() {
@@ -150,8 +148,6 @@ public class ShopActivity extends BaseActivity {
                 money.setTextColor(getResources().getColor(R.color.pink));
                 haircut_id = data.get(position).getId();
                 haircut_name = data.get(position).getName();
-                distance = goodShopBean.getBody().get(position).getDistance();
-                imageurl = goodShopBean.getBody().get(position).getImageurl();
             }
         });
     }
@@ -162,13 +158,13 @@ public class ShopActivity extends BaseActivity {
         bodyBean.setBusiness_name("洗剪吹");
         bodyBean.setCreated(TimeUtils.getCurrentTime());
         bodyBean.setTel(UserUtils.getUser(this).getTel());
-        bodyBean.setDistance(distance);
+        bodyBean.setDistance(goodShopBean.getBody().get(0).getDistance());
         bodyBean.setHaircut_id(haircut_id);
         bodyBean.setHaircut_name(haircut_name);
         bodyBean.setOrder_price(price);
         bodyBean.setUser_name(UserUtils.getUser(this).getUsername());
         bodyBean.setProject_title(tv_title.getText().toString());
-        bodyBean.setCover_pic(imageurl);
+        bodyBean.setCover_pic(goodShopBean.getBody().get(0).getImageurl());
         Log.e("---ERROR", bodyBean.toString());
         Log.e("---ERROR", JSON.toJSONString(bodyBean));
 

@@ -10,6 +10,9 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nxedu.haircutreserve.contacts.Contacts;
 
+import org.greenrobot.greendao.AbstractDaoMaster;
+import org.greenrobot.greendao.AbstractDaoSession;
+
 import java.io.File;
 
 import cn.smssdk.SMSSDK;
@@ -43,5 +46,6 @@ public class app extends Application {
         File file = new File(Contacts.PictureDir);
         if (!file.exists())
             file.mkdir();
+
     }
 }
